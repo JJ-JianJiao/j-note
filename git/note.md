@@ -125,7 +125,18 @@ Git order:
 59. git merge changesBranch -m "comments"
 
 ## merge conflict & resolution
-60. 
+60. using p4merge( merge tool ) is very a good graphic tool to deal with the conflict files. and when merging has conflict, git will in the merging|conflict status.
+
+## Rebasing (rewind the branch and flattended our branch)
+61. git rebase branchName
+62. git rebase --abort :-out of the rebase.
+63. git rebase --continue :- after resolve the rebase conflicts
+64. git fetch origin master
+65. git pull --rebase origin master
+
+
+##stashing
+66. git stash :- hide the changes base on the current commit
 
 
 
