@@ -76,12 +76,56 @@ Git order:
 ## git diff
 38. git diff  :- compare the working directory and staging area
 39. git difftool # will run the git different visual merge and diff tool
-40. Set diff tool
-    a. git config --global
+40. Set diff tool (perforce - P4Merge - Helix Visual Merge Tool)
+    a. git config --global mergetool.p4merge.path /path
+    b. git config --global merge.tool p4merge
+    c. git config --global difftool.p4merge.path /path
+    d. git config --global diff.tool p4merge
+    e. git config --global difftool.prompt false ##　to avoid everytime open it will have prompt.
+    f. git config --global mergetool.prompt false
 
 ##compare working dir vs repository (last commit)
 41. git diff HEAD :- HEAD as parameter will compare working directory vs last commit on this branch
 42. git difftool HEAD :- HEAD as parameter will compare working directory vs last commit on this branch
+
+## comparisons Staging Area vs Repository
+43. git diff --staged HEAD
+44. git difftool --staged HEAD
+
+## Comparisons List to One File
+45. git diff -- fileName :- only compare the specific file
+46. git difftool -- filename :- only compare the specific file
+
+## Comparisons between commits
+47. git diff commitID commitID :- compare the commits
+48. git diff HEAD HEAD^ :- compare HEAD and HEAD--
+49. git difftool HEAD HEAD^
+
+## comparisons local vs remote
+50. git diff master origin/master
+51. git difftool master origin/master
+
+## Branch and Merge
+52. git branch -a :- will list local and remote branches
+  a. git branch :will list all the local branches
+53. git branch branchName :- create a branch
+54. git checkout branchName :- move to the specific branch
+55. git branch -m mynewbranch newbranch :- rename the branch A to branch B (-m : move)
+56. git branch -d branchName :- -d for delete + name of branch
+57. git branch -b branchName : will create a new branch and checkout then
+58. git merge changeBranch : this parameter is the branch with changes and merge into current branch
+
+##Happy path: Fast Forward
+57. fast forward means: the target branch will fill with the changed branch and there is no changes ahead the target branch。 　we can not see the merge action in the graph commit log. it will not show the feature
+
+## Happy path w/o fast forward
+58. git merger changeBranch --no-ff : --no-ff model is normal merge, can save the branch merge history and it is good for checking the merge history. it will create a new merge id.
+
+## automatic merges
+59. git merge changesBranch -m "comments"
+
+## merge conflict & resolution
+60. 
 
 
 
