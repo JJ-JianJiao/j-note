@@ -74,8 +74,16 @@ Git order:
 37. git config --global alias.xxx(name) "content(log --all --graph --decorate --oneline)"
 
 ## git diff
-38. git diff  
+38. git diff  :- compare the working directory and staging area
 39. git difftool # will run the git different visual merge and diff tool
+40. Set diff tool
+    a. git config --global
+
+##compare working dir vs repository (last commit)
+41. git diff HEAD :- HEAD as parameter will compare working directory vs last commit on this branch
+42. git difftool HEAD :- HEAD as parameter will compare working directory vs last commit on this branch
+
+
 
 ##git ignore
 38. Git Ignore pattern examples
