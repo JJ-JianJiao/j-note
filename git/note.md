@@ -67,8 +67,22 @@ Git order:
 31. git log --abbrev-commit
 32. git log --oneline --graph --
 33. git log commit-code commit-code ## show the A>= and >B commit log
-34
+34. git log --since="3 days ago"
+35. git log -- fileName ## will get the commit relative with the specific files
+36. git log --follow -- pathOfFile ##commit history for the specific file going through the renames
+## git Alias For example, want to show the git log + parameters "git log --all --graph --decorate --oneline"
+37. git config --global alias.xxx(name) "content(log --all --graph --decorate --oneline)"
 
+## git diff
+38. git diff  
+39. git difftool # will run the git different visual merge and diff tool
+
+##git ignore
+38. Git Ignore pattern examples
+  Specific files: My files.ext
+  File pattern: *.ext
+  Folder: my-folder/
+39.
 
 Git Basics Overview:
 1. Starting a Project
