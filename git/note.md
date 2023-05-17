@@ -65,7 +65,7 @@ Git order:
 29. git help log ## help page, press q key will quit.
 30. git log ## check the commit history, type Q to quit
 31. git log --abbrev-commit
-32. git log --oneline --graph --
+32. git log --oneline --graph
 33. git log commit-code commit-code ## show the A>= and >B commit log
 34. git log --since="3 days ago"
 35. git log -- fileName ## will get the commit relative with the specific files
@@ -135,8 +135,65 @@ Git order:
 65. git pull --rebase origin master
 
 
-##stashing
+##stashing (by default, the git statsh command will only stash the tracked file)
 66. git stash :- hide the changes base on the current commit
+67. git stash apply :- will release the stash to current branch
+68. git stash list :- WIP means working in progress, show the current stash list
+69. git stash drop:- it will drop the last stash
+
+## stash untracked / pop
+70. git stash -u :- will stash the untracked files
+71. git stash drop / apply : will delete/stash the last stash
+72. git stash pop :- poping the stack (apply and then drop)
+73. git stash save "name" :- save the stash and give it a name
+74. git stash show stash@{index} :- will check the selected stash for review.
+75. git stash apply stash@{index}
+76. git stash drop stash@{index}
+77. git stash clear :- will empty the stash list
+
+## apply stash to a new branch
+78. git stash branch BranchName :- create and switch to a branch and apply the stash to the new branch and drop the stash list
+
+## git tagging  tags are just nothing more than labels
+79. git tag TagName :- create a lightweight tag, it is simply just a marker on a particular commit
+80. git tag --list :- check the tags we have
+81. git tag --delete TagName :- delete a tag
+
+## annotated tag : is similar to the lightweight tag, but it has a little extra information. Major milestone or version numbers.
+82. git tag -a TagName(v-1.0) :-   "-a" means create a annotated tag
+
+## compare tags
+83. git commit --amend :- re-edit the commend content of latest commit
+84. git tag TagName -m "content"
+85. git diff TagName TagName2
+86. git difftool TagName TagName2
+
+## Git Tagging a previous commit
+87. git tag -a TagName commitID
+
+## updating an existing tag
+88. git tag -a TagName -f commitID :- force move the tag to newCommitID
+89. git show TagName :- will display the commit information based on the tagName
+
+## push tag to github
+90. git push origin TagName
+91. git push origin
+92. git push origin :TagName :- delete the tag from github
+
+## Rebase and Reflog - time travel with git (traverse branch using HEAD)
+1. git reflog :- wiil show the HEAD log history. Git log show the history and git reflog shows the log (show the log everything we have done)
+2. git reset HEAD^ :- move the HEAD up one step
+3. git reset HEAD~Index :- move the HEAD up index steps
+4. git reset commitID :- move the HEAD to the specific commit
+
+## reset - three different resets (default: mixed, soft:, hard:)
+1. git reset --hard : will back the the commit and remove all the things in staging and working area (give up all the changes locally)
+2. git reset --soft: will put the different between the commits to staged area (we can use git reset --soft to combine the commits points)
+3. git reset --mixed: will pul the different to working area/or if we want to move all the staged file to working area
+
+
+
+
 
 
 
