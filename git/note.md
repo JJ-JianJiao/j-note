@@ -19,6 +19,8 @@ Commend order:
 
 
 Git order:
+0. which git :- get the location of git
+  a. reinstall git : sudo xcode-select --install
 1. git version - check the git version :- check the git version or install
 2. git config --global user.name "XXXX XXX" :- set the user name
 3. git config --global user.email "xxx@xxx.xxx" :- set the user email
@@ -191,11 +193,20 @@ Git order:
 2. git reset --soft: will put the different between the commits to staged area (we can use git reset --soft to combine the commits points)
 3. git reset --mixed: will pul the different to working area/or if we want to move all the staged file to working area
 
+## git diff branches
+1. git diff branchName branchName2
 
+## cherry pick //https://www.ruanyifeng.com/blog/2020/04/git-cherry-pick.html(ref) IF we need the all commits in the branch, we use merge. If we need the commits (few changes) in the branch, we could use cherry-pick.
+1. git cherry-pick commitID
+2. git cherry-pick commitID commitID2
+3. git cherry-pick A..B :- (A,B]
+4. git cherry-pick A^..B :- [A,B]
 
-
-
-
+## Push branch to remote
+1. git push origin branchName
+2. git push origin --delete branchName
+Example: delete the branch : remote/dev/JunitTest
+: git push dev --delete JunitTest
 
 ##git ignore
 38. Git Ignore pattern examples
