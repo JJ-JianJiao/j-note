@@ -38,7 +38,7 @@
 	(2) Strong:  
 	`__Strong__`: two underscore  
 	`**Strong**`: two asterisk  
-> *__NOTE__: in programming code, for example the variable name : var_example_int, the "_" will name the content inside became the Italy. To Avoid this, we should add \ before the "_".  Like this: `var\_example\_int`. But some of the markdown version does not allow this, so we should use "\*" more than "_".*
+	> *__NOTE__: in programming code, for example the variable name : var_example_int, the "_" will name the content inside became the Italy. To Avoid this, we should add \ before the "_".  Like this: `var\_example\_int`. But some of the markdown version does not allow this, so we should use "\*" more than "_".*
 
 4. Quotes & Code Blocks  
 	*Quotes:*  
@@ -71,9 +71,7 @@
 
 6. Links, Images, & More  
 7. Horizontal Rule  
-  a. add the "---" or '\*\*\*' between the paragraph  
-  ---
-  will display like this.
+  a. add the "---" or '\*\*\*' between the paragraph  will display a line between the paragraphs.
 
 
 
