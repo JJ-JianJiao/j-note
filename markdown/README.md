@@ -29,7 +29,7 @@
     ###### header 6
     ```
 3. Paragraph Text & Emphasis.  
-	*a. in some cases if we want to change the new line, it needs to hit two "enter" key.*  
+	*a. in some cases if we want to change the new line, it needs to hit two "enter" key. or enter two spaces + enter*  
 	*b. Emphasis:*  
 		(1) Italy:  
 		`_content_` : underscore the contents  
@@ -47,7 +47,24 @@
 		a. \`content\` will show like the inline code  
 		b. \`\`\`content\`\`\` will show the multiple line of code blocks
 
-5. Lists
+5. Lists  
+    a. using "*, +, -" to create the unordered list bullet. For example:
+      ```
+      * Supermarket
+      + Mall
+      - Gas Station
+      ```
+      Will display as
+      * Supermarket
+      + Mall
+      - Gas Station  
+    b. ordered list bullet. The markdown render does not care about the numbers it will render them in order that they are listed.
+    c. nested list:  
+      * Fruit    
+        * Watermelon
+        * Strawberry
+      * Veggies    
+        * Carrots
 
 6. Links, Images, & More
 
