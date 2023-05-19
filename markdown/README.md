@@ -34,7 +34,7 @@
 	(1) Italy:  
 	`_content_` : underscore the contents  
 	`*content*` : asterisk the contents  
-	
+
 	(2) Strong:  
 	`__Strong__`: two underscore  
 	`**Strong**`: two asterisk  
@@ -44,7 +44,7 @@
 	*Quotes:*  
 	a. `>` is for the quote  
 	b. `>>` is for the child of the quote  
-	
+
 	*Code Blocks:*  
 	a. \`content\` will show like the inline code  
 	b. \`\`\`content\`\`\` will show the multiple line of code blocks
@@ -69,7 +69,11 @@
      > * Veggies    
      >   * Carrots
 
-6. Links, Images, & More
+6. Links, Images, & More  
+7. Horizontal Rule  
+  a. add the "---" or '\*\*\*' between the paragraph  
+  ---
+  will display like this.
 
 
 
