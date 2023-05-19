@@ -1,4 +1,4 @@
-Commend order:
+# Commend order:
 1. pwd - print work directory
 2. mkdir - make directory
   mkdir - p folder1/folder2/folder3 :- add -p, the system will create more folder even the folders do not exist
@@ -18,7 +18,7 @@ Commend order:
 
 
 
-Git order:
+# Git order:
 0. which git :- get the location of git
   a. reinstall git : sudo xcode-select --install
 1. git version - check the git version :- check the git version or install
