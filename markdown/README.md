@@ -15,17 +15,20 @@
 1. All Original Syntax
 2. Headings. the max header tag in html is six, same as markdown
   a. format :
-      Header 1
-      =========
-      Header 2
-      ---------
-
+    ```
+    Header 1
+    =========
+    Header 2
+    ---------
+    ```
   b. format:
+    ```
     # header 1
     ## header 2
     ### header 3
     ...
     ###### header 6
+    ```
 3. Paragraph Text & Emphasis
   a. in some cases if we want to change the new line, it needs to hit two "enter" key.
   b. Emphasis:
