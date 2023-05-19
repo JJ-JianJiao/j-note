@@ -28,7 +28,7 @@
     ...
     ###### header 6
     ```
-3. Paragraph Text & Emphasis
+3. Paragraph Text & Emphasis. 
   *a. in some cases if we want to change the new line, it needs to hit two "enter" key.*  
   *b. Emphasis:*.
     (1) Italy:
