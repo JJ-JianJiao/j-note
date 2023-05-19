@@ -1,30 +1,30 @@
 # Basic Commands:
-1. pwd : print current working directory path
-2. mkdir : make directory
+1. `pwd` : print current working directory path
+2. `mkdir` : make directory
     a. mkdir -p folder1/folder2/folder3 : add _-p_, the system will create more folder even the folders do not exist
-3. echo "xxxxxx" >> xxx.txt ：create a file and add the content to it:
-4. cat xxx.txt : display the content of the files
-5. nano file.name : if the file exists, open nano editor and edit the file or create the file first
-6. cd ~ : ~ means the root
-7. cd ~/.gitconfig : to check the global config setting of git
+3. `echo "xxxxxx" >> xxx.txt` ：create a file and add the content to it:
+4. `cat xxx.txt` : display the content of the files
+5. `nano file.name` : if the file exists, open nano editor and edit the file or create the file first
+6. `cd ~` : ~ means the root
+7. `cd ~/.gitconfig` : to check the global config setting of git
 8. press esc, enter :wq or :q!
-9. rm -rf folderName : delete the folder and all the files in the folder. (_-r means recursively_, _-f means force_)
-10. unzip ~/Downloads/fileName (path of the file) : unzip the file to current folder
-11. mv folderName NewfolderName : rename the folder name
-12. mv folderName path/ : move the file to the folder
+9. `rm -rf folderName` : delete the folder and all the files in the folder. (_-r means recursively_, _-f means force_)
+10. `unzip ~/Downloads/fileName (path of the file)` : unzip the file to current folder
+11. `mv folderName NewfolderName` : rename the folder name
+12. `mv folderName path/` : move the file to the folder
 
 # Git Commands:
 ## Basic Git Commands:
-1. which git : get the location of git
-  a. reinstall git : sudo xcode-select --install
-2. git version : check the git version
-3. git config --global user.name "XXXX XXX" : set the user name
-4. git config --global user.email "xxx@xxx.xxx" : set the user email
-5. git config --global --list : check the user name and user email
-6. git status : check current branch status
+1. `which git` : get the location of git
+  a. `sudo xcode-select --install` : re-install git in macOS
+2. `git version` : check the git version
+3. `git config --global user.name "XXXX XXX"` : set the user name
+4. `git config --global user.email "xxx@xxx.xxx"` : set the user email
+5. `git config --global --list` : check the user name and user email
+6. `git status` : check current branch status
 
 ## clone a prject/repository
-1. git clone repo's https address : clone a git repo from git hub server
+1. `git clone-repo's-https-address` : clone a git repo from git hub server
 
 ## add changes to staged area
 
