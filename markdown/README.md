@@ -81,9 +81,9 @@
 
    *c. automatic links : using angle brackets `<>`, the markdown will automatically convert links into actual links.*
 
-7. Images
-  *a. Format: `![content]{web url "option title"}`*.
-   For example:
+7. Images  
+  *a. Format: `![content]{web url "option title"}`*.  
+   For example:  
    > This is an line image ![Demo](http://placehold.it/350x150)  
    > the format is : `![Demo](http://placehold.it/350x150)`  
 
