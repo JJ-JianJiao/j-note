@@ -102,14 +102,56 @@
 	>    <dd>An awesome plain-text format</dd>
 	> </dl>  
 	Here is the code for a definition list in HTML
-  
+      ```
 	    <dl>
-		<dt>Markdown</dt>
-		<dd>An awesome plain-text format</dd>
+    		<dt>Markdown</dt>
+    		<dd>An awesome plain-text format</dd>
 	    </dl>
+      ```
+---
+
+## Enhanced Markdown
+1. Table  
+  Format:
+  ```
+  Item     | Value
+  -------- | -----
+  Computer | $1600
+  Phone    | $12
+  Pipe     | $1
+  ```
+  Display:
+
+  Item     | Value
+  -------- | -----
+  Computer | $1600
+  Phone    | $12
+  Pipe     | $1
+
+  Note: if we put the ":" in the "---", it will change the aligns.  
+  > ":---" : means align left.
+  > ":---:" : means align centre.
+  > "---:" : means align right.  
 
 
+2. Fenced Code Blocks with Syntax Highlighting  
+  This is code below.
 
+  ```java
+  import java.io.*;
+
+  public class Foo(){
+    public static void main(String[] args){
+      System.out.println("this is a test.");
+    }
+  }
+  ```
+
+  ```ruby
+  #!/usr/bin/env ruby
+  print "Hello Ruby!\n"
+  print "Goodbye Ruby\n"
+  ```
 
 # Flvors of Markdown
   1. Markdown (Original, John Gruber)
