@@ -31,40 +31,43 @@
 3. Paragraph Text & Emphasis.  
 	*a. in some cases if we want to change the new line, it needs to hit two "enter" key. or enter two spaces + enter*  
 	*b. Emphasis:*  
-		(1) Italy:  
-		`_content_` : underscore the contents  
-		`*content*` : asterisk the contents  
-		(2) Strong:  
-		`__Strong__`: two underscore  
-		`**Strong**`: two asterisk  
-*__NOTE__: in programming code, for example the variable name : var_example_int, the "_" will name the content inside became the Italy. To Avoid this, we should add \ before the "_".  Like this: `var\_example\_int`. But some of the markdown version does not allow this, so we should use "\*" more than "_".*
+	(1) Italy:  
+	`_content_` : underscore the contents  
+	`*content*` : asterisk the contents  
+	
+	(2) Strong:  
+	`__Strong__`: two underscore  
+	`**Strong**`: two asterisk  
+> *__NOTE__: in programming code, for example the variable name : var_example_int, the "_" will name the content inside became the Italy. To Avoid this, we should add \ before the "_".  Like this: `var\_example\_int`. But some of the markdown version does not allow this, so we should use "\*" more than "_".*
 
 4. Quotes & Code Blocks  
 	*Quotes:*  
-		a. `>` is for the quote  
-		b. `>>` is for the child of the quote  
+	a. `>` is for the quote  
+	b. `>>` is for the child of the quote  
+	
 	*Code Blocks:*  
-		a. \`content\` will show like the inline code  
-		b. \`\`\`content\`\`\` will show the multiple line of code blocks
+	a. \`content\` will show like the inline code  
+	b. \`\`\`content\`\`\` will show the multiple line of code blocks
 
 5. Lists  
-    a. using "*, +, -" to create the unordered list bullet. For example:
-      ```
-      * Supermarket
-      + Mall
-      - Gas Station
-      ```
-      Will display as
-      * Supermarket
-      + Mall
-      - Gas Station  
-    b. ordered list bullet. The markdown render does not care about the numbers it will render them in order that they are listed.
-    c. nested list:  
-      * Fruit    
-        * Watermelon
-        * Strawberry
-      * Veggies    
-        * Carrots
+	a. using "*, +, -" to create the unordered list bullet. For example:
+    >   ```
+    >   * Supermarket
+    >   + Mall
+    >   - Gas Station
+    >   ```
+    >  Will display as
+    >  * Supermarket
+    >  + Mall
+    >  - Gas Station  
+
+	b. ordered list bullet. The markdown render does not care about the numbers it will render them in order that they are listed.  
+	c. nested list:  
+     > * Fruit    
+     >   * Watermelon
+     >   * Strawberry
+     > * Veggies    
+     >   * Carrots
 
 6. Links, Images, & More
 
