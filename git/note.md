@@ -1,15 +1,3 @@
-<<<<<<< HEAD
-# Commend order:
-1. pwd - print work directory
-2. mkdir - make directory
-  mkdir - p folder1/folder2/folder3 :- add -p, the system will create more folder even the folders do not exist
-3. create a file and add the content to it:
-  echo "xxxxxx" >> xxx.txt
-4. cat xxx.txt :- display the content of the files
-5. nano file.name - if the file exists, open nano editor and edit the file or create the file first
-6. cd ~ :- ~ means the root
-7. cd ~/.gitconfig :- to check the config setting of git
-=======
 # Basic Commands:
 1. pwd : print current working directory path
 2. mkdir : make directory
@@ -19,7 +7,6 @@
 5. nano file.name : if the file exists, open nano editor and edit the file or create the file first
 6. cd ~ : ~ means the root
 7. cd ~/.gitconfig : to check the global config setting of git
->>>>>>> 8530cbcec34a45171114665e1d3adda48d243262
 8. press esc, enter :wq or :q!
 9. rm -rf folderName : delete the folder and all the files in the folder. (_-r means recursively_, _-f means force_)
 10. unzip ~/Downloads/fileName (path of the file) : unzip the file to current folder
@@ -39,22 +26,8 @@
 ## clone a prject/repository
 1. git clone repo's https address : clone a git repo from git hub server
 
-
 ## add changes to staged area
 
-
-<<<<<<< HEAD
-# Git order:
-0. which git :- get the location of git
-  a. reinstall git : sudo xcode-select --install
-1. git version - check the git version :- check the git version or install
-2. git config --global user.name "XXXX XXX" :- set the user name
-3. git config --global user.email "xxx@xxx.xxx" :- set the user email
-4. git config --global --list :- check the user name and user email
-5. git clone repo's https address
-6. git status :- check current branch status
-=======
->>>>>>> 8530cbcec34a45171114665e1d3adda48d243262
 7. git add "file.name" - add files to staging area
 8. git commit -m "message" :- add the commit to local
 9. git push origin main
