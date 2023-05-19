@@ -70,18 +70,27 @@
      >   * Carrots
 
 6. Links  
-  *a. Format: `[content]{web url "option title"}`*. 
+  *a. Format: `[content]{web url "option title"}`*.
    For example:
    > one of the most popular search engines is [Google](http://google.com "Google Search")  
    > the format is : `[Google]{http://google.com "Google Search"}`  
-   
+
    *b. We can set an parameter, format is : `[para]: url "option title"`. After that, we can use this para like this: '[content][para]'*  
    > A distant second is Microsoft's [Bing][msb]  
    > the format is : `[msb]: http://bing.com "Bing Search Engine"`.  
-   
+
    *c. automatic links : using angle brackets `<>`, the markdown will automatically convert links into actual links.*
 
 7. Images
+  *a. Format: `![content]{web url "option title"}`*.
+   For example:
+   > This is an line image ![Demo](http://placehold.it/350x150)  
+   > the format is : `![Demo](http://placehold.it/350x150)`  
+
+   *b. We can set an parameter, format is : `[para]: url "option title"`. After that, we can use this para like this: '[content][para]'*  
+   > Placehold,it is a nice place to get some placeholder grahics.
+   > ![300 x 300 demo][Demo300]
+   > the format is : `[Demo300]:http://placehold.it/300 "300-pixel squared placeholder"`.  
 
 8. Horizontal Rule  
   a. add the "---" or '\*\*\*' between the paragraph  will display a line between the paragraphs.
