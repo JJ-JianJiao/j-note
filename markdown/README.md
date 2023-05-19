@@ -111,8 +111,8 @@
 ---
 
 ## Enhanced Markdown
-1. Table  
-  Format:
+**1. Table**  
+  *Format:*
   ```
   Item     | Value
   -------- | -----
@@ -134,8 +134,8 @@
   > "---:" : means align right.  
 
 
-2. Fenced Code Blocks with Syntax Highlighting  
-  This is code below.
+**2. Fenced Code Blocks with Syntax Highlighting**  
+  *This is code below.*
 
   ```java
   import java.io.*;
