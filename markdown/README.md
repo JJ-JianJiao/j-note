@@ -28,24 +28,24 @@
     ...
     ###### header 6
     ```
-3. Paragraph Text & Emphasis. 
-  *a. in some cases if we want to change the new line, it needs to hit two "enter" key.*  
-  *b. Emphasis:*.
-    (1) Italy:
-      `_content_` : underscore the contents
-      `*content*` : asterisk the contents
-    (2) Strong:
-      `__Strong__`: two underscore
-      `**Strong**`: two asterisk
+3. Paragraph Text & Emphasis.  
+	*a. in some cases if we want to change the new line, it needs to hit two "enter" key.*  
+	*b. Emphasis:*  
+		(1) Italy:  
+		`_content_` : underscore the contents  
+		`*content*` : asterisk the contents  
+		(2) Strong:  
+		`__Strong__`: two underscore  
+		`**Strong**`: two asterisk  
 *__NOTE__: in programming code, for example the variable name : var_example_int, the "_" will name the content inside became the Italy. To Avoid this, we should add \ before the "_".  Like this: `var\_example\_int`. But some of the markdown version does not allow this, so we should use "\*" more than "_".*
 
-4. Quotes & Code Blocks
-  *Quotes:*
-	    a. `>` is for the quote
-	    b. `>>` is for the child of the quote
-  *Code Blocks:*
-    a. \`content\` will show like the inline code
-    b. \`\`\`content\`\`\` will show the multiple line of code blocks
+4. Quotes & Code Blocks  
+	*Quotes:*  
+		a. `>` is for the quote  
+		b. `>>` is for the child of the quote  
+	*Code Blocks:*  
+		a. \`content\` will show like the inline code  
+		b. \`\`\`content\`\`\` will show the multiple line of code blocks
 
 5. Lists
 
