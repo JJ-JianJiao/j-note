@@ -96,21 +96,18 @@
   a. add the "---" or '\*\*\*' between the paragraph  will display a line between the paragraphs.
 
 9. Inline HTML  
-> sometimes you need to add some inline HTML
+	sometimes you need to add some inline HTML
+	> <dl>
+	>    <dt>Markdown</dt>
+	>    <dd>An awesome plain-text format</dd>
+	> </dl>  
+	Here is the code for a definition list in HTML
+  
+	    <dl>
+		<dt>Markdown</dt>
+		<dd>An awesome plain-text format</dd>
+	    </dl>
 
->> <dl>
->>    <dt>Markdown</dt>
->>    <dd>An awesome plain-text format</dd>
->> </dl>
-
-> Here is the code for a definition list in HTML
-
->>  ```
->>  <dl>
->>  <dt>Markdown</dt>
->>  <dd>An awesome plain-text format</dd>
->>  </dl>
->>  ```
 
 
 
