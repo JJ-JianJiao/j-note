@@ -1,4 +1,4 @@
-# Course Goals & Objects
+# Goals & Objects
 1. What is Markdown?  
   *a. writing format (scripts for a play, blogs) vs html, pdf(publishing format, html, pdf)  
   b. Plain Text /Human readable  
