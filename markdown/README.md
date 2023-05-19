@@ -69,8 +69,21 @@
      > * Veggies    
      >   * Carrots
 
-6. Links, Images, & More  
-7. Horizontal Rule  
+6. Links  
+  *a. Format: `[content]{web url "option title"}`*
+   For example:
+   > one of the most popular search engines is [Google](http://google.com "Google Search")
+
+   the format is : `[Google]{http://google.com "Google Search"}`  
+   *b. We can set an parameter, format is : `[para]: url "option title"`. After that, we can use this para like this: '[content][para]'*
+   > A distant second is Microsoft's [Bing][msb]
+
+   the format is : `[msb]: http://bing.com "Bing Search Engine"`.
+   *c. automatic links : using angle brackets `<>`, the markdown will automatically convert links into actual links.*
+
+7. Images
+
+8. Horizontal Rule  
   a. add the "---" or '\*\*\*' between the paragraph  will display a line between the paragraphs.
 
 
