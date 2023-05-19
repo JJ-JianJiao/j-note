@@ -153,6 +153,12 @@
   print "Goodbye Ruby\n"
   ```
 
+# using Markdown
+1. Different Working Scenarios
+2. Note-taking / Outlining
+3. Blog Post / Wordpress
+4. Writing a Novel
+
 # Flvors of Markdown
   1. Markdown (Original, John Gruber)
   2. Enhanced versions
