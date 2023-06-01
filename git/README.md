@@ -27,8 +27,8 @@
 1. `git clone-repo's-https-address` : clone a git repo from git hub server
 
 ## add changes to staged area
-1. `git add "file.name"` - add files to staging area
-what the different between add A/./u
+1. `git add "file.name"` - add files to staging area  
+> what the different between add A/./u
 2. `git add -A ## stages all`  (modified, new, delete)
 3. `git add .` ##stages all in same path (only add all at current path and below)
 4. `git add -u` ## stages modified and deleted, without new (add all tracked files without new)
