@@ -27,12 +27,23 @@
 1. `git clone-repo's-https-address` : clone a git repo from git hub server
 
 ## add changes to staged area
+1. `git add "file.name"` - add files to staging area
+what the different between add A/./u
+2. `git add -A ## stages all`  (modified, new, delete)
+3. `git add .` ##stages all in same path (only add all at current path and below)
+4. `git add -u` ## stages modified and deleted, without new (add all tracked files without new)
 
-7. git add "file.name" - add files to staging area
-8. git commit -m "message" :- add the commit to local
-9. git push origin main
-10. git init xxxxx - creat a repo locally
-11. git add -A :- add all the updated files to staging
+
+## add commit spot
+1. `git commit -m "message"` :- add the commit to local
+
+## push to remote
+1. `git push origin main`
+
+## init a git repository
+1. `git init xxxxx` - creat a repo locally
+
+
 12. git branch -m newName :-   "-m" tells get to move or rename the current branch to the name we just specified
 13. git init -b branchmain(main) repoName :- "-b" will to allow to specify main as default branch for this repository
 14. git config --global --list :- check the config settings
@@ -58,10 +69,7 @@
 # rename and move files
 23. git mv old-file-name new-file-name ## rename the file name using git command
 24. git mv file-name relative-path ## for example: git mv file.Name .. or git mv file.name FolderName
-## git add -A/./u
-25. git add -A ## stages all  (modified, new, delete)
-26. git add . ##stages all in same path (only add all at current path and below)
-27. git add -u ## stages modified and deleted, without new (add all tracked files without new)
+
 ## git remove files
 28. git rm fileName ## only works the file which is tracked by repository
 ## git help
