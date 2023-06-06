@@ -1,13 +1,13 @@
 # Basic Commands:
 1. `pwd` : print current working directory path
 2. `mkdir` : make directory
-    a. mkdir -p folder1/folder2/folder3 : add _-p_, the system will create more folder even the folders do not exist
+    a. `mkdir -p folder1/folder2/folder3` : add `-p`, the system will create more folder even the folders do not exist
 3. `echo "xxxxxx" >> xxx.txt` ：create a file and add the content to it:
 4. `cat xxx.txt` : display the content of the files
 5. `nano file.name` : if the file exists, open nano editor and edit the file or create the file first
-6. `cd ~` : ~ means the root
+6. `cd ~` : `~` means the root
 7. `cd ~/.gitconfig` : to check the global config setting of git
-8. press esc, enter :wq or :q!
+8. press esc, enter :`wq` or :`q!`
 9. `rm -rf folderName` : delete the folder and all the files in the folder. (_-r means recursively_, _-f means force_)
 10. `unzip ~/Downloads/fileName (path of the file)` : unzip the file to current folder
 11. `mv folderName NewfolderName` : rename the folder name
@@ -29,58 +29,72 @@
 ## add changes to staged area
 1. `git add "file.name"` - add files to staging area  
 > what the different between add A/./u
-2. `git add -A ## stages all`  (modified, new, delete)
-3. `git add .` ##stages all in same path (only add all at current path and below)
-4. `git add -u` ## stages modified and deleted, without new (add all tracked files without new)
+
+2. `git add -A ## stages all` : add (modified, new, delete) to staging area
+3. `git add .` : stages all in same path (only add all at current path and below)
+4. `git add -u` : stages modified and deleted, without new (add all tracked files without new)
 
 
 ## add commit spot
-1. `git commit -m "message"` :- add the commit to local
+1. `git commit -m "message"` : add the commit to local
+2. `git commit -am "XXXXXX"` : `-a` arguments automatically stages all changes, So git commit -am "message" is equal to run git add . and git commit -m "message"
+
 
 ## push to remote
 1. `git push origin main`
 
 ## init a git repository
-1. `git init xxxxx` - creat a repo locally
+1. `git init xxxxx` : creat a repo locally
+2. `git init -b branchmain(main) repoName` : `-b` will to allow to specify main as default branch for this repository
 
 
-12. git branch -m newName :-   "-m" tells get to move or rename the current branch to the name we just specified
-13. git init -b branchmain(main) repoName :- "-b" will to allow to specify main as default branch for this repository
-14. git config --global --list :- check the config settings
-  for examople:
-    filter.lfs.required=true
-    filter.lfs.clean=git-lfs clean -- %f
-    filter.lfs.smudge=git-lfs smudge -- %f
-    filter.lfs.process=git-lfs filter-process
-    user.name=Jiao Jian
-    user.email=jj.jianjiao@gmail.com
-15. git config --global init.defaultBranch main :-set the defaultBranch to main in config settings
-  after this setting, using: git config --global --list, we will see a new line like this: init.defaultbranch=main
-16. git commit -am "XXXXXX" :- -a arguments automatically stages all changes, So git commit -am "message" is euqal to runing git add . and git commit -m "message"
-17. git log --a
-18. git log --oneline
-19. git config --global core.editor "notepad++.exe -multiInst -nosession" :- set the notepat++ as the user level default editor
-20. git ls-files :- get all the tracked files in repository
-# reset staging command
-21. git restore --staged xxxx.xx :-  move the file from staging area to un-staging area
-      && git reset HEAD xxx.xx :- same as above
-22. git checkout -- xxx.xx / (i try to use "git checkout fileName", it works)   ##give up the modified file version and revert back to the unmodified version
-      && git restore file name
+## create branches
+1. `git branch -m BranchName` : `-m` tells get to move or rename the current branch to the name we just specified
+
+## git config
+1. `git config --global --list` : check the config settings
+  >  for examople:
+  >  filter.lfs.required=true
+  >  filter.lfs.clean=git-lfs clean -- %f
+  >  filter.lfs.smudge=git-lfs smudge -- %f
+  >  filter.lfs.process=git-lfs filter-process
+  >  user.name=Jiao Jian
+  >  user.email=jj.jianjiao@gmail.com  
+
+2. `git config --global init.defaultBranch main` : set the defaultBranch to main in config settings. after this setting, using: git config --global --list, we will see a new line like this: init.defaultbranch = main
+3. `git config --global core.editor "notepad++.exe -multiInst -nosession"` : set the notepat++ as the user level default editor
+
+## view git status
+1. `git log -a`
+2. `git log` : check the commit history, type _q_ to quit
+3. `git log --oneline`
+4. `git ls-files` : get all the tracked files in repository
+5. `git log --abbrev-commit` : display the commit history showing only a partial prefix.
+6. `git log --oneline --graph`
+7. `git log commit-code commit-code` : show the A>= and >B commit log
+8. `git log --since="3 days ago"`
+9. `git log -- fileName` : will get the commit relative with the specific files
+10. `git log --follow -- pathOfFile` : commit history for the specific file going through the renames
+
+## reset/checkout/restore staging command or reset the changed files
+1. `git restore --staged xxxx.xx` : move the file from staging area to un-staging area
+    > `git reset HEAD xxx.xx` : same as above
+
+2. `git checkout -- xxx.xx` / _(i try to use `git checkout fileName`, it works)_   : give up the modified file version and revert back to the unmodified version
+    > git restore file name
+
 # rename and move files
-23. git mv old-file-name new-file-name ## rename the file name using git command
-24. git mv file-name relative-path ## for example: git mv file.Name .. or git mv file.name FolderName
+1. `git mv old-file-name new-file-name` : rename the file name using git command
+2. `git mv file-name relative-path` : for example: `git mv file.Name ..` or `git mv file.name FolderName`
 
 ## git remove files
-28. git rm fileName ## only works the file which is tracked by repository
+1. `git rm fileName` : only works the file which is tracked by repository
+
 ## git help
-29. git help log ## help page, press q key will quit.
-30. git log ## check the commit history, type Q to quit
-31. git log --abbrev-commit
-32. git log --oneline --graph
-33. git log commit-code commit-code ## show the A>= and >B commit log
-34. git log --since="3 days ago"
-35. git log -- fileName ## will get the commit relative with the specific files
-36. git log --follow -- pathOfFile ##commit history for the specific file going through the renames
+1. `git help log` : help page, press _q_ key will quit.
+
+
+
 ## git Alias For example, want to show the git log + parameters "git log --all --graph --decorate --oneline"
 37. git config --global alias.xxx(name) "content(log --all --graph --decorate --oneline)"
 
