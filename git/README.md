@@ -207,7 +207,7 @@
 
 ## Rebase and Reflog - time travel with git (traverse branch using HEAD)
 1. git reflog :- wiil show the HEAD log history. Git log show the history and git reflog shows the log (show the log everything we have done)
-2. git reset HEAD^ :- move the HEAD up one step
+2. git ig HEAD^ :- move the HEAD up one step
 3. git reset HEAD~Index :- move the HEAD up index steps
 4. git reset commitID :- move the HEAD to the specific commit
 
