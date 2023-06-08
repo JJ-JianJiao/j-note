@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<!-- <iframe  frameborder="0" src="RichTextEditing.html"></iframe> -->
+	<div class="editable" id="richedit" contenteditable= 'true'>
+		<h2>HTML Forms</h2>
+		<p>test test test</p>
+	</div>
+	<form action="/action_page.php"  method="get" id="myForm" name="hahah" novalidate>
+		<label for="fname">First name:</label><br>
+		<input type="text" id="fname" name="fname" value="John"  ><br>
+		<label for="lname">Last name:</label><br>
+		<input type="text" size="15" maxlength="16" id="lname" name="lname" value="Doe" autofocus><br>
+		<label for="email">Email address:</label><br>
+		<input type="text" id="email" name="email" value="jj.jianjiao@gmail.com" ><br>
+		<label for="description">description:</label><br>
+		<textarea rows="5" cols="26" id="description" name="description" value="" autofocus>initial value</textarea><br>
+		<label for="phone">Phone:</label><br>
+		<input type="text" id="phone" name="phone" value="" ><br>
+		<label for="cPhone">Canada Phone:</label><br>
+		<input type="text" id="cPhone1" name="cPhone1" maxlength="3" >
+		<input type="text" id="cPhone2" name="cPhone2" maxlength="3" >
+		<input type="text" id="cPhone3" name="cPhone3" maxlength="4" ><br>
+		<label for="PatternNumber">Number:</label><br>
+		<input type="text" id="PatternNumber" name="PatternNumber" pattern="\d+"  required ><br>
+		<label for="myUrl">Number:</label><br>
+		<input type="number" id="myNumber" name="myNumber" value="" min="0" max="100" step="5"  required ><br>
+		<label for="myUrl">My URL:</label><br>
+		<input type="url" id="myUrl" name="myUrl" value="https://www.google.com" required ><br>
+		<label for="myEmail">My email:</label><br>
+		<input type="email" id="myEmail" name="myEmail" value="jj.jianjiao@gmail.com"  required><br><br>
+		<select name="Multiplelocation" id="selMultipleLocation" multiple>
+			<option value="Sunnyvale, CA">Sunnyvale</option>
+			<option value="Los Angeles, CA">Los Angeles</option>
+			<option value="Mountain View, CA">Mountain View</option>
+			<option value="">China</option>
+		</select>
+		<button id="clearMultiOptions">clear options</button>
+		<select name="location" id="selLocation" >
+			<option value="England">England</option>
+			<option value="Sunnyvale, CA">Sunnyvale</option>
+			<option value="Los Angeles, CA">Los Angeles</option>
+			<option value="Mountain View, CA">Mountain View</option>
+			<option value="">China</option>
+		</select>
+		<br><br>
+		<input type="submit" value="Submit">
+		<input type="reset" value="Reset form">
+	</form> 
+	<br><br>
+	<form action="/action_page.php"  method="POST" id="myForm2" name="hahah2">
+		<label for="pName">Pet name:</label><br>
+		<input type="text" id="pName" name="pName" value="Mi"><br>
+		<label for="pBrand">Pet brand:</label><br>
+		<input type="text" id="pBrand" name="pBrand" value="cat"><br>
+		<label for="pAge">Pet Age</label><br>
+		<input type="text" id="pAge" name="pAge" value="3"><br><br>
+		<ul>
+			<li><input type="radio" name="color" value="red">Red</li>
+			<li><input type="radio" name="color" value="Green">Green</li>
+			<li><input type="radio" name="color" value="Blue">Blue</li>
+		</ul>
+		<button type="submit">Submit</button>
+	</form> 
+</body>
+</html>
+
+<script>
+	let form = document.querySelector("#myForm");
+	console.log(form);
+
+	let field =  form.elements[2];
+	field.value = "";
+	// field.focus();
+	//focuse事件
+	field.addEventListener("focus", (event)=>{
+		let target = event.target;
+		if(target.style.backgroundColor != "red"){
+			target.style.backgroundColor = "yellow";
+		}
+	});
+	//blur事件
+	field.addEventListener("blur", (event)=>{
+		let target = event.target;
+		target.style.backgroundColor = /[^\d]/.test(target.value) ? "red" :"";
+	});
+	//change事件
+	field.addEventListener("change", (event)=>{
+		let target = event.target;
+		target.style.backgroundColor = /[^\d]/.test(target.value) ? "red" :"";
+	});
+	
+	let textbox = form.elements["description"];
+	//textbox.select();
+	textbox.addEventListener("focus", (event)=>{
+		event.target.select();
+	})
+
+	textbox.addEventListener("select", (event)=>{
+		console.log("text selected:" + getSelectedText(event.target));
+		
+	})
+
+	let phoneText = form.elements["phone"];
+	//Deprecated
+	phoneText.addEventListener("keypress", (event)=>{
+		// event.preventDefault();
+		console.log("avc");
+		if(!/^\d/.test(String.fromCharCode(event.charCode)) && event.charCode > 9){
+			event.preventDefault();
+		}
+	})
+
+	phoneText.addEventListener("paste", (e)=>{
+		let text = getClipboardText(e);
+
+		if(!/^\d*$/.test(text)){
+			e.preventDefault();
+		}
+	})
+
+	function getClipboardText(event){
+		var clipboardData = (event.clipboardData || window.clopboardData);
+		return clipboardData.getData("text");
+	}
+
+	// form.elements["phone"].addEventListener("keydown", (event)=>{
+	// 	// event.preventDefault();
+	// 	console.log("avc");
+	// 	if(!/^\d/.test(event.key) && !event.ctrlKey){
+	// 		event.preventDefault();
+	// 	}
+	// })
+
+	// form.elements["phone"].addEventListener("input", (event)=>{
+	// 	// event.preventDefault();
+	// 	console.log("avc");
+	// 	if(!/^\d/.test(event.key) && !event.ctrlKey){
+	// 		event.preventDefault();
+	// 	}
+	// })
+
+	function getSelectedText(textbox){
+		if(typeof textbox.selectionStart == "number"){
+			return textbox.value.substring(textbox.selectionStart,textbox.selectionEnd);
+		}
+		else{
+			return document.selection.crateRange().text;
+		}
+	}
+
+	function tabForward(event){
+		let target = event.target;
+		if(target.value.length == target.maxLength){
+			let form = target.form;
+			for (let i = 0, len = form.elements.length; i < len; i++) {
+				if(form.elements[i] == target){
+					if(form.elements[i+1]){
+						form.elements[i+1].focus();
+					}
+					return;
+				}
+			}
+		}
+	}
+
+	let inputsIds = ["cPhone1", "cPhone2", "cPhone3"];
+	for (let id of inputsIds){
+		let textbox = document.getElementById(id);
+		textbox.addEventListener("keyup", tabForward);
+	}
+
+	let textbox1 = document.getElementById("cPhone1");
+	let textbox2 = document.getElementById("cPhone2");
+	let textbox3 = document.getElementById("cPhone3");
+
+	let selectbox = document.forms[0].elements['selLocation'];
+	let selectedIndex = selectbox.selectedIndex;
+	let selectedOption = selectbox.options[selectedIndex];
+	console.log(`selected index: ${selectedIndex}\n` +
+            `Selected text: ${selectedOption.text}\n` +
+            `selected value: ${selectedOption.value}`);
+
+	function getSelectedOptions(selectbox){
+		let result = new Array();
+		for(let option of selectbox.options){
+			if(option.selected){
+				result.push(option);
+			}
+		}
+		return result;
+	}
+
+	function displayAllOptionsInfo(selectbox){
+		let selectedOptions = getSelectedOptions(selectbox);
+		let message = "";
+		for(let option of selectedOptions){
+			message += `selected index: ${option.index}\n` +
+				`Selected text: ${option.text}\n` +
+				`selected value: ${option.value}\n`;
+		}	
+		console.log(message);
+	}
+
+
+
+	selectbox.addEventListener('change', (e)=>{
+		displayAllOptionsInfo(e.target);
+	});
+
+	let multipleSelectbox = document.forms[0].elements[`selMultipleLocation`];
+	multipleSelectbox.addEventListener('change', (e)=>{
+		displayAllOptionsInfo(e.target);
+	})
+
+	//DOM方法创建option
+	let newOption = document.createElement("option");
+	newOption.appendChild(document.createTextNode("Option text"));
+	newOption.setAttribute("Value", "Option value");
+	selectbox.appendChild(newOption);
+	
+
+	//使用option构造函数创建
+	let newOption2 = new Option("Option text2", "Option value2");
+	selectbox.appendChild(newOption2);
+
+	//使用 selectbox.add()方法添加
+	let newOption3 = new Option("Option text3", "Option value3");
+	multipleSelectbox.add(newOption3, undefined); //确保浏览器的更多兼容性，需要第二个参数确保添加到最末尾
+	multipleSelectbox.add(newOption2, undefined);
+
+	//移除selectbox option
+	//方法一
+	//selectbox.remove(0);
+	//方法二
+	//selectbox.removeChild(selectbox.options[0]);
+	//方法三
+	//selectbox.options[0] = null;
+
+	//移除所有的select option选项
+	function clearSelectbox(selectbox){
+		// for (let option of selectbox.options) {
+		// 	selectbox.remove(0);
+		// }
+		for (let index = 0, len = selectbox.options.length; index < len;  index++) {
+			selectbox.remove(0);
+		}
+	}
+
+	let clearOptionsBtn = document.forms[0].elements['clearMultiOptions'];
+	clearOptionsBtn.addEventListener('click', (e)=>{
+		clearSelectbox(multipleSelectbox);
+		event.preventDefault();
+	})
+	
+	//option的转移
+	multipleSelectbox.appendChild(selectbox.options[0]);
+	multipleSelectbox.options[multipleSelectbox.length-1].selected = false;
+	// multipleSelectbox.scrollTop = 0;
+
+	//option的重排。DOM方法同样是最佳途径。insertBefore()方法最合适。用appendChild()方法移到最后是最合适的。
+
+	//example for move forward
+	let optionToMove = selectbox.options[1];
+	selectbox.insertBefore(optionToMove, selectbox.options[optionToMove.index-1]);
+	selectbox.options[0].selected = true;
+
+	//example for move backward
+	let optionToMove2 = multipleSelectbox.options[1];
+	multipleSelectbox.insertBefore(optionToMove2, multipleSelectbox.options[optionToMove2.index+2]);
+	multipleSelectbox.size = multipleSelectbox.length;
+
+	let field2 = form.elements[1];
+	field2.value = "";
+	// field2.disabled = true;
+	// field2.type = "checkbox";
+
+
+	//form serialization
+	function serialize(form){
+		let parts = [];
+		let optValue;
+
+		for(let field of form.elements){
+			switch (field.type) {
+				case "select-one":					
+				case "select-multiple":
+					if(field.name.length){
+						for (let option of field.options) {
+							if(option.selected){
+								if(option.hasAttribute){
+									optValue = option.hasAttribute("value") ? option.value : option.text;
+								}
+								else{
+									optValue = option.attributes["value"].specified ? option.value : option.text;
+								}
+								parts.push(encodeURIComponent(field.name) + "=" + encodeURIComponent(optValue));
+							}
+						}
+					}					
+					break;
+				case undefined:
+				case "file":
+				case "submit":
+				case "reset":
+				case "button":
+					break;
+				case "radio":
+				case "checkbox":
+					if(!field.checked){
+						break;
+					}
+				default:
+					if(field.name.length){
+						parts.push(encodeURIComponent(field.name) + '=' + encodeURIComponent(field.value));
+					}
+					break;
+			}
+		}
+		return parts.join("&");
+	}
+
+	let firstFormSub = document.forms[0];
+	firstFormSub.addEventListener("submit", (event)=>{
+		event.preventDefault();
+		console.log(serialize(event.target));
+
+	})
+
+	let forms = document.forms;
+	console.log(forms);
+
+	form.addEventListener("submit", (event)=>{
+		// event.preventDefault();
+	})
+
+
+	// window.addEventListener("load", ()=>{
+	// 	frames["richedit"].document.designMode = "on";
+	// });
+	// let form2 = document.getElementById("myForm2");
+	// form2.submit();
+</script>
