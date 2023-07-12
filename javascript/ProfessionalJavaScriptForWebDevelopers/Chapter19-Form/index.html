@@ -346,4 +346,17 @@
 	// });
 	// let form2 = document.getElementById("myForm2");
 	// form2.submit();
+
+
+	document.addEventListener("copy", function(e){
+	var clipboardData = e.clipboardData || window.clipboardData;
+	if(!clipboardData){
+		return;
+	}
+	var text = window.getSelection().toString();
+	if(text){
+		// e.preventDefault();
+		clipboardData.setData('text/plain', text + '+JJ test data');
+	}
+})
 </script>

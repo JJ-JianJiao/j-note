@@ -13,6 +13,34 @@
 
 # Book
 
+## Chapter 14 DOM
+1. DOM(document object model)是html和xml文档的编程接口。
+2. document是每个文档的根节点
+3. 所有节点都继承了Node，因此所有的类型都共享相同的基本属性和方法
+4. hasChildNodes() 以及 查看ChildNodes 的length属性，都可以查询是否有子节点。
+5. 所有的关系指针都是只读的。
+6. appendChild()插入最后节点或者移动到最后节点
+7. insertbefore()插入特定位置节点。
+8. replaceChild()会插入新的节点并删除老的节点。
+9. removeChild()删除节点
+10. node.cloneNode(true):深复制。 node.cloneNode(false),浅复制。shallowList
+11. normalize(),处理文档子树中的文本节点。
+12. 修改document.domain可以使得两个页面通信，不过，如果放松成功，就不能收紧了。
+13. 只有NodeList 对象有包含属性节点和文本节点。 HTMLCollection 元素可以通过 name ， id 或 index 索引来获取。 NodeList 只能通过 index 索引来获取
+14. 在HTML中，元素标签名始终以全大写表示。在XML.XHTML中，标签名始终与源代码中的大小写一致。如果不确定脚本是在HTML文档还是XML文档中运行，最好将标签名转换为小写形式。
+15. getAttribute(), setAttribute(), removeAttribute(); 
+16. document.createelement()方法创建元素。
+17. 遍历子节点时，可以用nodeType来过滤想要的元素。也可以用getElementsByTagName()的方法，来获取想要节点里面的子节点。
+18. Text类型。
+	* nodeType:3
+	* nodeName: "#text"
+	* nodeValue: 为节点中包含的文本
+	* parentNode： 为element对象
+	* 不支持子节点
+
+
+
+
 ## Chapter 19 Form
 ### Tips:
 1. 如果表单有任何一个按钮并且焦点在表单中的某个控件上，按**回车***也可以提交表单。    
