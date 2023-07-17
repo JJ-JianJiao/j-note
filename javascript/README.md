@@ -1,16 +1,5 @@
 # JavaScript
 
-# Course
-## set up
-
-1. Theme: Monokai Pro
-2. Settings:
-   > Auto Save: onFocusChange  
-   > Word Wrap: On  
-   > Format On Save: enable
-
-
-
 # Book
 
 ## Chapter 14 DOM
