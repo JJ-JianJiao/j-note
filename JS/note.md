@@ -1,0 +1,1 @@
+JavaScript is a high-level, object-oriented, muulti-paradigm programming language.
