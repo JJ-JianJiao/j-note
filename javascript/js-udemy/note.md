@@ -28,3 +28,6 @@
 5. let and const are introduced in ES6.    
 6. quotation mark: ', ". Backticks: `.    
 7. 5 falsy values: 0, '', undefined, null, NaN    
+8. arrow does not have 'this' keyword   
+9. What the different: we can call function declaration before it.    
+10. 
