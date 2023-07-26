@@ -266,3 +266,73 @@
 // } else {
 //     console.log(john.summary() + " is higher than " + mark.summary());
 // }
+
+//loop
+// for (let index = 0; index < 10; index++) {
+//     console.log(`lifting weights repetition ${index + 1} 💪`)
+// }
+
+
+// const JJArray = [
+//     'Jian',
+//     'Jiao',
+//     2037 - 1989,
+//     'developer',
+//     ['F1', 'F2', 'F3']
+// ]
+
+// for (let i = 0; i < JJArray.length; i++) {
+//     const element = JJArray[i];
+//     console.log(element);
+// }
+
+// let dice = Math.trunc(Math.random() * 6) + 1;
+
+
+// while(dice !== 6){
+//     console.log(`you rolled a ${dice}`);
+//     dice = Math.trunc(Math.random() * 6) + 1;
+//     if(dice === 6)
+//     {
+//         console.log(`you rolled dice ${dice}`);
+//         break;
+//     }
+// }
+// const JJArray = [
+//     'Jian',
+//     'Jiao',
+//     2037 - 1989,
+//     'developer',
+//     ['F1', 'F2', 'F3']
+// ]
+
+// console.log(typeof JJArray);
+
+const bills = [22, 295, 176, 440, 37, 105, 10, 1100, 86, 52];
+
+const tips = [];
+const totals = [];
+
+const calcTip = function(bill){
+    return bill >= 50 && bill <=300 ? bill * 0.15 : bill * 0.2;
+}
+
+for(let i = 0; i < bills.length; i++){
+    tips.push(calcTip(bills[i]));
+    totals.push(tips[i] + bills[i]);
+}
+
+console.log(bills, tips, totals);
+
+const calcAverage = function(arr){
+    if(typeof arr !== "object") 
+        return;
+    let sum = 0;
+    for (let i = 0; i < arr.length; i++) {
+        sum += arr[i];
+    }
+    return sum / arr.length;
+}
+
+console.log(calcAverage(bills));
+console.log(calcAverage(totals));
