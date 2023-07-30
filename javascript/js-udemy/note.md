@@ -7,6 +7,7 @@
    > Auto Save: onFocusChange  
    > Word Wrap: On  
    > Format On Save: enable
+3. online Diagrams tool: https://www.drawio.com/
 
 ### extension
 
