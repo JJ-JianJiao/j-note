@@ -23,13 +23,14 @@
 5. value:
    1. Object
    2. Primitive
-      _ number: floaing point numbers `let age = 23;`
-      _ string: sequene of characters `let firstName = 'Jonas';`
-      _ boolean: logical type that can only be true or false `let fullAge = true;`
-      _ undefind: value taken by a variable that is not yet defined ('empty value') `let children;`
-      _ null: also means 'empty value'
-      _ symbol(ES2015): value that is unique and cannot be changed [not sueful for now] \* Bigint(ES2020): larger integers than the Number type can hold
-      > !important: Javascript has dynamic typing: we do not have to manually define the data type of the value stored in a variable. Instead, data types are determined automatically.
+      - number: floaing point numbers `let age = 23;`
+      - string: sequene of characters `let firstName = 'Jonas';`
+      - boolean: logical type that can only be true or false `let fullAge = true;`
+      - undefind: value taken by a variable that is not yet defined ('empty value') `let children;`
+      - null: also means 'empty value'
+      - symbol(ES2015): value that is unique and cannot be changed [not sueful for now]
+      - Bigint(ES2020): larger integers than the Number type can hold
+        > !important: Javascript has dynamic typing: we do not have to manually define the data type of the value stored in a variable. Instead, data types are determined automatically.
 6. let and const are introduced in ES6.
 7. quotation mark: ', ". Backticks: `.
 8. 5 falsy values: 0, '', undefined, null, NaN
@@ -63,3 +64,11 @@
 17. JS Engine work process: JS code -> Parsing (generate AST) -> Compilation (Use AST and compiles it into machine code) -> execution -> Optimization -> Complilation -> excution (loop)
 18. JavaScript runtime in the Browser
 19. Global Scope, Function Scrop, and Block Scope(ES6)
+20. key word `var` is the function scoped which is not a block scoped.
+21. execution context contains three parts: variable environment, scope chain, this keyword.
+22. hoisting(吊装): makes some types of variables accessible/usable in the code before they are actually declared. "Variables lifted to the top of their scope".
+23. Why (TDZ - Temporal dead zone): 1. Make it easier to avoid and catch errors: accessing variables before declaration is bad practice and should be avoided. 2. Makes const variables actually work.
+24. Why Hoisting? 1. using functions before actual declaration 2. var hoisting is just a byproduct.
+25. this keyword/variable: special variable that is created for every execution context (every function). Takes the value of (points to) the "owner" of the function in which the this keyword is used.
+    > > this is **not** Static. It depends on how the function is called, and its value is only assigned when the function is actually called.
+26. primitives: number, string, boolean, undefined, null, symbol, bigint. Objects: object literal, arrays, functions, many more..
