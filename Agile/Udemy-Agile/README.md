@@ -20,4 +20,8 @@ Path: https://albertabluecross.udemy.com/course/understanding-agile-complete-gui
 - responding to change over following a plan
 
 5. agile 12 principles
-6.
+6. know the customer
+7. build a customer persona and journey. (use miro)
+8. Kanban rules: visualizing workflow, setting work in progress limits, pulling not pushing, incorporating kaizen and measuring cycle time
+   > > kanban is very simple, very flexible and adaptable.
+9. scrum and kanban work well for one team. How to align? a. SAFe - Scaled Agile Framework. b. Nexus c. Scrum of Scrum d. LeSS - Large Scale Scrum.
