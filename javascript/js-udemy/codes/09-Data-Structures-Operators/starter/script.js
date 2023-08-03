@@ -349,6 +349,89 @@ rest pattern : opposite spread
 //   console.log(`On ${key} we open at ${open} and close at ${close}.`);
 // }
 
+//116.Sets
+// const ordersSet = new Set(['Pasta','Pizza','Pizza','Risotto','Pasta','Pizza']);
+// console.log(ordersSet);
+// console.log(new Set("Sebastian"));
+// console.log(ordersSet.size);
+// console.log(ordersSet.has('Pizza'));
+// console.log(ordersSet.has("Bread"));
+// console.log(ordersSet.add("Garlic bread"));
+// console.log(ordersSet.add("Garlic bread"));
+// console.log(ordersSet);
+// console.log(ordersSet.delete("Pizza"));
+// console.log(ordersSet);
+// // ordersSet.clear();
+// // console.log(ordersSet);
+// for (const order of ordersSet) {
+//   console.log(order);
+// }
+
+// //Example
+// const staff = ['Waiter', "Chef", "Waiter", "manager","Chef", "Waiter"];
+// const staffUnique = [...new Set(staff)];
+// console.log(staffUnique);
+
+// //117. maps
+// const rest = new Map();
+// rest.set('Name',"Classico Italiano");
+// rest.set(1, "Firenze, Italy");
+// rest.set(2, "Lisbon, Portugal");
+// rest.set("categories", ['Italian', 'Pizzeria', 'Vegetarian', 'Organic']).set("open", 11).set("close", 23).set(true,"we are open").set(false,"we are closed");
+// console.log(rest);
+// console.log(rest.get('Name'));
+// // console.log(rest.get(true));
+
+// const time = 8;
+// console.log( rest.get(time>rest.get('open') && time < rest.get("close")));
+
+// console.log(rest.has('categories'));
+// rest.delete(2);
+// console.log(rest);
+// console.log(rest.size);
+// rest.clear();
+// console.log(rest.size);
+
+// const testArr = [1,2];
+
+// rest.set(testArr, "test");
+// console.log(rest);
+// console.log(rest.get(testArr));
+
+// const question = new Map([
+//   ['question', 'What is the best programming language in the world?'],
+//   [1,'C'],
+//   [2,'Java'],
+//   [3,'JS'],
+//   ['correct',3],
+//   [true,'Correct'],
+//   [false,'Try again']
+// ])
+// console.log(question);
+
+// //convert obj to map
+// console.log(Object.entries(openingHours));
+// const mapOpenningHours = new Map(Object.entries(openingHours));
+// console.log(mapOpenningHours);
+
+// console.log("----------------------------------");
+// console.log(question.get("question"));
+// for (const [key, value] of question) {
+//   if(typeof key === 'number')
+//     console.log(`Answer ${key} : ${value}`);
+// }
+// const answer = Number(prompt("Your answer"));
+// console.log(answer);
+// console.log(question.get(question.get('correct') === answer));
+// console.log([...question]);
+// console.log([...question.values()]);
+// console.log([...question.keys()]);
+
+//Summary: which data structure to use?
+// array, object, set, map
+
+
+
 /*
 Coding Challenge #1
 We're building a football betting app (soccer for my American friends 😅)!
@@ -491,33 +574,35 @@ GOOD LUCK 😀
 */
 
 //1.
-for (const [index, name] of game.scored.entries()) {
-  console.log(`Goal ${index + 1}: ${name}`);
-}
-//2
-let sum = 0;
-const oddsValues = Object.values(game.odds);
-for (const value of oddsValues) {
-  sum += value;
-}
-console.log(`Average of odds is ${(sum / oddsValues.length).toFixed(2)}`);
+// for (const [index, name] of game.scored.entries()) {
+//   console.log(`Goal ${index + 1}: ${name}`);
+// }
+// //2
+// let sum = 0;
+// const oddsValues = Object.values(game.odds);
+// for (const value of oddsValues) {
+//   sum += value;
+// }
+// console.log(`Average of odds is ${(sum / oddsValues.length).toFixed(2)}`);
 
-//3
-for (const [key, value] of Object.entries(game.odds)) {
-  console.log(`Odd of ${game[key] ?? 'draw'}: ${value}`);
-}
+// //3
+// for (const [key, value] of Object.entries(game.odds)) {
+//   console.log(`Odd of ${game[key] ?? 'draw'}: ${value}`);
+// }
 
-//4
-const scorers = {};
-const scorePlayer = game.scored;
-console.log(scorePlayer);
-for (const [i, value] of game.scored.entries()) {
-  // console.log(i, value);
-  scorers[value] === undefined ? (scorers[value] = 1) : (scorers[value] += 1);
-  // if (scorers[value] === undefined) {
-  //   scorers[value] = 1;
-  // } else {
-  //   scorers[value] = scorers[value] + 1;
-  // }
-}
-console.log(scorers);
+// //4
+// const scorers = {};
+// // const scorePlayer = game.scored;
+// // console.log(scorePlayer);
+// for (const [i, value] of game.scored.entries()) {
+//   // console.log(i, value);
+//   //solution 1
+//   scorers[value] === undefined ? (scorers[value] = 1) : (scorers[value] += 1);
+//   //Solution 2
+//   // if (scorers[value] === undefined) {
+//   //   scorers[value] = 1;
+//   // } else {
+//   //   scorers[value] = scorers[value] + 1;
+//   // }
+// }
+// console.log(scorers);
