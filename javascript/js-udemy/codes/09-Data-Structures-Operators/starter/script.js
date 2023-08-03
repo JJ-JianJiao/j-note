@@ -306,22 +306,49 @@ rest pattern : opposite spread
 // console.log(restaurant.openingHours?.mon?.open);
 
 //example
-const days = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
-for (const day of days) {
-  // console.log(restaurant.openingHours[day]?.open);
-  const open = restaurant.openingHours[day]?.open ?? 'closed';
-  console.log(`on ${day}, we open at ${open}`);
-}
+// const days = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+// for (const day of days) {
+//   // console.log(restaurant.openingHours[day]?.open);
+//   const open = restaurant.openingHours[day]?.open ?? 'closed';
+//   console.log(`on ${day}, we open at ${open}`);
+// }
 
-//Method`
-console.log(restaurant.order?.(0, 1) ?? 'Method does not exist');
-console.log(restaurant.orderJian?.(0, 1) ?? 'Method does not exist');
+// //Method`
+// console.log(restaurant.order?.(0, 1) ?? 'Method does not exist');
+// console.log(restaurant.orderJian?.(0, 1) ?? 'Method does not exist');
 
-//Array
-const users = [{ name: 'Jian', email: 'jj.jianjiao@gmail.com' }];
-console.log(users[0]?.name ?? 'User array empty');
-const users2 = [];
-console.log(users2[0]?.name ?? 'User array empty');
+// //Array
+// const users = [{ name: 'Jian', email: 'jj.jianjiao@gmail.com' }];
+// console.log(users[0]?.name ?? 'User array empty');
+// const users2 = [];
+// console.log(users2[0]?.name ?? 'User array empty');
+
+// 14. Looping obejcts: keys, values and entires
+
+//Property Names
+// const openingHoursProperties = Object.keys(openingHours);
+// // console.log(openingHoursProperties);
+
+// let str = `We are open ${openingHoursProperties.length} day:`;
+
+// for (const day of openingHoursProperties) {
+//   str += `${day} `;
+// }
+// console.log(str);
+
+// //Property values
+// const values = Object.values(openingHours);
+// console.log(values);
+
+// //property entries
+
+// const entries = Object.entries(openingHours);
+// console.log(entries);
+
+// for (const [key,{open,close}] of entries) {
+//   console.log(`On ${key} we open at ${open} and close at ${close}.`);
+// }
+
 /*
 Coding Challenge #1
 We're building a football betting app (soccer for my American friends 😅)!
@@ -438,3 +465,40 @@ console.log("-----------------------------------");
 team1 < team2 && console.log('Team 1 is more likely to win');
 team1 > team2 && console.log('Team 2 is more likely to win');
 */
+
+///////////////////////////////////////
+// Coding Challenge #2
+
+/* 
+Let's continue with our football betting app!
+
+1. Loop over the game.scored array and print each player name to the console, along with the goal number (Example: "Goal 1: Lewandowski")
+2. Use a loop to calculate the average odd and log it to the console (We already studied how to calculate averages, you can go check if you don't remember)
+3. Print the 3 odds to the console, but in a nice formatted way, exaclty like this:
+      Odd of victory Bayern Munich: 1.33
+      Odd of draw: 3.25
+      Odd of victory Borrussia Dortmund: 6.5
+Get the team names directly from the game object, don't hardcode them (except for "draw"). HINT: Note how the odds and the game objects have the same property names 😉
+
+BONUS: Create an object called 'scorers' which contains the names of the players who scored as properties, and the number of goals as the value. In this game, it will look like this:
+      {
+        Gnarby: 1,
+        Hummels: 1,
+        Lewandowski: 2
+      }
+
+GOOD LUCK 😀
+*/
+
+//1.
+for (const [index, name] of game.scored.entries()) {
+  console.log(`Goal ${index + 1}: ${name}`);  
+}
+
+//2
+// const oddsName = 
+
+for (const [key, value] of Object.entries(game.odds)) {
+  console.log(`Odd of ${game[key]??'draw'}: ${value}`);
+}
+
