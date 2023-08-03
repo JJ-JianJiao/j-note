@@ -492,13 +492,32 @@ GOOD LUCK 😀
 
 //1.
 for (const [index, name] of game.scored.entries()) {
-  console.log(`Goal ${index + 1}: ${name}`);  
+  console.log(`Goal ${index + 1}: ${name}`);
 }
-
 //2
-// const oddsName = 
+let sum = 0;
+const oddsValues = Object.values(game.odds);
+for (const value of oddsValues) {
+  sum += value;
+}
+console.log(`Average of odds is ${(sum / oddsValues.length).toFixed(2)}`);
 
+//3
 for (const [key, value] of Object.entries(game.odds)) {
-  console.log(`Odd of ${game[key]??'draw'}: ${value}`);
+  console.log(`Odd of ${game[key] ?? 'draw'}: ${value}`);
 }
 
+//4
+const scorers = {};
+const scorePlayer = game.scored;
+console.log(scorePlayer);
+for (const [i, value] of game.scored.entries()) {
+  // console.log(i, value);
+  scorers[value] === undefined ? (scorers[value] = 1) : (scorers[value] += 1);
+  // if (scorers[value] === undefined) {
+  //   scorers[value] = 1;
+  // } else {
+  //   scorers[value] = scorers[value] + 1;
+  // }
+}
+console.log(scorers);
