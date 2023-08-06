@@ -1,8 +1,8 @@
 'use strict';
 
-// Data needed for a later exercise
-const flights =
-  '_Delayed_Departure;fao93766109;txl2133758440;11:25+_Arrival;bru0943384722;fao93766109;11:45+_Delayed_Arrival;hel7439299980;fao93766109;12:05+_Departure;fao93766109;lis2323639855;12:30';
+// // Data needed for a later exercise
+// const flights =
+//   '_Delayed_Departure;fao93766109;txl2133758440;11:25+_Arrival;bru0943384722;fao93766109;11:45+_Delayed_Arrival;hel7439299980;fao93766109;12:05+_Departure;fao93766109;lis2323639855;12:30';
 
 const weekdays = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
 const openingHours = {
@@ -430,8 +430,131 @@ rest pattern : opposite spread
 //Summary: which data structure to use?
 // array, object, set, map
 
+//121. Strings
+// const airline = "Air Canada Haha";
+// const plane = "CA998";
+
+// // console.log(plane[0]);
+// // console.log(plane[1]);
+// // console.log(plane[2]);
+// // console.log(plane[3]);
+// // console.log(plane.length);
+
+// console.log(plane.indexOf('9'));
+// console.log(plane.lastIndexOf('9'));
+// console.log(airline.lastIndexOf('Canada'));
+// console.log(airline.lastIndexOf('Haha'));
+
+// console.log(airline.slice(airline.lastIndexOf('Canada'),airline.lastIndexOf('Canada')+"Canada".length));
+
+// console.log(airline.slice(-4)); //haha
+// console.log(airline.slice(0,airline.length)); 
+
+// const checkMiddleSeat = function (seat) {  
+//   const seatLetter = seat.slice(-1);
+//   // console.log(seatLetter);
+//   if(seatLetter === "B" || seatLetter === "E")
+//   {
+//     console.log("You got the middle seat 😁");
+//   }
+//   else{
+//     console.log("You are lucky 🤞");
+//   }
+// }
+// checkMiddleSeat("11B");
+// checkMiddleSeat("23C");
+// checkMiddleSeat("3E");
+
+// console.log(new String("Sebastian"));
+// console.log(airline.toLowerCase());
+// console.log(airline.toUpperCase());
+// console.log(airline.toUpperCase());
+
+// let passenger = "xUE YaN";
+
+// const formatName = function(n){
+//   const t = n.toLowerCase();
+//   return t[0].toUpperCase() + t.slice(1);
+// }
+
+// console.log(formatName(passenger));
 
 
+// //comparing emails
+// const email = 'hello@jian.io';
+// const loginEmail = '    Hello@jian.Io\n'
+
+// const lowerEmail = loginEmail.toLowerCase();
+// const trimmedEmail = lowerEmail.trim();
+// console.log(trimmedEmail);
+// const normalizedEmail = loginEmail.toLowerCase().trim();
+// console.log(normalizedEmail);
+
+// const priceGB = '288,97p';
+// const priceUS = priceGB.replace('p', '$');
+// console.log(priceUS);
+
+// const announcement = "All passengers come to barding door 23. Boarding door 23~!";
+// console.log(announcement.replace("door", "gate")); //replace the first
+// console.log(announcement.replaceAll("door", "gate")); //replace all
+// console.log(announcement.replace(/door/g,'gate')); //replace first
+// console.log(announcement.replace(/door/,'gate')); // replace all
+
+// //booleans: include, startswith, endsWith
+// const plane2 ='Airbus A320neo';
+// console.log(plane2.includes('A320'));
+// console.log(plane2.includes('Boeing'));
+// console.log(plane2.startsWith('A'));
+// if(plane2.startsWith("Airbus") && plane2.endsWith('neo')){
+//   console.log('part of the New airbus family');
+// }
+
+// //split
+// console.log('a+very+nice+string'.split('+'));
+// const [firstName, lastName ] = "jian jiao".split(' ');
+// console.log(firstName, lastName);
+
+// //join
+// const newName = ['Mr', firstName, lastName.toUpperCase()].join(' ');
+// console.log(newName);
+
+// const capitalizeName = function (n) {  
+//   const ns = n.toLowerCase().split(" ");
+
+//   for (const [i,v] of ns.entries()) {
+//     ns[i] = v[0].toUpperCase() + v.slice(1);
+//   }
+//   const newN = ns.join(" ");
+//   console.log(newN);
+// }
+
+// capitalizeName("jessica ann smith davis");
+
+// //padding
+// const message = "go to gate 23";
+// console.log(message.padStart(25, "+"),message.padStart(25, "+").length);
+// console.log(message.padEnd(25, "+"),message.padEnd(25, "+").length);
+// const maskCreditCard = function (number) {  
+//   const str = number + '';
+//   const lastFourD = str.slice(-4);
+//   return lastFourD.padStart(str.length, "*");
+// }
+
+// console.log(maskCreditCard(13245679801234567890));
+// console.log( maskCreditCard("1254874134657983456789"));
+
+// //repeat
+// const message2 = "Bad weather... All departures delayed...";
+// console.log(message2.repeat(5));
+
+// const planesInLine = function (n) {  
+//   console.log(`There are ${n} planes in line ${'✈'.repeat(n)}`);
+// }
+
+// planesInLine(3);
+// planesInLine(13);
+// planesInLine(5);
+// planesInLine(9);
 /*
 Coding Challenge #1
 We're building a football betting app (soccer for my American friends 😅)!
@@ -606,3 +729,163 @@ GOOD LUCK 😀
 //   // }
 // }
 // console.log(scorers);
+
+///////////////////////////////////////
+// Coding Challenge #3
+
+/* 
+Let's continue with our football betting app! This time, we have a map with a log of the events that happened during the game. The values are the events themselves, and the keys are the minutes in which each event happened (a football game has 90 minutes plus some extra time).
+
+1. Create an array 'events' of the different game events that happened (no duplicates)
+2. After the game has finished, is was found that the yellow card from minute 64 was unfair. So remove this event from the game events log.
+3. Print the following string to the console: "An event happened, on average, every 9 minutes" (keep in mind that a game has 90 minutes)
+4. Loop over the events and log them to the console, marking whether it's in the first half or second half (after 45 min) of the game, like this:
+      [FIRST HALF] 17: ⚽️ GOAL
+
+GOOD LUCK 😀
+*/
+
+// const gameEvents = new Map([
+//   [17, '⚽️ GOAL'],
+//   [36, '🔁 Substitution'],
+//   [47, '⚽️ GOAL'],
+//   [61, '🔁 Substitution'],
+//   [64, '🔶 Yellow card'],
+//   [69, '🔴 Red card'],
+//   [70, '🔁 Substitution'],
+//   [72, '🔁 Substitution'],
+//   [76, '⚽️ GOAL'],
+//   [80, '⚽️ GOAL'],
+//   [92, '🔶 Yellow card'],
+// ]);
+
+// //1.
+// // console.log([...gameEvents.values()]);
+// const events = [...new Set(gameEvents.values())];
+// console.log(events);
+
+// //2.
+// gameEvents.delete(64);
+// console.log(gameEvents);
+
+// //3.
+// console.log(`An event happened, on average, every ${[...gameEvents.keys()].pop()/gameEvents.size} minutes`);
+
+// //4.
+// for (const [min, event] of gameEvents) {
+//   const str = (min <=45 ? "FIRST" : "SECOND") + " HALF";
+//   console.log(`[${str}] ${min}: ${event}`);
+// }
+
+
+///////////////////////////////////////
+// Coding Challenge #4
+
+/* 
+Write a program that receives a list of variable names written in underscore_case and convert them to camelCase.
+
+The input will come from a textarea inserted into the DOM (see code below), and conversion will happen when the button is pressed.
+
+THIS TEST DATA (pasted to textarea)
+underscore_case
+ first_name
+Some_Variable 
+  calculate_AGE
+delayed_departure
+
+SHOULD PRODUCE THIS OUTPUT (5 separate console.log outputs)
+underscoreCase      ✅
+firstName           ✅✅
+someVariable        ✅✅✅
+calculateAge        ✅✅✅✅
+delayedDeparture    ✅✅✅✅✅
+
+HINT 1: Remember which character defines a new line in the textarea 😉
+HINT 2: The solution only needs to work for a variable made out of 2 words, like a_b
+HINT 3: Start without worrying about the ✅. Tackle that only after you have the variable name conversion working 😉
+HINT 4: This challenge is difficult on purpose, so start watching the solution in case you're stuck. Then pause and continue!
+
+Afterwards, test with your own test data!
+
+GOOD LUCK 😀
+*/
+// const textarea = document.createElement('textarea');
+// const button = document.createElement('button');
+// document.body.append(textarea);
+// document.body.append(button);
+// button.addEventListener("click", (e)=>{
+//   const valueTextarea = textarea.value.toLowerCase();
+//   const tempArr = valueTextarea.split('\n');
+//   // console.log(tempArr);
+//   for (const [i,str] of tempArr.entries()) {
+//     if(str.length === 0) continue;
+//     const strArr = str.trim().split("_");
+//     if(strArr.length==1) {
+//       console.log(str.padEnd(20," ")+ "👽".repeat(i + 1));
+//       continue;
+//     }
+
+//     for (let index = 1; index < strArr.length; index++) {
+//       strArr[index] = strArr[index].replace(strArr[index][0],strArr[index][0].toUpperCase());
+
+//     }
+//     // console.log(strArr);
+//     const newStr = strArr.join("");
+//     console.log(newStr.padEnd(20," ") + "👽".repeat(i + 1));
+//   }
+// })
+
+
+// Data needed for a later exercise
+// const flights =
+//   '_Delayed_Departure;fao93766109;txl2133758440;11:25+_Arrival;bru0943384722;fao93766109;11:45+_Delayed_Departuretxl2133758440;11:25+_Delayed_Arrival;hel7439299980;fao93766109;12:05+_Departure;fao93766109;lis2323639855;12:30+_Delayed_Departuretxl2133758440;11:25';
+
+// // 🔴 Delayed Departure from FAO to TXL (11h25)
+// //              Arrival from BRU to FAO (11h45)
+// //   🔴 Delayed Arrival from HEL to FAO (12h05)
+// //            Departure from FAO to LIS (12h30)
+
+// const formatStr = function (str) {  
+//   const strArr = str.split("+");
+//   // console.log(strArr);
+//   let maxLen = 0;
+//   const outPutArr = [];
+//   for (const [i,s] of strArr.entries()) {
+//     // console.log(s);
+//     const sArr = s.split(";");
+//     if(sArr.length !== 4) {
+//       outPutArr.push("this data is invalid");
+//       continue;
+//     }
+//     let outPutStr = "";
+//     for (const [i,t] of sArr.entries()) {
+//       switch (i) {
+//         case 0:
+//           let temp = t.replace(/_/g, " ").trim();
+//           if(temp.startsWith("Delayed"))
+//             temp = "🔴 " + temp;
+//           outPutStr += temp;
+//           break;
+//         case 1:
+//           outPutStr += " " + t.slice(0,3).toUpperCase();
+//           break;
+//         case 2:
+//           outPutStr += " to " + t.slice(0,3).toUpperCase();
+//           break;
+//         case 3:
+//           outPutStr += " (" + t + ")";
+//           break;
+//       }
+//     }
+//     if(maxLen < outPutStr.length) {
+//       maxLen = outPutStr.length;
+//     }
+//     outPutArr.push(outPutStr);
+//   }
+//   for (const output of outPutArr) {
+//     console.log(output.padStart(maxLen, " "));
+//   }
+//   // console.log(outPutArr);
+// }
+
+// formatStr(flights);
