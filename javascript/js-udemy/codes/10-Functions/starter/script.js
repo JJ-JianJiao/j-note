@@ -378,10 +378,72 @@ And now explain to YOURSELF (or someone around you) WHY this worked! Take all th
 GOOD LUCK 😀
 */
 
-(function () {
-  const header = document.querySelector('h1');
-  header.style.color = 'red';
-  document.addEventListener('click', () => {
-    header.style.color = 'blue';
-  });
-})();
+// (function () {
+//   const header = document.querySelector('h1');
+//   header.style.color = 'red';
+//   document.addEventListener('click', () => {
+//     header.style.color = 'blue';
+//   });
+// })();
+// let fun2;
+// function fun1() {
+//   const a = 999;
+//   fun2 = function () {
+//     console.log(a);
+//   };
+//   //   fun2();
+// }
+// // console.log(a);
+// // fun1();
+// fun1();
+// fun2();
+// console.dir(fun2);
+
+//need to run without strict
+// const f1 = function () {
+//   let n = 999;
+//   nAdd = function () {
+//     n += 1;
+//   };
+//   return () => {
+//     alert(n);
+//   };
+// };
+
+// var f2 = f1();
+// f2();
+// nAdd();
+// f2();
+
+// let objName = 'this window';
+// const object = {
+//   objName: 'my obj',
+//   getName: function () {
+//     return this.objName;
+//   },
+//   getNameFunc: function () {
+//     return function () {
+//       return this.objName;
+//     };
+//   },
+// };
+// // console.log(object);
+// // alert(object.getName());
+// alert(object.getNameFunc()()); //Uncaught TypeError: Cannot read properties of undefined (reading 'objName')
+
+let objName = 'this window';
+const object = {
+  objName: 'my obj',
+  getName: function () {
+    return this.objName;
+  },
+  getNameFunc: function () {
+    const that = this;
+    return function () {
+      return that.objName;
+    };
+  },
+};
+// console.log(object);
+// alert(object.getName());
+alert(object.getNameFunc()());
