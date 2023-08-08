@@ -74,3 +74,75 @@ const currencies = new Map([
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 /////////////////////////////////////////////////
+
+// let arr = ['a', 'b', 'c', 'd', 'e'];
+
+//SLICE
+// console.log(arr.slice(2)); //(3) ['c', 'd', 'e']
+// console.log(arr.slice(2, 4)); //(2) ['c', 'd']
+// console.log(arr.slice(-2)); //(2) ['d', 'e']
+// console.log(arr.slice(-1)); //(2) ['e']
+// console.log(arr.slice(1, -2)); //(2) ['b', 'c']
+// console.log(arr.slice()); //shallow copy
+// console.log([...arr]); //shallow copy
+
+// console.log('------SPLICE--------');
+//SPLICE
+// console.log(arr.splice(2)); //(3) ['c', 'd', 'e']
+// console.log(arr); //(2) ['a', 'b']
+// arr.splice(-1);
+// console.log(arr);
+
+// arr.splice(1, 2);
+
+// console.log(arr);
+
+//REVERSE
+// arr = ['a', 'b', 'c', 'd', 'e'];
+// const arr2 = ['j', 'i', 'h', 'g', 'f'];
+// console.log(arr2.reverse()); //(5) ['f', 'g', 'h', 'i', 'j']
+// console.log(arr2); //(5) ['f', 'g', 'h', 'i', 'j']
+
+//CONCAT
+// const letters = arr.concat(arr2);
+// console.log(letters); //(10) ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j']
+// console.log([...arr, ...arr2]);
+
+//JOIN
+// console.log(letters.join(' - '));
+
+//AT
+// const arr = [23, 11, 64];
+// console.log(arr[0]);
+// console.log(arr.at(0));
+
+//getting last array element
+// console.log(arr.slice(-1)[0]);
+// console.log(arr[arr.length - 1]);
+// console.log(arr.at(-1));
+
+// console.log('Jin Jio'.at(0));
+// console.log('Jin Jio'.at(-1));
+
+//FOR-OF. FOREACH
+// for (const movement of account1.movements) {
+for (const [index, movement] of account1.movements.entries()) {
+  // console.log(index);
+  if (movement > 0) {
+    console.log(`Movement ${index + 1}: you deposited ${movement}`);
+  } else {
+    console.log(`Movement ${index + 1}: you withdrew ${Math.abs(movement)}`);
+  }
+}
+
+console.log('----------FOREACH----------');
+account1.movements.forEach(function (movement, index, array) {
+  // console.log(this);//undefined
+  // console.log(array);
+  if (movement > 0) {
+    console.log(`Movement ${index + 1}: you deposited ${movement}`);
+  } else {
+    console.log(`Movement ${index + 1}: you withdrew ${Math.abs(movement)}`);
+  }
+});
+//

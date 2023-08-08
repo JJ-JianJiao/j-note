@@ -73,3 +73,4 @@
     > > this is **not** Static. It depends on how the function is called, and its value is only assigned when the function is actually called.
 26. primitives: number, string, boolean, undefined, null, symbol, bigint. Objects: object literal, arrays, functions, many more..
 27. closure: https://www.ruanyifeng.com/blog/2009/08/learning_javascript_closures.html
+28. cannot break out the foreach loop, Continue and break do not work in ForEach
