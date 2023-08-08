@@ -126,23 +126,42 @@ const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 //FOR-OF. FOREACH
 // for (const movement of account1.movements) {
-for (const [index, movement] of account1.movements.entries()) {
-  // console.log(index);
-  if (movement > 0) {
-    console.log(`Movement ${index + 1}: you deposited ${movement}`);
-  } else {
-    console.log(`Movement ${index + 1}: you withdrew ${Math.abs(movement)}`);
-  }
-}
+// for (const [index, movement] of account1.movements.entries()) {
+//   // console.log(index);
+//   if (movement > 0) {
+//     console.log(`Movement ${index + 1}: you deposited ${movement}`);
+//   } else {
+//     console.log(`Movement ${index + 1}: you withdrew ${Math.abs(movement)}`);
+//   }
+// }
 
-console.log('----------FOREACH----------');
-account1.movements.forEach(function (movement, index, array) {
-  // console.log(this);//undefined
-  // console.log(array);
-  if (movement > 0) {
-    console.log(`Movement ${index + 1}: you deposited ${movement}`);
-  } else {
-    console.log(`Movement ${index + 1}: you withdrew ${Math.abs(movement)}`);
-  }
-});
+// console.log('----------FOREACH----------');
+// account1.movements.forEach(function (movement, index, array) {
+//   // console.log(this);//undefined
+//   // console.log(array);
+//   if (movement > 0) {
+//     console.log(`Movement ${index + 1}: you deposited ${movement}`);
+//   } else {
+//     console.log(`Movement ${index + 1}: you withdrew ${Math.abs(movement)}`);
+//   }
+// });
 //
+
+// console.log("-------------FOREACH-MAP-----------");
+// const currencies = new Map([
+//   ['USD', 'United States dollar'],
+//   ['EUR', 'Euro'],
+//   ['GBP', 'Pound sterling'],
+// ]);
+
+// currencies.forEach(function (value, key, map) {
+//   console.log(`${key}: ${value}`, map);
+// })
+
+// //KEY == value
+// console.log("-------------FOREACH-SET-----------");
+// const currenciesUnique = new Set(['USD', 'GBP', 'USD', 'EUR', 'EUR',])
+// console.log(currenciesUnique);
+// currenciesUnique.forEach(function (value, _, set) {
+//   console.log(`value : ${value}`, set)
+// })
