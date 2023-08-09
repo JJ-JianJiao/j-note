@@ -62,9 +62,10 @@ const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
 //display the movments in the containerMovements block
-const displayMovements = function (movements) {
+const displayMovements = function (movements, sort = false) {
   containerMovements.innerHTML = "";
-  movements.forEach(function (movement, i) {
+  const movs = sort ? movements.slice().sort((a, b) => a - b) : movements;
+  movs.forEach(function (movement, i) {
     //Method 1: using document.createElement() and append()
     // const movementRow = document.createElement("div");
     // movementRow.classList.add("movements__row");
@@ -196,6 +197,18 @@ btnTransfer.addEventListener('click', function (e) {
   inputTransferTo.blur();
 })
 
+btnLoan.addEventListener('click', function (e) {
+  e.preventDefault();
+  const loanAmount = Number(inputLoanAmount.value.trim());
+  const loanQualified = currentAccount.movements.some(mov => mov >= loanAmount * 0.1);
+  if (loanAmount > 0 && loanQualified) {
+    console.log("Bank can borrow money to you");
+    currentAccount.movements.push(loanAmount);
+    loadAppUI(currentAccount);
+  }
+  inputLoanAmount.value = "";
+})
+
 btnClose.addEventListener('click', function (e) {
   e.preventDefault();
   if (inputCloseUsername.value === currentAccount.username && inputClosePin.value === currentAccount.pin.toString()) {
@@ -208,6 +221,13 @@ btnClose.addEventListener('click', function (e) {
   inputCloseUsername.blur();
   inputCloseUsername.blur();
   inputCloseUsername.value = inputClosePin.value = "";
+})
+
+let sorted = false;
+btnSort.addEventListener('click', function (e) {
+  e.preventDefault();
+  displayMovements(currentAccount.movements, !sorted);
+  sorted = !sorted;
 })
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
@@ -404,6 +424,88 @@ const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 //   }
 // }
 // console.log(accountForof);
+
+// console.log("-------------------SOME/EVERY   method Array ------------------");
+// console.log(movements);
+
+// //EQUALITY
+// console.log(movements.includes(-139));
+// console.log(movements.includes(-130));
+
+// //CONDITION
+// console.log(movements.some(move => move === -130));
+// const anyDeposits = movements.some(mov => mov > 1100);
+// console.log(anyDeposits);
+
+// //EVERY
+// console.log(movements.every(mov => mov > 0));
+// console.log(movements.every(mov => typeof mov === 'number'));
+// console.log(account4.movements.every(mov => mov > 0));
+
+// //Separate callback
+// const deposit = mov => mov > 0;
+// console.log(movements.some(deposit));
+// console.log(movements.every(deposit));
+// console.log(movements.filter(deposit));
+
+//ES 2019
+// console.log("-------------------Flat/flatmap   method Array ------------------");
+// const arr = [[1, 2, 3], [4, 5, 6], 7, 8];
+// console.log(arr.flat()); //[1, 2, 3, 4, 5, 6, 7, 8]
+// const arrDeep = [[[1, 2], 3], [4, [5, 6]], 7, 8];
+// console.log(arrDeep.flat());//[Array(2), 3, 4, Array(2), 7, 8]
+// console.log(arrDeep.flat(2));//(8) [1, 2, 3, 4, 5, 6, 7, 8]
+
+// const accountMovements = accounts.map(acc => acc.movements);
+// console.log(accountMovements);
+// const allMovemtns = accountMovements.flat();
+// console.log(allMovemtns);
+// // const overalBalance = allMovemtns.reduce((acc, mov) => acc + mov, 0);
+// const overalBalance = accounts.map(acc => acc.movements).flat().reduce((acc, mov) => mov + acc);
+
+// console.log(overalBalance);
+
+// //Flatmap
+// const overalBalance2 = accounts
+//   .flatMap(acc => acc.movements)
+//   .reduce((acc, mov) => mov + acc);
+
+// console.log(overalBalance2);
+// console.log("-------------------sorting  method Array ------------------");
+// //string
+// const owners = ['Jonas', 'Zach', 'Amda', 'Mrtha'];
+// console.log(owners.sort());
+// console.log(owners);
+
+// //number
+// console.log(movements);
+// // console.log(movements.sort());
+// // console.log(movements);
+
+// //return < 0, A,B
+// //return >0, B,A
+// //ascending
+// movements.sort((a, b) => {
+//   if (a > b) {
+//     return 1;
+//   }
+//   else {
+//     return -1;
+//   }
+// });
+// movements.sort((a, b) => a - b);
+// console.log(movements);
+// //desending
+// movements.sort((a, b) => {
+//   if (a > b) {
+//     return -1;
+//   }
+//   else {
+//     return 1;
+//   }
+// });
+// movements.sort((a, b) => b - a);
+// console.log(movements);
 /*
 Julia and Kate are doing a study on dogs. So each of them asked 5 dog owners about their dog's age, and stored the data into an array (one array for each). For now, they are just interested in knowing whether a dog is an adult or a puppy. A dog is an adult if it is at least 3 years old, and it's a puppy if it's less than 3 years old.
 
