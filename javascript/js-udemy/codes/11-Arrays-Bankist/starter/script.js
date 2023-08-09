@@ -110,7 +110,7 @@ const init = function () {
   containerMovements.innerHTML = "";
 }
 // init();
-displayMovements(account1.movements);
+// displayMovements(account1.movements);
 
 //create username property in each account object
 const createUsernames = function (accounts) {
@@ -121,33 +121,94 @@ const createUsernames = function (accounts) {
 createUsernames(accounts);
 // console.log(accounts);
 
-const calcDisplayBalance = function (movements) {
-  const balance = movements.reduce((acc, mov) => acc += mov, 0);
-  labelBalance.textContent = `${balance} EUR`;
+const calcDisplayBalance = function (acc) {
+  acc.balance = acc.movements.reduce((acc, mov) => acc += mov, 0);
+  labelBalance.textContent = `${acc.balance} €`;
 }
-calcDisplayBalance(account1.movements);
+// calcDisplayBalance(account1.movements);
 
 //display summary
-const calcDisplaySummary = function (movements) {
-  const summaryIn = movements
+const calcDisplaySummary = function (acc) {
+  const summaryIn = acc.movements
     .filter(mov => mov > 0)
     .reduce((preMov, curMov) => preMov + curMov, 0);
   labelSumIn.textContent = `${summaryIn}€`;
-  const summaryOut = movements
+  const summaryOut = acc.movements
     .filter(mov => mov < 0)
     .reduce((pre, cur) => pre + cur, 0);
   labelSumOut.textContent = `${Math.abs(summaryOut)}€`;
-  const intrest = movements
+  const intrest = acc.movements
     .filter(mov => mov > 0)
-    .map((mov, _, arr) => {
-      console.log(arr);
-      console.log(mov * account1.interestRate);
-      return mov * account1.interestRate;
-    })
-    .reduce((pre, cur) => pre + cur, 0);
-  console.log(intrest);
+    .map(mov => mov * acc.interestRate / 100)
+    .filter(int => int >= 1)
+    .reduce((pre, cur) => pre + cur, 0).toFixed(2);
+  // console.log(intrest);
+  labelSumInterest.textContent = `${intrest}€`;
 }
-calcDisplaySummary(account1.movements);
+// calcDisplaySummary(account1.movements);
+
+//Event handler
+let currentAccount;
+btnLogin.addEventListener('click', function (e) {
+  e.preventDefault();
+  currentAccount = accounts.find(acc => acc.username === inputLoginUsername.value.toLowerCase());
+  // if (currentAccount && inputLoginPin.value.trim().toLowerCase() === currentAccount.pin.toString()) {
+  if (currentAccount?.pin.toString() === inputLoginPin.value.trim().toLowerCase()) {
+    //display UI
+    labelWelcome.textContent = `Welcome back, ${currentAccount.owner.split(" ").at(0)}`;
+    containerApp.classList.add("opacity100-i");
+
+    //clear input fields
+    inputLoginPin.blur();
+    inputLoginPin.value = "";
+    inputLoginUsername.value = "";
+    inputLoginUsername.blur();
+    loadAppUI(currentAccount);
+  }
+});
+
+const loadAppUI = function (account) {
+  //display summary
+  calcDisplaySummary(account);
+  //display Balance
+  calcDisplayBalance(account);
+  //display movements
+  displayMovements(account.movements);
+}
+
+inputLoginUsername.addEventListener("focus", function () {
+  this.setSelectionRange(0, this.value.length);
+})
+
+btnTransfer.addEventListener('click', function (e) {
+  e.preventDefault();
+  const amount = Number(inputTransferAmount.value);
+  const receiverAcc = accounts.find(acc => inputTransferTo.value.trim().toLowerCase() === acc.username);
+  // console.log(amount, receiverAcc);
+  if (receiverAcc && receiverAcc !== currentAccount && amount > 0 && currentAccount.balance >= amount) {
+    currentAccount.movements.push(-amount);
+    receiverAcc.movements.push(amount);
+    loadAppUI(currentAccount);
+    // console.log('Transfer valid');
+  }
+  inputTransferTo.value = inputTransferAmount.value = "";
+  inputTransferAmount.blur();
+  inputTransferTo.blur();
+})
+
+btnClose.addEventListener('click', function (e) {
+  e.preventDefault();
+  if (inputCloseUsername.value === currentAccount.username && inputClosePin.value === currentAccount.pin.toString()) {
+    // console.log("delete");
+    const currentAccPositon = accounts.findIndex(acc => acc.username === inputCloseUsername.value.trim());
+    accounts.splice(currentAccPositon, 1);
+    containerApp.classList.remove("opacity100-i");
+    console.log(accounts);
+  }
+  inputCloseUsername.blur();
+  inputCloseUsername.blur();
+  inputCloseUsername.value = inputClosePin.value = "";
+})
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
@@ -326,6 +387,23 @@ const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 //   .reduce((acc, mov) => acc + mov, 0)
 //   .toFixed(2);
 // console.log(totalDepositsUSD);
+// console.log("-------------------Find  method Array ------------------");
+
+// const firstWithdrawal = movements.find(mov => mov < 0);
+// console.log(movements);
+// console.log(firstWithdrawal);
+// console.log(accounts);
+// const account = accounts.find(acc => acc.owner === "Jessica Davis");
+// console.log(account);
+
+// let accountForof = {};
+// for (const acc of accounts) {
+//   if (acc.owner === "Jessica Davis") {
+//     accountForof = acc;
+//     break;
+//   }
+// }
+// console.log(accountForof);
 /*
 Julia and Kate are doing a study on dogs. So each of them asked 5 dog owners about their dog's age, and stored the data into an array (one array for each). For now, they are just interested in knowing whether a dog is an adult or a puppy. A dog is an adult if it is at least 3 years old, and it's a puppy if it's less than 3 years old.
 
@@ -424,3 +502,17 @@ GOOD LUCK 😀
 // console.log(calsAverageHumanAge([5, 2, 4, 1, 15, 8, 3]));
 // console.log(calsAverageHumanAge([16, 6, 10, 5, 6, 1, 4]));
 
+///////////////////////////////////////
+// Coding Challenge #3
+
+/*
+Rewrite the 'calcAverageHumanAge' function from the previous challenge, but this time as an arrow function, and using chaining!
+
+TEST DATA 1: [5, 2, 4, 1, 15, 8, 3]
+TEST DATA 2: [16, 6, 10, 5, 6, 1, 4]
+
+GOOD LUCK 😀
+*/
+// const calsAverageHumanAge2 = ages => ages.map(age => age <= 2 ? age * 2 : 16 + age * 4).filter(age => age >= 18).reduce((acc, age, i, arr) => acc + age / arr.length, 0).toFixed(2);
+// console.log(calsAverageHumanAge2([5, 2, 4, 1, 15, 8, 3]));
+// console.log(calsAverageHumanAge2([16, 6, 10, 5, 6, 1, 4]));
