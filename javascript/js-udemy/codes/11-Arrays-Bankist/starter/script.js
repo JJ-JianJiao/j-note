@@ -63,7 +63,7 @@ const inputClosePin = document.querySelector('.form__input--pin');
 
 //display the movments in the containerMovements block
 const displayMovements = function (movements, sort = false) {
-  containerMovements.innerHTML = "";
+  containerMovements.innerHTML = '';
   const movs = sort ? movements.slice().sort((a, b) => a - b) : movements;
   movs.forEach(function (movement, i) {
     //Method 1: using document.createElement() and append()
@@ -96,36 +96,42 @@ const displayMovements = function (movements, sort = false) {
     const type = movement > 0 ? 'deposit' : 'withdrawal';
     const html = `
       <div class="movements__row">
-        <div class="movements__type movements__type--${type}">${i + 1} ${type}</div>
+        <div class="movements__type movements__type--${type}">${
+      i + 1
+    } ${type}</div>
         <div class= "movements__date" > 3 days ago</div >
         <div class="movements__value">${movement}€</div>
       </div >
     `;
     containerMovements.insertAdjacentHTML('afterbegin', html);
-  })
-}
+  });
+};
 const init = function () {
   // while (containerMovements.firstChild) {
   //   containerMovements.firstChild.remove();
   // }
-  containerMovements.innerHTML = "";
-}
+  containerMovements.innerHTML = '';
+};
 // init();
 // displayMovements(account1.movements);
 
 //create username property in each account object
 const createUsernames = function (accounts) {
   accounts.forEach(account => {
-    account.username = account.owner.toLowerCase().split(' ').map(value => value.at(0)).join("");
+    account.username = account.owner
+      .toLowerCase()
+      .split(' ')
+      .map(value => value.at(0))
+      .join('');
   });
-}
+};
 createUsernames(accounts);
 // console.log(accounts);
 
 const calcDisplayBalance = function (acc) {
-  acc.balance = acc.movements.reduce((acc, mov) => acc += mov, 0);
+  acc.balance = acc.movements.reduce((acc, mov) => (acc += mov), 0);
   labelBalance.textContent = `${acc.balance} €`;
-}
+};
 // calcDisplayBalance(account1.movements);
 
 //display summary
@@ -140,29 +146,37 @@ const calcDisplaySummary = function (acc) {
   labelSumOut.textContent = `${Math.abs(summaryOut)}€`;
   const intrest = acc.movements
     .filter(mov => mov > 0)
-    .map(mov => mov * acc.interestRate / 100)
+    .map(mov => (mov * acc.interestRate) / 100)
     .filter(int => int >= 1)
-    .reduce((pre, cur) => pre + cur, 0).toFixed(2);
+    .reduce((pre, cur) => pre + cur, 0)
+    .toFixed(2);
   // console.log(intrest);
   labelSumInterest.textContent = `${intrest}€`;
-}
+};
 // calcDisplaySummary(account1.movements);
 
 //Event handler
 let currentAccount;
+
 btnLogin.addEventListener('click', function (e) {
   e.preventDefault();
-  currentAccount = accounts.find(acc => acc.username === inputLoginUsername.value.toLowerCase());
+  currentAccount = accounts.find(
+    acc => acc.username === inputLoginUsername.value.toLowerCase()
+  );
   // if (currentAccount && inputLoginPin.value.trim().toLowerCase() === currentAccount.pin.toString()) {
-  if (currentAccount?.pin.toString() === inputLoginPin.value.trim().toLowerCase()) {
+  if (
+    currentAccount?.pin.toString() === inputLoginPin.value.trim().toLowerCase()
+  ) {
     //display UI
-    labelWelcome.textContent = `Welcome back, ${currentAccount.owner.split(" ").at(0)}`;
-    containerApp.classList.add("opacity100-i");
+    labelWelcome.textContent = `Welcome back, ${currentAccount.owner
+      .split(' ')
+      .at(0)}`;
+    containerApp.classList.add('opacity100-i');
 
     //clear input fields
     inputLoginPin.blur();
-    inputLoginPin.value = "";
-    inputLoginUsername.value = "";
+    inputLoginPin.value = '';
+    inputLoginUsername.value = '';
     inputLoginUsername.blur();
     loadAppUI(currentAccount);
   }
@@ -175,60 +189,74 @@ const loadAppUI = function (account) {
   calcDisplayBalance(account);
   //display movements
   displayMovements(account.movements);
-}
+};
 
-inputLoginUsername.addEventListener("focus", function () {
+inputLoginUsername.addEventListener('focus', function () {
   this.setSelectionRange(0, this.value.length);
-})
+});
 
 btnTransfer.addEventListener('click', function (e) {
   e.preventDefault();
   const amount = Number(inputTransferAmount.value);
-  const receiverAcc = accounts.find(acc => inputTransferTo.value.trim().toLowerCase() === acc.username);
+  const receiverAcc = accounts.find(
+    acc => inputTransferTo.value.trim().toLowerCase() === acc.username
+  );
   // console.log(amount, receiverAcc);
-  if (receiverAcc && receiverAcc !== currentAccount && amount > 0 && currentAccount.balance >= amount) {
+  if (
+    receiverAcc &&
+    receiverAcc !== currentAccount &&
+    amount > 0 &&
+    currentAccount.balance >= amount
+  ) {
     currentAccount.movements.push(-amount);
     receiverAcc.movements.push(amount);
     loadAppUI(currentAccount);
     // console.log('Transfer valid');
   }
-  inputTransferTo.value = inputTransferAmount.value = "";
+  inputTransferTo.value = inputTransferAmount.value = '';
   inputTransferAmount.blur();
   inputTransferTo.blur();
-})
+});
 
 btnLoan.addEventListener('click', function (e) {
   e.preventDefault();
   const loanAmount = Number(inputLoanAmount.value.trim());
-  const loanQualified = currentAccount.movements.some(mov => mov >= loanAmount * 0.1);
+  const loanQualified = currentAccount.movements.some(
+    mov => mov >= loanAmount * 0.1
+  );
   if (loanAmount > 0 && loanQualified) {
-    console.log("Bank can borrow money to you");
+    console.log('Bank can borrow money to you');
     currentAccount.movements.push(loanAmount);
     loadAppUI(currentAccount);
   }
-  inputLoanAmount.value = "";
-})
+  inputLoanAmount.value = '';
+});
 
 btnClose.addEventListener('click', function (e) {
   e.preventDefault();
-  if (inputCloseUsername.value === currentAccount.username && inputClosePin.value === currentAccount.pin.toString()) {
+  if (
+    inputCloseUsername.value === currentAccount.username &&
+    inputClosePin.value === currentAccount.pin.toString()
+  ) {
     // console.log("delete");
-    const currentAccPositon = accounts.findIndex(acc => acc.username === inputCloseUsername.value.trim());
+    const currentAccPositon = accounts.findIndex(
+      acc => acc.username === inputCloseUsername.value.trim()
+    );
     accounts.splice(currentAccPositon, 1);
-    containerApp.classList.remove("opacity100-i");
+    containerApp.classList.remove('opacity100-i');
     console.log(accounts);
   }
   inputCloseUsername.blur();
   inputCloseUsername.blur();
-  inputCloseUsername.value = inputClosePin.value = "";
-})
+  inputCloseUsername.value = inputClosePin.value = '';
+});
 
 let sorted = false;
 btnSort.addEventListener('click', function (e) {
   e.preventDefault();
   displayMovements(currentAccount.movements, !sorted);
   sorted = !sorted;
-})
+});
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
@@ -333,7 +361,6 @@ const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 // currenciesUnique.forEach(function (value, _, set) {
 //   console.log(`value: ${ value } `, set)
 // })
-
 
 // console.log("-------------------Map Array ------------------");
 // const eurToUsd = 1.1;
@@ -572,7 +599,7 @@ const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 //     // mov > 0 ? sumObj.sumDeposit += mov : sumObj.sumWithDraw += Math.abs(mov);
 //     // return sumObj;
 
-//     //use if 
+//     //use if
 //     // if (mov > 0) {
 //     //   sumObj.sumDeposit += mov;
 //     // }
@@ -587,7 +614,6 @@ const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 //   }, { sumDeposit: 0, sumWithDraw: 0 })
 // // console.log(sumDepositWithDraw);
 // console.log(deposits, withdrawals);
-
 
 //4. crate a simple function to convert any string to a title case
 //this is a nice title => This Is a Nice Title
@@ -678,7 +704,6 @@ GOOD LUCK 😀
 //   displayResult(dogsKate);
 // }
 // checkDogs(dogsJulia, dogsKate);
-
 
 ///////////////////////////////////////
 // Coding Challenge #2
@@ -773,7 +798,7 @@ const dogs = [
   { weight: 22, curFood: 250, owners: ['Alice', 'Bob'] },
   { weight: 8, curFood: 200, owners: ['Matilda'] },
   { weight: 13, curFood: 275, owners: ['Sarah', 'John'] },
-  { weight: 32, curFood: 340, owners: ['Michael'] }
+  { weight: 32, curFood: 340, owners: ['Michael'] },
 ];
 
 //1.
@@ -784,45 +809,52 @@ console.log(dogs);
 
 //2.
 dogs.forEach(function (dog) {
-  if (dog.owners.includes("Sarah")) {
+  if (dog.owners.includes('Sarah')) {
     if ((dog.curFood - dog.recommendedFood) / dog.recommendedFood > 0.1) {
       console.log(`Sarah's dog eat too much`);
-    }
-    else if ((dog.curFood - dog.recommendedFood) / dog.recommendedFood < -0.1) {
+    } else if (
+      (dog.curFood - dog.recommendedFood) / dog.recommendedFood <
+      -0.1
+    ) {
       cconsole.log(`Sarah's dog eat too little`);
     } else {
       console.log(`Sarah's dog eat healthily`);
     }
   }
-})
+});
 
-const sarahDog = dogs.find(dog => dog.owners.includes("Sarah"));
+const sarahDog = dogs.find(dog => dog.owners.includes('Sarah'));
 console.log(sarahDog);
 
 //3
-const ownersEatTooMuch = dogs.filter(dog => (dog.curFood - dog.recommendedFood) / dog.recommendedFood > 0.1).flatMap(dog => dog.owners);
+const ownersEatTooMuch = dogs
+  .filter(
+    dog => (dog.curFood - dog.recommendedFood) / dog.recommendedFood > 0.1
+  )
+  .flatMap(dog => dog.owners);
 console.log(ownersEatTooMuch);
-const ownersEatTooLittle = dogs.filter(dog => (dog.curFood - dog.recommendedFood) / dog.recommendedFood < -0.1).flatMap(dog => dog.owners);
+const ownersEatTooLittle = dogs
+  .filter(
+    dog => (dog.curFood - dog.recommendedFood) / dog.recommendedFood < -0.1
+  )
+  .flatMap(dog => dog.owners);
 console.log(ownersEatTooLittle);
 
 //4.
 const ownersEatTooMuchStr = ownersEatTooMuch.reduce((str, owner, i, arr) => {
-  if (i == arr.length - 1)
-    str += owner + "'s dogs eat too much!";
-  else
-    str += owner + ' and ';
+  if (i == arr.length - 1) str += owner + "'s dogs eat too much!";
+  else str += owner + ' and ';
   return str;
-}, "");
+}, '');
 console.log(ownersEatTooMuchStr);
 
-let ownersEatTooLittleStr = "";
+let ownersEatTooLittleStr = '';
 ownersEatTooLittle.forEach(function (owner, i, owners) {
   if (i == owners.length - 1)
     ownersEatTooLittleStr += owner + "'s dogs eat too little!";
-  else
-    ownersEatTooLittleStr += owner + ' and ';
+  else ownersEatTooLittleStr += owner + ' and ';
   // return str;
-})
+});
 console.log(ownersEatTooLittleStr);
 
 console.log(`${ownersEatTooMuch.join(' and ')}'s dogs eat too much!`);
@@ -832,9 +864,9 @@ console.log(`${ownersEatTooLittle.join(' and ')}'s dogs eat too little!`);
 const resultExactly = dogs.some(dog => dog.curFood === dog.recommendedFood);
 console.log(resultExactly);
 
-
 //6.
-const calcDogEatFoodOK = dog => Math.abs(dog.curFood - dog.recommendedFood) / dog.recommendedFood <= 0.1;
+const calcDogEatFoodOK = dog =>
+  Math.abs(dog.curFood - dog.recommendedFood) / dog.recommendedFood <= 0.1;
 const resultOk = dogs.some(calcDogEatFoodOK);
 console.log(resultOk);
 
