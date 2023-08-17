@@ -60,3 +60,17 @@ console.log(jian.hasOwnProperty('species'));
 // const testB = new testA();
 // console.log(testA);
 // console.log(testB);
+
+console.log(jian);
+
+console.log("---------Prototype inheritance------");
+console.log(jian.__proto__); //Person.prototype
+console.log(jian.__proto__.__proto__); //object.prototype
+console.log(jian.__proto__.__proto__.__proto__); //null
+
+console.dir(Person.prototype.constructor);
+
+const arr = [3, 6, 7, 6, 5, 4, 3, 3]; // new Array ==== [....]
+console.log(arr.__proto__);
+console.log(arr.__proto__ === Array.prototype);
+console.log(Array.prototype);
