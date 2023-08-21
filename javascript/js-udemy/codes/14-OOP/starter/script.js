@@ -389,38 +389,267 @@ GOOD LUCK 😀
 //     }
 // }
 
-const EV = function (make, speed, charge) {
-    Car.call(this, make, speed);
-    this.charge = charge;
-}
-const Car = function (make, speed) {
-    this.make = make;
-    this.speed = speed;
+
+// const Car = function (make, speed) {
+//     this.make = make;
+//     this.speed = speed;
+// }
+// const EV = function (make, speed, charge) {
+//     Car.call(this, make, speed);
+//     this.charge = charge;
+// }
+// Car.prototype.accelerate = function () {
+//     this.speed += 10;
+//     console.log(this.speed);
+// }
+// Car.prototype.brake = function () {
+//     this.speed -= 5;
+//     console.log(this.speed);
+// }
+// EV.prototype = Object.create(Car.prototype);
+// EV.prototype.chargebattery = function (chargeTo) {
+//     this.charge = chargeTo;
+// }
+// EV.prototype.accelerate = function () {
+//     this.speed += 20;
+//     this.charge -= 1;
+//     console.log(`${this.make} going at ${this.speed} km/h, with a charge of ${this.charge}`);
+// }
+// const myEv = new EV('tesla', 140, 99);
+// console.log(myEv);
+// myEv.accelerate();
+// myEv.brake();
+
+
+//ES6 inherite from class
+// class PersonCl {
+//     constructor(fullName, birthYear) {
+//         this._fullName = fullName;
+//         this._birthYear = birthYear;
+//     }
+
+//     calcAge() {
+//         console.log(2037 - this._birthYear);
+//     }
+
+//     greet() {
+//         console.log(`Hey ${this._fullName}`);
+//     }
+
+//     get age() {
+//         return 2037 - this._birthYear;
+//     }
+
+//     set fullName(name) {
+//         if (name.include(' '))
+//             this._fullName = name;
+//         else
+//             alert(`${name} is not a full name!`)
+//     }
+
+//     get fullName() {
+//         return this._fullName;
+//     }
+
+//     static hey() {
+//         console.log('Hey there');
+//     }
+// }
+
+// class StudentCl extends PersonCl {
+//     constructor(fullName, birthYear, course) {
+//         super(fullName, birthYear);
+//         this._course = course;
+//     }
+//     introduce() {
+//         console.log(`My name is ${this._fullName} and I study ${this._course}`);
+//     }
+
+//     calcAge() {
+//         console.log(`I am ${2037 - this._birthYear} years old, But as a student I feel more like ${2037 - this._birthYear + 10}`);
+//     }
+// }
+
+// const sebJiao = new StudentCl('Xiuqi', 2021, 'CS');
+// console.log(sebJiao);
+// sebJiao.calcAge();
+// sebJiao.introduce();
+
+// console.log('---------object.create--------');
+// const PersonProto = {
+//     calcAge() {
+//         console.log(2037 - this.birthYear);
+//     },
+//     init(firstName, birthYear) {
+//         this.firstName = firstName;
+//         this.birthYear = birthYear;
+//     }
+// };
+
+// const jian = Object.create(PersonProto);
+// jian.init('jian', 'jiao');
+// console.log(jian);
+
+
+// const StudentProto = Object.create(PersonProto);
+// StudentProto.init = function (firstName, birthYear, course) {
+//     PersonProto.init.call(this, firstName, birthYear);
+//     this.course = course;
+// }
+// const jay = Object.create(StudentProto);
+// jay.init('jay', 2021, 'CS');
+// console.log(jay);
+// jay.calcAge();
+
+// console.log('--------more classes------------');
+
+// // 1) public fields
+// // 2) private fields
+// // 3) public methods
+// // 4) private methods
+// // (there is also the static version)
+
+// class Account {
+
+//     //public fields (instances)
+//     locale = navigator.language;
+
+//     //private fields
+//     #movements = [];
+//     #pin;
+
+
+//     //public methods
+//     constructor(owner, currency, pin) {
+//         this.owner = owner;
+//         this.currency = currency;
+//         this.#pin = pin;
+//         // this._movements = [];
+//         // this.locale = navigator.language;
+
+//         console.log(`Thanks for opening an account, ${owner}`);
+//     }
+
+//     deposit(val) {
+//         this.#movements.push(val);
+//         return this;
+//     }
+
+//     withdraw(val) {
+//         this.deposit(-val);
+//         return this;
+//     }
+
+
+//     requestLoan(val) {
+//         if (this.#approvalLoan(val)) {
+//             this.deposit(val);
+//             console.log('Loan approved');
+//         }
+//         return this;
+//     }
+
+//     get movements() {
+//         return this.#movements;
+//     }
+
+//     //private method
+//     #approvalLoan() {
+//         return true;
+//     }
+
+//     static helper() {
+//         console.log('helper');
+//     }
+// }
+
+// const acc1 = new Account('jian', 'EUR', 1111);
+// console.log(acc1);
+
+
+// acc1.deposit(245);
+// acc1.withdraw(112);
+// acc1.requestLoan(1000);
+
+
+// acc1.movements.push(250);
+// acc1.movements.push(-110);
+// console.log(acc1);
+
+// //Encapsualtion: protected
+// // console.log(acc1.#movements);
+// console.log(acc1.movements);
+// // acc1.#approvalLoan();
+
+// Account.helper();
+
+
+// //chaining
+// acc1.deposit(300).deposit(500).withdraw(23).requestLoan(1000).withdraw(4000);
+// console.log(acc1);
+
+
+
+///////////////////////////////////////
+// Coding Challenge #4
+
+/*
+1. Re-create challenge #3, but this time using ES6 classes: create an 'EVCl' child class of the 'CarCl' class
+2. Make the 'charge' property private;
+3. Implement the ability to chain the 'accelerate' and 'chargeBattery' methods of this class, and also update the 'brake' method in the 'CarCl' class. They experiment with chining!
+
+DATA CAR 1: 'Rivian' going at 120 km/h, with a charge of 23%
+
+GOOD LUCK 😀
+*/
+class CarCl {
+    constructor(make, speed) {
+        this.make = make;
+        this.speed = speed;
+    }
+
+    accelerate() {
+        this.speed += 10;
+        console.log(this.speed);
+    }
+
+    brake() {
+        this.speed -= 5;
+        console.log(this.speed);
+        return this;
+    }
+
+    get speedUS() {
+        return this.speed / 1.6;
+    }
+
+    set speedUS(speed) {
+        this.speed = speed * 1.6;
+    }
 }
 
-Car.prototype.accelerate = function () {
-    this.speed += 10;
-    console.log(this.speed);
+class EVCL extends CarCl {
+    #charge;
+
+    constructor(make, speed, charge) {
+        super(make, speed);
+        this.#charge = charge;
+    }
+
+    accelerate() {
+        this.speed += 20;
+        console.log(this.speed);
+        this.#charge--;
+        console.log(this.#charge);
+        return this;
+    }
+
+    chargeBattery(chargeTo) {
+        this.#charge = chargeTo;
+        return this;
+    }
 }
 
-Car.prototype.brake = function () {
-    this.speed -= 5;
-    console.log(this.speed);
-}
-
-EV.prototype = Object.create(Car.prototype);
-
-EV.prototype.chargebattery = function (chargeTo) {
-    this.charge = chargeTo;
-}
-
-EV.prototype.accelerate = function () {
-    this.speed += 20;
-    this.charge -= 1;
-    console.log(`${this.make} going at ${this.speed} km/h, with a charge of ${this.charge}`);
-}
-
-const myEv = new EV('tesla', 140, 99);
-console.log(myEv);
-myEv.accelerate();
-myEv.brake();
+const car1 = new EVCL('Rivian', 120, 23);
+console.log(car1);
+car1.accelerate().brake().chargeBattery(90).accelerate();
