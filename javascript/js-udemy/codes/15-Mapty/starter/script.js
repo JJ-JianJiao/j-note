@@ -45,13 +45,13 @@ class Workout {
     }
 
     _getId() {
-        return new Date().getTime();
+        return Date.now();
     }
 }
 
 class Running extends Workout {
     #name = 'Running';
-    #type = '🏃‍♂️';
+    #type = ['🏃‍♂️','🦶🏼'];
     constructor(distance, duration, coords, cadence) {
         super(distance, duration, coords);
         this.cadence = cadence;
@@ -61,18 +61,23 @@ class Running extends Workout {
         return this.#name;
     }
     get typeIcon() {
-        return this.#type;
+        return this.#type[0];
     }
+
+    get valueIcon(){
+        return this.#type[1];
+    }
+
     get cadenceElevation() {
         return this.cadence;
     }
     get value() {
-        return this.distance * this.duration * this.cadence;
+        return (this.duration / this.distance).toFixed(2);
     }
 }
 class Cycling extends Workout {
     #name = 'Cycling';
-    #type = '🚴‍♀️';
+    #type = ['🚴‍♀️','⛰'];
     constructor(distance, duration, coords, elevation) {
         super(distance, duration, coords);
         this.elevation = elevation;
@@ -82,7 +87,10 @@ class Cycling extends Workout {
     }
 
     get typeIcon() {
-        return this.#type;
+        return this.#type[0];
+    }
+    get valueIcon(){
+        return this.#type[1];
     }
 
     get cadenceElevation() {
@@ -90,10 +98,12 @@ class Cycling extends Workout {
     }
 
     get value() {
-        return this.distance * this.duration * this.elevation;
+        return (this.distance / this.duration / 60).toFixed(2);
     }
 }
 
+////////////////////////////////////
+// APPLICATION ARCHITECTURE
 class App {
     //fields
     #workouts = [];
@@ -121,7 +131,6 @@ class App {
     _loadMap(position) {
         const { latitude } = position.coords;
         const { longitude } = position.coords;
-        console.log(this);
         this.#map = L.map('map').setView([latitude, longitude], 13);
         L.tileLayer('https://tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -147,17 +156,36 @@ class App {
         inputElevation.closest('.form__row').classList.toggle('form__row--hidden');
     }
     _newWorkout(e) {
+        const validInputs = (...inputs) => inputs.every(inp=>Number.isFinite(inp));
+        const allPositive = (...inputs) => inputs.every(inp=>inp>0);
         e.preventDefault();
+        //get data from from
+        const type = inputType.value;
+        const distance = +inputDistance.value;
+        const duration = +inputDuration.value;
+        const {lat, lng} = this.#mapEvent.latlng;
         let activity;
-        if (inputType.value === 'running') {
-            activity = new Running(inputDistance.value, inputDuration.value, this.#mapEvent.latlng, inputCadence.value);
+
+        if (type === 'running') {
+            const cadence = +inputCadence.value;
+            //check if data is valid
+            if (!validInputs(distance,duration,cadence)|| !allPositive(distance,duration,cadence)){
+                return alert('Inputs have to be positive numbers!');
+            }
+            activity = new Running(distance, duration, [lat, lng], cadence);
         }
-        else if (inputType.value === 'cycling') {
-            activity = new Cycling(inputDistance.value, inputDuration.value, this.#mapEvent.latlng, inputElevation.value);
+
+        if (type === 'cycling') {
+            const elevation = +inputElevation.value;
+            if (!validInputs(distance,duration,elevation) || !allPositive(distance,duration)){
+                return alert('Inputs have to be positive numbers!');
+            }
+            activity = new Cycling(distance, duration, [lat, lng], elevation);
         }
         this.#workouts.push(activity);
         this._renderWorkout(activity);
         this._renderWorkoutMarker(activity);
+        console.log(activity);
     }
 
     _renderWorkout(activity) {
@@ -177,12 +205,12 @@ class App {
             <div class="workout__details">
               <span class="workout__icon">⚡️</span>
               <span class="workout__value">${activity.value}</span>
-              <span class="workout__unit">km/h</span>
+              <span class="workout__unit">${activity.name === 'Running'? 'MIN/KM':'KM/H'}</span>
             </div>
             <div class="workout__details">
-              <span class="workout__icon">⛰</span>
+              <span class="workout__icon">${activity.valueIcon}</span>
               <span class="workout__value">${activity.cadenceElevation}</span>
-              <span class="workout__unit">m</span>
+              <span class="workout__unit">${activity.name === 'Running'? 'SPM':'M'}</span>
             </div>
           </li>
         `)
@@ -190,8 +218,7 @@ class App {
     }
 
     _renderWorkoutMarker(activity) {
-        const { lat, lng } = this.#mapEvent.latlng;
-        L.marker([lat, lng])
+        L.marker(activity.coords)
             .addTo(this.#map)
             .bindPopup(L.popup({
                 maxWidth: 250,
@@ -200,7 +227,7 @@ class App {
                 closeOnClick: false,
                 className: `${activity.name.toLowerCase()}-popup`
             }))
-            .setPopupContent(`${activity.typeIcon} Running on ${activity.date}`)
+            .setPopupContent(`${activity.typeIcon} ${activity.name} on ${activity.date}`)
             .openPopup();
     }
 }
