@@ -1,5 +1,5 @@
 'use strict';
-//test for contribution in github 2
+//test for contribution in github 3
 // prettier-ignore
 const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
