@@ -15,25 +15,34 @@ const inputElevation = document.querySelector('.form__input--elevation');
 //using Geolocation API: Geolocation: getCurrentPosition() method
 //https://developer.mozilla.org/en-US/docs/Web/API/Geolocation/getCurrentPosition
 // console.log(Geolocation.getCurrentPosition());
-
 class Workout {
-    #id;
-    #date;
-    #clicks = 0;
+    _id;
+    _date;
+    _clicks = 0;
     constructor(distance, duration, coords) {
         this.distance = distance;
         this.duration = duration;
         this.coords = coords;
-        this.#date = this.#getDate();
-        this.#id = this.#getId();
+        this._date = this.#getDate();
+        this._id = this.#getId();
     }
 
     get date() {
-        return this.#date;
+        return this._date;
+    }
+    set date(date) {
+        this._date = date;
     }
 
     get id() {
-        return this.#id;
+        return this._id;
+    }
+
+    set id(id) {
+        this._id = id;
+    }
+    set clicks(clicks) {
+        this._clicks = clicks;
     }
 
     #getDate() {
@@ -50,8 +59,12 @@ class Workout {
     }
 
     click(){
-        ++this.#clicks;
+        ++this._clicks;
     }
+
+    // stringify(){
+    //     return JSON.stringify({['#id']: this.#id,['#date']: this.#date,,['#clicks']: this.#clicks});
+    // }
 }
 
 class Running extends Workout {
@@ -65,6 +78,9 @@ class Running extends Workout {
     get name() {
         return this.#name;
     }
+    // set name(name) {
+    //     this.#name = name;
+    // }
     get typeIcon() {
         return this.#type[0];
     }
@@ -72,7 +88,9 @@ class Running extends Workout {
     get cadenceElevationIcon(){
         return this.#type[1];
     }
-
+    // set types(types){
+    //     this.#type = types;
+    // }
     get cadenceElevation() {
         return this.cadence;
     }
@@ -91,13 +109,19 @@ class Cycling extends Workout {
         return this.#name;
     }
 
+    // set name(name) {
+    //     this.#name = name;
+    // }
+
     get typeIcon() {
         return this.#type[0];
     }
     get cadenceElevationIcon(){
         return this.#type[1];
     }
-
+    // set types(types){
+    //     this.#type = types;
+    // }
     get cadenceElevation() {
         return this.elevation;
     }
@@ -117,12 +141,45 @@ class App {
     #formNotReady = false;
     #mapZoom = 13;
     constructor() {
+
+        this._geLocalWorkouts();
+
         this._getCurrentPosition();
         form.addEventListener('submit', this._newWorkout.bind(this));
         inputType.addEventListener('change', this._toggleEvevationField);
         window.addEventListener('keydown', this._cancelForm.bind(this));
         containerWorkouts.addEventListener('click',this._moveToMarker.bind(this));
     }
+
+    _geLocalWorkouts(){
+        // localStorage.clear();
+        const preWorkouts = localStorage.getItem('WOS');
+        if(preWorkouts){
+            const localWorkouts = JSON.parse(preWorkouts);
+            // console.log(localWorkouts);
+            localWorkouts.forEach(this._renderLocalStorageWorkoutForm.bind(this));
+        }
+    }
+
+    _renderLocalStorageWorkoutForm(workout){
+        let workOutObj = "";
+        if(workout.hasOwnProperty('cadence')){
+            workOutObj = new Running(workout.distance,workout.duration,workout.coords,workout.cadence);
+        }
+        if(workout.hasOwnProperty('elevation')){
+            workOutObj = new Cycling(workout.distance,workout.duration,workout.coords,workout.elevation);
+        }
+        workOutObj.id = workout._id;
+        workOutObj.date = workout._date;
+        workOutObj.clicks = workout._clicks;
+        this.#workouts.push(workOutObj);
+        this._renderWorkout(workOutObj);
+    }
+
+    _renderLocalStorageWorkoutMarker(){
+        this.#workouts.forEach(this._renderWorkoutMarker.bind(this));
+    }
+
     _initFormFields() {
         inputDistance.value = "";
         inputDuration.value = "";
@@ -142,6 +199,12 @@ class App {
         L.tileLayer('https://tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(this.#map);
+
+        if(this.#workouts.length !== 0){
+
+            this._renderLocalStorageWorkoutMarker();
+        }
+
         this.#map.on('click', this._showForm.bind(this));
     }
     _showForm(e) {
@@ -158,20 +221,22 @@ class App {
     _hideForm(cancle = true) {
         if(!cancle) {
             form.style.display = 'none';
+            this.#formNotReady = true;
         }
         form.classList.add('hidden');
         this._initFormFields();
-        this.#formNotReady = true;
+
         if(!cancle) {
             setTimeout(() => {
-                form.style.display = 'grid';
                 this.#formNotReady = false;
+                form.style.display = 'grid';
             }, 600);
         }
     }
     _toggleEvevationField() {
         inputCadence.closest('.form__row').classList.toggle('form__row--hidden');
         inputElevation.closest('.form__row').classList.toggle('form__row--hidden');
+        inputDistance.focus();
     }
     _newWorkout(e) {
         const validInputs = (...inputs) => inputs.every(inp=>Number.isFinite(inp));
@@ -202,7 +267,13 @@ class App {
         }
         this.#workouts.push(activity);
         this._renderWorkout(activity);
+        this._hideForm(false);
         this._renderWorkoutMarker(activity);
+        this._setLocalStorage();
+    }
+
+    _setLocalStorage(){
+        localStorage.setItem("WOS",JSON.stringify( this.#workouts));
     }
 
     _renderWorkout(activity) {
@@ -232,7 +303,6 @@ class App {
             </div>
           </li>
         `)
-        this._hideForm(false);
     }
 
     _renderWorkoutMarker(activity) {
@@ -253,10 +323,7 @@ class App {
     }
 
     _moveToMarker(e){
-        // console.log(e);
-        // console.log(this);
         // e.preventDefault();
-        // if(e.target.closest('.form')) return;
         const workout = e.target.closest('.workout');
         if(!workout) return;
         const markerId = workout.dataset.id;
@@ -277,9 +344,15 @@ class App {
                     }
                 });
                 targetMarker.click();
-                console.log(targetMarker);
+                this._setLocalStorage();
+                // console.log(targetMarker);
             }
         }
+    }
+
+    reset(){
+        localStorage.removeItem('WOS');
+        location.reload();
     }
 }
 
