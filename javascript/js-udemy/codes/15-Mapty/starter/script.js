@@ -195,6 +195,7 @@ class App {
     }
     _loadMap(position) {
         const { latitude, longitude } = position.coords;
+        console.log(latitude, longitude);
         this.#map = L.map('map').setView([latitude, longitude], this.#mapZoom);
         L.tileLayer('https://tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
