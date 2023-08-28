@@ -281,3 +281,55 @@ https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${53.5230764}&
 https://geocode.xyz/api
 53.5230764 -113.700553
 */
+
+const whereAmI = function (lat, lng) {  
+    console.log(lat,lng);
+    const url = `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${lat}&longitude=${lng}&localityLanguage=en`;
+    fetch(url).then(response=>{
+        console.log(response);
+        return response.json();
+    }).then(data=>{
+        console.log(data);
+        const city  = data.city;
+        const continent = data.continent;
+        const countryName = data.countryName;
+        console.log(`Your are located in ${city}, ${countryName}, ${continent}`);
+        // getCountryData(countryName);
+        return fetch(`https://restcountries.com/v3.1/name/${countryName}`);
+    }).then(response=> response.json())
+    .then(data=>{
+        console.log(data);
+        renderCountry(data);
+    })
+    .catch(error=>{
+        console.log(`Oops, there is something wrong, ${error}`);
+    })    
+    .finally(()=>{
+        countriesContainer.style.opacity = 1;
+    });;
+}
+
+// whereAmI();
+// whereAmI(52.508, 13.381);
+// whereAmI(19.037, 72.873);
+// whereAmI(-33.933, 18.474);
+
+// console.log('Test start');
+// setTimeout(()=>{
+//     console.log(`0 sec timer`,0);
+// });
+// Promise.resolve('resolved promise 2').then(res => {
+//     for(let i = 0; i < 10000; i++)
+//         console.log(res, i);
+// })
+// Promise.resolve('Resolved promise 1').then(res =>{
+//     console.log(res);
+//     // let index = 1;
+//     // setInterval(() => {
+//     //     console.log(`pass ${index++}`);
+//     // }, 1000);
+    
+// });
+
+
+// console.log('test end');
