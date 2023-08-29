@@ -169,7 +169,7 @@ const renderCountry = function(countryData, className = ''){
         `;
         countriesContainer.insertAdjacentHTML('beforeend',html);
     });
-    // countriesContainer.style.opacity = 1;
+    countriesContainer.style.opacity = 1;
 }
 
 // const getCountryData = function (country) {  
@@ -535,39 +535,62 @@ const img1Path = `./img/img-1.jpg`;
 const img2Path = `./img/img-2.jpg`; 
 const img3Path = `./img/img-3.jpg`; 
 
-createImage(img1Path)
-.then(()=>{
-    console.log(`display image 1 in 5 seconds`);
-    return wait(5);
-})
-.then(()=>{
-    console.log(`hide image 1, and start loading image 2`);
-    img.style.display='none';
-    return createImage(img2Path);
-})
-.then(()=>{
-    console.log(`display image 2 in 5 seconds`);
-    return wait(5);
-})
-.then(()=>{
-    console.log(`hide image 2, and start loading image 3`);
-    img.style.display='none';
-    return createImage(img3Path);
-})
-.then(()=>{
-    console.log(`display image 3 in 5 seconds`);
-    return wait(5);
-})
-.then(()=>{
-    console.log(`hide image 3, and done`);
-    img.style.display='none';
-    return Promise.resolve();
-})
-.catch(e=>{
-    console.log(e);
-});
+// createImage(img1Path)
+// .then(()=>{
+//     console.log(`display image 1 in 5 seconds`);
+//     return wait(5);
+// })
+// .then(()=>{
+//     console.log(`hide image 1, and start loading image 2`);
+//     img.style.display='none';
+//     return createImage(img2Path);
+// })
+// .then(()=>{
+//     console.log(`display image 2 in 5 seconds`);
+//     return wait(5);
+// })
+// .then(()=>{
+//     console.log(`hide image 2, and start loading image 3`);
+//     img.style.display='none';
+//     return createImage(img3Path);
+// })
+// .then(()=>{
+//     console.log(`display image 3 in 5 seconds`);
+//     return wait(5);
+// })
+// .then(()=>{
+//     console.log(`hide image 3, and done`);
+//     img.style.display='none';
+//     return Promise.resolve();
+// })
+// .catch(e=>{
+//     console.log(e);
+// });
 // createImage(img1Path).then(v=>console.log(v))
 // .catch(e=>{
 //     console.log('error');
 //     console.log(e);
 // });
+const getPositon = function () {
+    return new Promise(function (resolve,reject) {  
+        navigator.geolocation.getCurrentPosition(resolve,reject);
+    });
+}
+
+const whereAmIAsync = async function () {  
+
+    // fetch(`https://restcountries.com/v3.1/name/${country}`).then(response=>console.log(response));
+    const pos = await getPositon();
+    const {latitude: lat, longitude:lng} = pos.coords;
+    const geoResp = await fetch(`https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${lat}&longitude=${lng}&localityLanguage=en`);
+    const geoData = await geoResp.json();
+    // console.log(geoData);
+    const contryName = geoData.countryName;
+    const res = await fetch(`https://restcountries.com/v3.1/name/${contryName}`);
+    const data = await res.json();
+    // console.log(data);
+    renderCountry(data);
+};
+
+whereAmIAsync();
+console.log(`First`);
