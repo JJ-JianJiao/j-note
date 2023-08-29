@@ -243,9 +243,9 @@ const getCountryData = function (country) {
     });
 };
 
-btn.addEventListener('click', function () {  
-    getCountryData('Canada');
-})
+// btn.addEventListener('click', function () {  
+//     getCountryData('Canada');
+// })
 
 // getCountryData('australia');
 
@@ -424,15 +424,150 @@ const whereAmI = function (lat, lng) {
 // });
 // console.log('Getting position');
 
-const getPositon = new Promise(function (resolve,reject) {  
-    navigator.geolocation.getCurrentPosition(position=>{
-        return resolve(position);
-    },
-    error=>{
-        return reject(error);
+// const getPositon = new Promise(function (resolve,reject) {  
+//     // navigator.geolocation.getCurrentPosition(position=>{
+//     //     return resolve(position);
+//     // },
+//     // error=>{
+//     //     return reject(error);
+//     // });
+//     navigator.geolocation.getCurrentPosition(resolve,reject);
+
+// });
+
+// getPositon.then(data=>console.log(data))
+// .catch(erro=>console.log(erro));
+
+// const whereAmI2 = function () {
+//     getPositon.then(pos=>{
+//         const {latitude: lat, longitude:lng} = pos.coords;
+//         // const {latitude, longitude} = pos.coords;
+//         const url = `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${lat}&longitude=${lng}&localityLanguage=en`;
+//         console.log(url);
+//         return fetch(url);
+//     }).then(response=>{
+//         console.log(response);
+//         return response.json();
+//     }).then(data=>{
+//         console.log(data);
+//         const city  = data.city;
+//         const continent = data.continent;
+//         const countryName = data.countryName;
+//         console.log(`Your are located in ${city}, ${countryName}, ${continent}`);
+//         // getCountryData(countryName);
+//         return fetch(`https://restcountries.com/v3.1/name/${countryName}`);
+//     }).then(response=> response.json())
+//     .then(data=>{
+//         console.log(data);
+//         renderCountry(data);
+//     })
+//     .catch(error=>{
+//         console.log(`Oops, there is something wrong, ${error}`);
+//     })    
+//     .finally(()=>{
+//         countriesContainer.style.opacity = 1;
+//     });;
+// }
+
+// btn.addEventListener('click', whereAmI2);
+
+
+///////////////////////////////////////
+// Coding Challenge #2
+
+/* 
+Build the image loading functionality that I just showed you on the screen.
+
+Tasks are not super-descriptive this time, so that you can figure out some stuff on your own. Pretend you're working on your own 😉
+
+PART 1
+1. Create a function 'createImage' which receives imgPath as an input. This function returns a promise which creates a new image (use document.createElement('img')) and sets the .src attribute to the provided image path. When the image is done loading, append it to the DOM element with the 'images' class, and resolve the promise. The fulfilled value should be the image element itself. In case there is an error loading the image ('error' event), reject the promise.
+
+If this part is too tricky for you, just watch the first part of the solution.
+
+PART 2
+2. Comsume the promise using .then and also add an error handler;
+3. After the image has loaded, pause execution for 2 seconds using the wait function we created earlier;
+4. After the 2 seconds have passed, hide the current image (set display to 'none'), and load a second image (HINT: Use the image element returned by the createImage promise to hide the current image. You will need a global variable for that 😉);
+5. After the second image has loaded, pause execution for 2 seconds again;
+6. After the 2 seconds have passed, hide the current image.
+
+TEST DATA: Images in the img folder. Test the error handler by passing a wrong image path. Set the network speed to 'Fast 3G' in the dev tools Network tab, otherwise images load too fast.
+
+GOOD LUCK 😀
+*/
+let img;
+const imgContainer = document.querySelector('.images');
+const wait = function (seconds) {
+    console.log(`wait ${seconds} seconds`);  
+    return new Promise((resolve)=>{
+        setTimeout(() => {
+            resolve(seconds);
+        }, seconds * 1000);
     });
+}
 
+const createImage = function (imgPath) {  
+    img = document.createElement('img');
+    img.src = imgPath;
+    // img.addEventListener('load',()=>{
+    //     document.querySelector('.images').append(img);
+    //     return Promise.resolve(img);
+    // });
+    // img.addEventListener('error',()=>{
+    //     console.log('Can not read');
+    //     return Promise.reject('Load image error');
+    // });
+    return new Promise(function (resolve,reject) {  
+            img.addEventListener('load',()=>{
+                imgContainer.append(img);
+                // return Promise.resolve(img);
+                return resolve(img);
+            });
+            img.addEventListener('error',()=>{
+                // console.log('Can not read');
+                return reject(new Error('Load image error 💥💢💢'));
+            });
+    });
+}
+
+const img1Path = `./img/img-1.jpg`; 
+const img2Path = `./img/img-2.jpg`; 
+const img3Path = `./img/img-3.jpg`; 
+
+createImage(img1Path)
+.then(()=>{
+    console.log(`display image 1 in 5 seconds`);
+    return wait(5);
+})
+.then(()=>{
+    console.log(`hide image 1, and start loading image 2`);
+    img.style.display='none';
+    return createImage(img2Path);
+})
+.then(()=>{
+    console.log(`display image 2 in 5 seconds`);
+    return wait(5);
+})
+.then(()=>{
+    console.log(`hide image 2, and start loading image 3`);
+    img.style.display='none';
+    return createImage(img3Path);
+})
+.then(()=>{
+    console.log(`display image 3 in 5 seconds`);
+    return wait(5);
+})
+.then(()=>{
+    console.log(`hide image 3, and done`);
+    img.style.display='none';
+    return Promise.resolve();
+})
+.catch(e=>{
+    console.log(e);
 });
-
-getPositon.then(data=>console.log(data))
-.catch(erro=>console.log(erro));
+// createImage(img1Path).then(v=>console.log(v))
+// .catch(e=>{
+//     console.log('error');
+//     console.log(e);
+// });
