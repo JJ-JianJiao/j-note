@@ -333,3 +333,106 @@ const whereAmI = function (lat, lng) {
 
 
 // console.log('test end');
+
+
+// const lotteryPromise = new Promise(function (resolve, reject) {  
+//     const randomNum = Math.random();
+//     console.log(`Logger draw is happening, I am the god and I know the result ${randomNum}`);
+//     setTimeout(() => {
+//         if(randomNum> 0.5){
+//             resolve(`You Win 💘, result=${randomNum}`);
+//         }else{
+//             reject(new Error(`You Lost your money, result=${randomNum} 💨`));
+//         }
+//     }, 2000);
+// })
+
+// lotteryPromise.then(data=>{
+//     console.log(data);
+// }).catch(error=>{
+//     console.error(error);
+// }).finally(()=>{
+//     console.log('simulator lottery game!');
+// });
+
+//promisifying setTimeout
+// const waitP = function (seconds) {  
+//     console.log(seconds);
+//     return new Promise(function (resolve){
+
+//         setTimeout(()=>{
+//             console.log(seconds);
+//             resolve(seconds);
+//         }, seconds * 1000);
+//         // setTimeout(resolve, seconds * 1000);
+//     });
+// };
+
+// const seconds = 7;
+// waitP(seconds).then((r)=>{
+//     console.log(`I waited for ${r} seconds`);
+//     return waitP(5);
+// }).then(data=>{
+//     console.log(`I wait for ${data} seconds`);
+// });
+
+
+// setTimeout(()=>{
+//     console.log('1 second passed');
+//     setTimeout(()=>{
+//         console.log('2 second passed');
+//         setTimeout(()=>{
+//             console.log('3 second passed');
+//             setTimeout(()=>{
+//                 console.log('4 second passed');
+//                 setTimeout(()=>{
+//                     console.log('5 second passed');
+//                 },1000)
+//             },1000)
+//         },1000)
+//     },1000)
+// },1000)
+
+// waitP(1).then(r=>{
+//     console.log('1 second passed');
+//     return waitP(1);
+// }).then(r=>{
+//     console.log('2 second passed');
+//     return waitP(1);
+// }).then(r=>{
+//     console.log('3 second passed');
+//     return waitP(1);
+// }).then(r=>{
+//     console.log('4 second passed');
+//     return waitP(1);
+// }).then(r=>{
+//     console.log('5 second passed');
+//     return waitP(1);
+// }).then(r=>{
+//     console.log('6 second passed');
+//     return waitP(1);
+// });
+
+// Promise.resolve(`abc`).then(x=>console.log(x));
+// Promise.reject(`def`).catch(x=>console.log(x));
+
+
+// navigator.geolocation.getCurrentPosition(position=>{
+//     console.log(position);
+// }, error =>{
+//     console.log(error);
+// });
+// console.log('Getting position');
+
+const getPositon = new Promise(function (resolve,reject) {  
+    navigator.geolocation.getCurrentPosition(position=>{
+        return resolve(position);
+    },
+    error=>{
+        return reject(error);
+    });
+
+});
+
+getPositon.then(data=>console.log(data))
+.catch(erro=>console.log(erro));
