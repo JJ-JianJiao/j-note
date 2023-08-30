@@ -2,7 +2,7 @@
 //  import {addToCart, totalPrice as price, tq} from './shoppingCart.js';
 // addToCart('milk',5);
 // console.log(price,tq);
-// console.log(`Importing module`);
+console.log(`Importing module`);
 
 
 //  import * as ShoppingCart from './shoppingCart.js';
@@ -14,13 +14,13 @@
 // add('steak',6);
 // console.log(price,tq);
 
-// import add, {cart} from './shoppingCart.js';
-//  add('steak',6);
-//  add('milk',2);
-//  add('apple',4);
-//  add('banana',10);
+import add, {cart} from './shoppingCart.js';
+ add('steak',6);
+ add('milk',2);
+ add('apple',4);
+ add('banana',10);
 
-// console.log(cart);
+console.log(cart);
 
 // console.log('start fetching');
 // const res = await fetch(`https://jsonplaceholder.typicode.com/posts`);
@@ -79,3 +79,23 @@
 
 // //Inport
 // const {addToCart} = require('./shoppingCart.js');
+
+///////////////////////////////////////
+// Introduction to NPM
+import cloneDeep from './node_modules/lodash-es/cloneDeep.js';
+// import cloneDeep from 'lodash-es';
+
+const state = {
+  cart: [
+    { product: 'bread', quantity: 5 },
+    { product: 'pizza', quantity: 5 },
+  ],
+  user: { loggedIn: true },
+};
+const stateClone = Object.assign({}, state);
+const stateDeepClone = cloneDeep(state);
+
+state.user.loggedIn = false;
+console.log(stateClone);
+
+console.log(stateDeepClone);
