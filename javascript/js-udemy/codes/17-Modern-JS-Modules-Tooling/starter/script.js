@@ -1,3 +1,8 @@
+ import 'core-js/actual';
+ import 'core-js/stable';
+
+ //polifilling async functions
+ import 'regenerator-runtime/runtime';
  //Importing module
 //  import {addToCart, totalPrice as price, tq} from './shoppingCart.js';
 // addToCart('milk',5);
@@ -107,6 +112,15 @@ if(module.hot){
     module.hot.accept()
 }
 
+class Person{
+    #greeting = "hey";
+    constructor(name){
+        this.name = name;
+        console.log(`${this.#greeting}, ${this.name}`);
+    }
+}
+
+const jianJ = new Person('JianJ');
 
 
 
