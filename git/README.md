@@ -23,6 +23,8 @@
 5. `git config --global --list` : check the user name and user email
 6. `git status` : check current branch status
 
+
+
 ## clone a prject/repository
 1. `git clone-repo's-https-address` : clone a git repo from git hub server
 
