@@ -95,8 +95,6 @@
 ## git help
 1. `git help log` : help page, press _q_ key will quit.
 
-
-
 ## git Alias For example, want to show the git log + parameters "git log --all --graph --decorate --oneline"
 37. git config --global alias.xxx(name) "content(log --all --graph --decorate --oneline)"
 
