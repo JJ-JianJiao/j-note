@@ -14,14 +14,6 @@ const prevBtn = document.querySelector('.pagination__btn--prev');
 const nextBtn = document.querySelector('.pagination__btn--next');
 // console.log(searchResultBar,prevBtn,nextBtn);
 
-const timeout = function (s) {
-  return new Promise(function (_, reject) {
-    setTimeout(function () {
-      reject(new Error(`Request took too long! Timeout after ${s} second`));
-    }, s * 1000);
-  });
-};
-
 // https://forkify-api.herokuapp.com/v2
 // API key: 90dc691a-882e-4620-bdc8-edd5ed5dc4f0
 //https://forkify-api.herokuapp.com/api/v2/recipes?search=pizza&key=<insert your key>
@@ -110,13 +102,18 @@ const getRecipes = async function(url){
 };
 
 const controlRecipes = async function () {  
-  if(!window.location.hash) return;
-  const id = window.location.hash.slice(1);
-  //Loading recipe
-  recipeView.renderSpinner(recipeContainer);
-  await model.loadRecipe(id);
-  //Rendering recipe
-  recipeView.render(model.state.recipe)
+  try{
+    if(!window.location.hash) return;
+    const id = window.location.hash.slice(1);
+    //Loading recipe
+    recipeView.renderSpinner(recipeContainer);
+    await model.loadRecipe(id);
+    //Rendering recipe
+    // console.log(model.state.recipe);
+    recipeView.render(model.state.recipe)
+  }catch(err){
+    console.log(err);
+  }
 };
 
 
