@@ -43,6 +43,7 @@ const setSearchResultsBarBtns = function (pre, next = pre + 2) {
 const inital = function(){
   //hide searchResultBarBtns
   hideSearchResultsBarBtns();
+  recipeView.addHandlerRender(controlRecipes);
 };
 
 searchBtn.addEventListener('click',function (e) {  
@@ -55,7 +56,7 @@ searchBtn.addEventListener('click',function (e) {
   getRecipes(url);
 });
 
-inital();
+
 
 // const urlExample = `https://forkify-api.herokuapp.com/api/v2/recipes/5ed6604591c37cdc054bc886`
 // const urlExample = `https://forkify-api.herokuapp.com/api/v2/recipes?search=${searchRecipe}&key=${APIKey}`;
@@ -116,7 +117,6 @@ const controlRecipes = async function () {
   }
 };
 
-
 //Detect the recipe selected
 //1. method 1: propagation 
 
@@ -140,10 +140,7 @@ const controlRecipes = async function () {
 //2. hashchange event
 // window.addEventListener('hashchange', showRecipe);
 // window.addEventListener('load', showRecipe);
-['hashchange', 'load'].forEach(ev => window.addEventListener(ev,controlRecipes));
-
-
-
+inital();
 
 const clearRecipeContainer = function(){
   recipeContainer.innerHTML = "";
