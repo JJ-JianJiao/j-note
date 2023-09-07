@@ -1,11 +1,14 @@
 import * as model from './model.js';
 import recipeView from './views/recipeView.js';
-import searchView from './views/searchView';
+import searchView from './views/searchView.js';
+import searchResultsView from './views/searchResultView.js';
 
 // import icons from '../img/icons.svg'; //Parcel 1
 import icons from 'url:../img/icons.svg'; //Parcel 2
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
+import searchResultsView from './views/searchResultView.js';
+import searchResultView from './views/searchResultView.js';
 
 // const prevBtn = document.querySelector('.pagination__btn--prev');
 // const nextBtn = document.querySelector('.pagination__btn--next');
@@ -41,7 +44,8 @@ const inital = function(){
   //hide searchResultBarBtns
   // hideSearchResultsBarBtns();
   recipeView.addHandlerRender(controlRecipes);
-  searchView.addHandlerRender(controlSearchResults);
+  searchView.addHandlerSearch(controlSearchResults);
+  searchResultView.init();
 };
 
 // searchBtn.addEventListener('click',function (e) {  
@@ -57,41 +61,18 @@ const inital = function(){
 
 // const urlExample = `https://forkify-api.herokuapp.com/api/v2/recipes/5ed6604591c37cdc054bc886`
 // const urlExample = `https://forkify-api.herokuapp.com/api/v2/recipes?search=${searchRecipe}&key=${APIKey}`;
-const controlSearchResults = async function(){
+const controlSearchResults = async function(e){
   try{
+    // Get search query
     const query = searchView.getQuery();
     if(!query) return;
+
+    // load search results
     recipeView.renderSpinner();
     await model.loadSearchResults(query);
-    // console.log(recipeData);
-    const svgUser = `${icons}#icon-user`;
-    searchResultBar.innerHTML= "";
-    for(let i = 0; i <=9; ++i){
-      // console.log(recipeData[i]);
-      //preview__link--active
-      const searchBarItemHtml = `
-        <li class="preview">
-          <a class="preview__link" href="#${model.state.search.results[i].id}">
-            <figure re class="preview__fig">
-              <img src="${model.state.search.results[i].image}" alt="Test" />
-            </figure>
-            <div class="preview__data">
-              <h4 class="preview__title">${model.state.search.results[i].title}</h4>
-              <p class="preview__publisher">${model.state.search.results[i].publisher}</p>
-              <div class="preview__user-generated">
-                <svg>
-                  <use href="${svgUser}"></use>
-                </svg>
-              </div>
-            </div>
-          </a>
-        </li>
-      `;
-      searchResultBar.insertAdjacentHTML('beforeend',searchBarItemHtml);
-    };
-    setSearchResultsBarBtns(1);
-    showSearchResultsBarBtns();
-    return data;
+
+    //render results
+    searchResultsView.render(model.state.search.results);
   }catch(err){
     console.log(err);
   }
