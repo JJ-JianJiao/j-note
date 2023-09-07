@@ -1,16 +1,14 @@
 import * as model from './model.js';
 import recipeView from './views/recipeView.js';
+import searchView from './views/searchView';
 
 // import icons from '../img/icons.svg'; //Parcel 1
 import icons from 'url:../img/icons.svg'; //Parcel 2
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
 
-const recipeContainer = document.querySelector('.recipe');
-const searchBtn = document.querySelector('.search__btn');
-const searchResultBar = document.querySelector('.search-results .results');
-const prevBtn = document.querySelector('.pagination__btn--prev');
-const nextBtn = document.querySelector('.pagination__btn--next');
+// const prevBtn = document.querySelector('.pagination__btn--prev');
+// const nextBtn = document.querySelector('.pagination__btn--next');
 // console.log(searchResultBar,prevBtn,nextBtn);
 
 // https://forkify-api.herokuapp.com/v2
@@ -24,49 +22,47 @@ const nextBtn = document.querySelector('.pagination__btn--next');
 // const searchRecipe = 'pizza';
 const APIKey = '90dc691a-882e-4620-bdc8-edd5ed5dc4f0';
 
-const hideSearchResultsBarBtns = function () {  
-  prevBtn.style.display="none";
-  nextBtn.style.display="none";
-};
+// const hideSearchResultsBarBtns = function () {  
+//   prevBtn.style.display="none";
+//   nextBtn.style.display="none";
+// };
 
-const showSearchResultsBarBtns = function () {  
-  prevBtn.style.display="block";
-  nextBtn.style.display="block";
-};
+// const showSearchResultsBarBtns = function () {  
+//   prevBtn.style.display="block";
+//   nextBtn.style.display="block";
+// };
 
-const setSearchResultsBarBtns = function (pre, next = pre + 2) {  
-  prevBtn.querySelector('span').textContent = `Page ${pre}`;
-  nextBtn.querySelector('span').textContent = `Page ${next}`;
-};
+// const setSearchResultsBarBtns = function (pre, next = pre + 2) {  
+//   prevBtn.querySelector('span').textContent = `Page ${pre}`;
+//   nextBtn.querySelector('span').textContent = `Page ${next}`;
+// };
 
 const inital = function(){
   //hide searchResultBarBtns
-  hideSearchResultsBarBtns();
+  // hideSearchResultsBarBtns();
   recipeView.addHandlerRender(controlRecipes);
+  searchView.addHandlerRender(controlSearchResults);
 };
 
-searchBtn.addEventListener('click',function (e) {  
-  e.preventDefault();
-  searchResultBar.innerHTML = '';
-  hideSearchResultsBarBtns();
-  const searchContent = document.querySelector('.search__field').value;
-  // console.log(searchContent);
-  const url = `https://forkify-api.herokuapp.com/api/v2/recipes?search=${searchContent}&key=${APIKey}`;
-  getRecipes(url);
-});
+// searchBtn.addEventListener('click',function (e) {  
+//   e.preventDefault();
+//   searchResultBar.innerHTML = '';
+//   hideSearchResultsBarBtns();
+//   const searchContent = document.querySelector('.search__field').value;
+//   // console.log(searchContent);
+//   controlSearchResults(searchContent);
+// });
 
 
 
 // const urlExample = `https://forkify-api.herokuapp.com/api/v2/recipes/5ed6604591c37cdc054bc886`
 // const urlExample = `https://forkify-api.herokuapp.com/api/v2/recipes?search=${searchRecipe}&key=${APIKey}`;
-const getRecipes = async function(url){
+const controlSearchResults = async function(){
   try{
+    const query = searchView.getQuery();
+    if(!query) return;
     recipeView.renderSpinner();
-    const res = await fetch(url);
-    const data = await res.json();
-    if(data.status !== 'success' || data.data.recipes.length === 0)
-      throw new Error('Get recipe results fail ❤️‍🩹❤️‍🩹❤️‍🩹❤️‍🩹');
-    const recipeData = data.data.recipes;
+    await model.loadSearchResults(query);
     // console.log(recipeData);
     const svgUser = `${icons}#icon-user`;
     searchResultBar.innerHTML= "";
@@ -75,13 +71,13 @@ const getRecipes = async function(url){
       //preview__link--active
       const searchBarItemHtml = `
         <li class="preview">
-          <a class="preview__link" href="#${recipeData[i].id}">
+          <a class="preview__link" href="#${model.state.search.results[i].id}">
             <figure re class="preview__fig">
-              <img src="${recipeData[i].image_url}" alt="Test" />
+              <img src="${model.state.search.results[i].image}" alt="Test" />
             </figure>
             <div class="preview__data">
-              <h4 class="preview__title">${recipeData[i].title}</h4>
-              <p class="preview__publisher">${recipeData[i].publisher}</p>
+              <h4 class="preview__title">${model.state.search.results[i].title}</h4>
+              <p class="preview__publisher">${model.state.search.results[i].publisher}</p>
               <div class="preview__user-generated">
                 <svg>
                   <use href="${svgUser}"></use>
@@ -106,7 +102,7 @@ const controlRecipes = async function () {
     if(!window.location.hash) return;
     const id = window.location.hash.slice(1);
     //Loading recipe
-    recipeView.renderSpinner(recipeContainer);
+    recipeView.renderSpinner();
     await model.loadRecipe(id);
     //Rendering recipe
     // console.log(model.state.recipe);
