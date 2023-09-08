@@ -1,17 +1,18 @@
 import * as model from './model.js';
 import recipeView from './views/recipeView.js';
 import searchView from './views/searchView.js';
-import searchResultsView from './views/searchResultView.js';
+// import searchResultsView from './views/searchResultView.js';
 import resultsView from './views/resultsView.js';
+import paginationView from './views/paginationView.js';
 
 // import icons from '../img/icons.svg'; //Parcel 1
-import icons from 'url:../img/icons.svg'; //Parcel 2
+// import icons from 'url:../img/icons.svg'; //Parcel 2
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
 
-if(module.hot){
-  module.hot.accept();
-}
+// if(module.hot){
+//   module.hot.accept();
+// }
 
 // const prevBtn = document.querySelector('.pagination__btn--prev');
 // const nextBtn = document.querySelector('.pagination__btn--next');
@@ -43,12 +44,27 @@ const APIKey = '90dc691a-882e-4620-bdc8-edd5ed5dc4f0';
 //   nextBtn.querySelector('span').textContent = `Page ${next}`;
 // };
 
+const controlPagination = function (page) {  
+  // console.log('Pag controller');
+  renderSearchResults(page);
+}
+
+const renderSearchResults = function (page = 1) {  
+  //render recipes 
+  resultsView.render(model.getSearchResultsPage(page));
+  //render paginations
+  paginationView.render(model.state.search);
+}
+
 const inital = function(){
   //hide searchResultBarBtns
   // hideSearchResultsBarBtns();
   recipeView.addHandlerRender(controlRecipes);
+  recipeView.addHandlerUpdateServings(controlServings);
   searchView.addHandlerSearch(controlSearchResults);
-  searchResultsView.init();
+  paginationView.addHandlerClick(controlPagination);
+
+  // searchResultsView.init();
 };
 
 // searchBtn.addEventListener('click',function (e) {  
@@ -78,7 +94,7 @@ const controlSearchResults = async function(e){
 
     // course way
     // console.log('test hot module');
-    resultsView.render(model.state.search.results);
+    renderSearchResults();
   }catch(err){
     console.log(err);
   }
@@ -122,6 +138,14 @@ const controlRecipes = async function () {
 //2. hashchange event
 // window.addEventListener('hashchange', showRecipe);
 // window.addEventListener('load', showRecipe);
+const controlServings = function (newServings) {  
+  //  Update the recipe servings (in state)
+  model.updateServings(newServings);
+  // Update the view
+  recipeView.render(model.state.recipe)
+}
+
+
 inital();
 
 const clearRecipeContainer = function(){
