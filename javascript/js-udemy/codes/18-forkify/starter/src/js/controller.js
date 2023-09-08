@@ -4,6 +4,7 @@ import searchView from './views/searchView.js';
 // import searchResultsView from './views/searchResultView.js';
 import resultsView from './views/resultsView.js';
 import paginationView from './views/paginationView.js';
+import bookmarksView from './views/bookmarksView.js';
 
 // import icons from '../img/icons.svg'; //Parcel 1
 // import icons from 'url:../img/icons.svg'; //Parcel 2
@@ -49,7 +50,7 @@ const controlPagination = function (page) {
   renderSearchResults(page);
 }
 
-const renderSearchResults = function (page = 1) {  
+const renderSearchResults = function (page) {  
   //render recipes 
   resultsView.render(model.getSearchResultsPage(page));
   //render paginations
@@ -61,6 +62,7 @@ const inital = function(){
   // hideSearchResultsBarBtns();
   recipeView.addHandlerRender(controlRecipes);
   recipeView.addHandlerUpdateServings(controlServings);
+  recipeView.addHandlerRenderAddBookmark(controlUpdateBookmark);
   searchView.addHandlerSearch(controlSearchResults);
   paginationView.addHandlerClick(controlPagination);
 
@@ -104,11 +106,15 @@ const controlRecipes = async function () {
   try{
     if(!window.location.hash) return;
     const id = window.location.hash.slice(1);
-    //Loading recipe
+
+    //0) update results view to mark selected search result
+    resultsView.update(model.getSearchResultsPage());
+    bookmarksView.update(model.state.bookmarks);
+
+    // 1) Loading recipe
     recipeView.renderSpinner();
     await model.loadRecipe(id);
-    //Rendering recipe
-    // console.log(model.state.recipe);
+    // 2)Rendering recipe
     recipeView.render(model.state.recipe)
   }catch(err){
     recipeView.renderError();
@@ -142,9 +148,25 @@ const controlServings = function (newServings) {
   //  Update the recipe servings (in state)
   model.updateServings(newServings);
   // Update the view
-  recipeView.render(model.state.recipe)
+  // recipeView.render(model.state.recipe)
+  recipeView.update(model.state.recipe)
 }
 
+const controlUpdateBookmark = function () { 
+  //1) add/remove bookmarks
+  if(model.state.recipe.bookmarked) {
+    model.deleteBookmark(model.state.recipe.id);
+  }
+  else{
+    model.addBookmark(model.state.recipe);
+  }
+
+  //2) update recipe view
+  recipeView.update(model.state.recipe);
+
+  //3) render bookmarks
+  bookmarksView.render(model.state.bookmarks);
+}
 
 inital();
 
