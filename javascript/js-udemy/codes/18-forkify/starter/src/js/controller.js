@@ -2,13 +2,16 @@ import * as model from './model.js';
 import recipeView from './views/recipeView.js';
 import searchView from './views/searchView.js';
 import searchResultsView from './views/searchResultView.js';
+import resultsView from './views/resultsView.js';
 
 // import icons from '../img/icons.svg'; //Parcel 1
 import icons from 'url:../img/icons.svg'; //Parcel 2
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
-import searchResultsView from './views/searchResultView.js';
-import searchResultView from './views/searchResultView.js';
+
+if(module.hot){
+  module.hot.accept();
+}
 
 // const prevBtn = document.querySelector('.pagination__btn--prev');
 // const nextBtn = document.querySelector('.pagination__btn--next');
@@ -45,7 +48,7 @@ const inital = function(){
   // hideSearchResultsBarBtns();
   recipeView.addHandlerRender(controlRecipes);
   searchView.addHandlerSearch(controlSearchResults);
-  searchResultView.init();
+  searchResultsView.init();
 };
 
 // searchBtn.addEventListener('click',function (e) {  
@@ -66,13 +69,16 @@ const controlSearchResults = async function(e){
     // Get search query
     const query = searchView.getQuery();
     if(!query) return;
-
     // load search results
-    recipeView.renderSpinner();
+    resultsView.renderSpinner();
     await model.loadSearchResults(query);
 
-    //render results
-    searchResultsView.render(model.state.search.results);
+    //render results (my way)
+    // searchResultsView.render(model.state.search.results);
+
+    // course way
+    // console.log('test hot module');
+    resultsView.render(model.state.search.results);
   }catch(err){
     console.log(err);
   }

@@ -1,23 +1,23 @@
+import View from './view.js';
 import icons from 'url:../../img/icons.svg';
 
-class SearchResultsView{
+class SearchResultsView extends View{
     #parentEl = document.querySelector(".search-results");
     #prevBtn = document.querySelector('.pagination__btn--prev');
     #nextBtn = document.querySelector('.pagination__btn--next');
     #currentIndex = 0;
-    #data;
     #maxPage = 0;
-
-    #clear(){
+    
+    _clear(){
         this.#parentEl.querySelector(".results").innerHTML = "";
     }
 
     render(data){
-        this.#data = data;
+        this._data = data;
         console.log(data.length);
-        this.#maxPage = Math.ceil(this.#data.length/10);
+        this.#maxPage = Math.ceil(this._data.length/10);
         this.#showSearchResultsBarBtns();
-        for(let max = this.#currentIndex + 10 <= this.#data.length ? this.#currentIndex + 10 : this.#data.length, index = this.#currentIndex; index < max; ++index){
+        for(let max = this.#currentIndex + 10 <= this._data.length ? this.#currentIndex + 10 : this._data.length, index = this.#currentIndex; index < max; ++index){
             console.log(this);
             console.log(this.#parentEl);
             console.log(this.#parentEl.querySelector(".results"));
@@ -56,13 +56,13 @@ class SearchResultsView{
     #generateMarkup(i){
         return `
         <li class="preview">
-          <a class="preview__link" href="#${this.#data[i].id}">
+          <a class="preview__link" href="#${this._data[i].id}">
             <figure re class="preview__fig">
-              <img src="${this.#data[i].image}" alt="Test" />
+              <img src="${this._data[i].image}" alt="Test" />
             </figure>
             <div class="preview__data">
-              <h4 class="preview__title">${this.#data[i].title}</h4>
-              <p class="preview__publisher">${this.#data[i].publisher}</p>
+              <h4 class="preview__title">${this._data[i].title}</h4>
+              <p class="preview__publisher">${this._data[i].publisher}</p>
               <div class="preview__user-generated">
                 <svg>
                   <use href="${icons}#icon-user"></use>
@@ -89,14 +89,14 @@ class SearchResultsView{
         else if(e.target.closest('.pagination__btn--prev')){
             console.log('clicked prev btn');
             this.#currentIndex -= 10;
-            this.#clear();
-            this.render(this.#data);
+            this._clear();
+            this.render(this._data);
         }
         else if(e.target.closest('.pagination__btn--next')){
             console.log('clicked next btn');
             this.#currentIndex += 10;
-            this.#clear();
-            this.render(this.#data);
+            this._clear();
+            this.render(this._data);
         }
     };
 }
