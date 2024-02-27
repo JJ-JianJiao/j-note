@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hello React</title>
+</head>
+<body>
+    <div id="app">
+    </div>
+    <script crossorigin src="https://unpkg.com/react@17.0.0/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17.0.0/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <!-- <script>
+        /*React normal way*/
+        const itElm = React.createElement('i', null, "React!!")
+        const elm = React.createElement("h1",{id: 'heading'},"Hello ", itElm);
+        ReactDOM.render(elm,document.querySelector("#app"));
+    </script> -->
+    <!-- <script type="text/babel">
+        /*JSX way*/
+        /*Babel is a JavaScript compiler*/
+        const style = {
+            color:'red',
+            fontSize:'3em'
+        }
+        const elm = (
+            <>
+                <h1 
+                id="heading" 
+                className="heading-green" 
+                style={style}> Hello <i>React!!</i> 
+                {console.log('1+1 = ', 1+1)}
+                </h1>
+                <button disabled={false}>click me</button>
+            </>
+        )
+        ReactDOM.render(elm, document.querySelector("#app"))
+    </script> -->
+    <script type="text/babel">
+        /*Class based Components*/
+        class MyHeading extends React.Component {
+            render(){
+                return (
+                    <header>
+                        <h1>Hello {this.props.name === "React" ? <i>{this.props.name}</i> : this.props.name}</h1>
+                    </header>
+                )
+            }
+        }
+        class CounterButton extends React.Component {
+            constructor(props){
+                super(props)
+                this.state = {
+                    count: 0
+                }
+            }
+
+            incrementCount = (e)=>{
+                this.setState({count:++this.state.count})
+            }
+            render(){
+                return <button onClick={this.incrementCount}>Clicked: {this.state.count}</button>
+            }
+        }
+        MyHeading.defaultProps = {
+            name:'World'
+        }
+        function MyButton({bg = 'green'}){
+            const style = {
+                backgroundColor: bg ,
+                border:'none',
+                padding:'15px 32px',
+                color: '#ffffff',
+                cursor:'pointer',
+                margin:'15px'
+            }
+            const handleClick = (e) =>{
+                console.log('button click',e)
+                console.log('target', e.target)
+                e.stopPropagation()
+            }
+            return (
+                <button style={style} onClick={handleClick}>Click me!</button> 
+            )
+        }
+ 
+        function App(){
+            return (
+                <div onClick={(e)=>console.log('App clicked')}>
+                    <MyHeading />
+                    <MyHeading name="React"/>
+                    <MyButton  />
+                    <MyButton bg='red'/>
+                    <br/>
+                    <CounterButton/>
+                </div>
+            )
+        }
+        /*functional based components*/
+        // const heading = <MyHeading />
+        // const button = <MyButton />
+        // ReactDOM.render([heading, button],document.querySelector('#app'))
+        ReactDOM.render(<App/>,document.querySelector('#app'))
+    </script>
+</body>
+</html>
