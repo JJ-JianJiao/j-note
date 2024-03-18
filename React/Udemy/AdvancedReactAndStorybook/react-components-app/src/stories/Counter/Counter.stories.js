@@ -1,7 +1,7 @@
 import Counter from "./Counter";
 
 export default{
-    title:'Example/Counter',
+    title:'Component/Counter',
     component: Counter
 }
 

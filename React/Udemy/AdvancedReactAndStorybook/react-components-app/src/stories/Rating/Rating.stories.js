@@ -1,7 +1,7 @@
 import Rating from "./Rating";
 
 export default{
-    title: "Example/Rating",
+    title: "Component/Rating",
     component: Rating
 };
 

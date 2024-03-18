@@ -1,7 +1,7 @@
 import {useState} from 'react';
 import PropTypes from 'prop-types';
-import { Button } from "../Button";
-import classNames from "classnames";
+import { Button } from "../Button/Button";
+// import classNames from "classnames";
 
 export default function Counter({color}){
     let [count,setCount] = useState(0);
