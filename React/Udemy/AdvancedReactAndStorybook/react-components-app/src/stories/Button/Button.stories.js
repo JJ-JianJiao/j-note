@@ -17,12 +17,19 @@ export default {
 };
 
 // More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
-export const Primary = {
-  args: {
-    primary: true,
-    label: 'Button',
-  },
-};
+const Template = (args) => <Button {...args} />;
+
+export const Primary = Template.bind({});
+Primary.args = {
+  primary: true,
+  label: 'Button',
+}
+// export const Primary = {
+//   args: {
+//     primary: true,
+//     label: 'Button',
+//   },
+// };
 
 export const Secondary = {
   args: {
@@ -43,3 +50,9 @@ export const Small = {
     label: 'Button',
   },
 };
+
+export const RedButton = Template.bind({});
+RedButton.args = {
+  backgroundColor: '#e59a9a',
+  label: 'Red',
+}
