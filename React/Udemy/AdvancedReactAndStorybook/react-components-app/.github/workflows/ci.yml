@@ -1,0 +1,42 @@
+name: CI workflow
+
+# Events
+on: push
+
+# List of jobs
+jobs:
+  test:
+    #runner
+    runs-on: ubuntu-latest
+
+    strategy:
+        matrix:
+          # node: [ 16, 18 ]
+          node: [ 16 ]
+
+    name: Node ${{ matrix.node }} sample
+    # Job steps
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # fectch full history
+      
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run the tests & code coverage
+        run: npm test -- --coverage
+
+      # - name: Upload code coverage to Codecov
+      #   uses: codecov/codecov-action@v2
+
+      - name: Publish to Chromatic
+        uses: chromaui/action@v1
+        with:
+          projectToken: ${{secrets.CHROMATIC_PROJECT_TOKEN}}
