@@ -137,7 +137,7 @@
 54. git checkout branchName :- move to the specific branch
 55. git branch -m mynewbranch newbranch :- rename the branch A to branch B (-m : move)
 56. git branch -d branchName :- -d for delete + name of branch
-57. git branch -b branchName : will create a new branch and checkout then
+57. git checkout -b branchName : will create a new branch and checkout then
 58. git merge changeBranch : this parameter is the branch with changes and merge into current branch
 
 ##Happy path: Fast Forward
