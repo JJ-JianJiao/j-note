@@ -5,6 +5,7 @@ import searchView from './views/searchView.js';
 import resultsView from './views/resultsView.js';
 import paginationView from './views/paginationView.js';
 import bookmarksView from './views/bookmarksView.js';
+import bookmarksView from './views/bookmarksView.js';
 
 // import icons from '../img/icons.svg'; //Parcel 1
 // import icons from 'url:../img/icons.svg'; //Parcel 2
@@ -165,7 +166,7 @@ const controlUpdateBookmark = function () {
   recipeView.update(model.state.recipe);
 
   //3) render bookmarks
-  // bookmarksView.render(model.state.bookmarks);
+  bookmarksView.render(model.state.bookmarks);
 }
 
 inital();
