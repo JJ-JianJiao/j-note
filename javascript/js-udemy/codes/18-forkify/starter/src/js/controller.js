@@ -5,12 +5,14 @@ import searchView from './views/searchView.js';
 import resultsView from './views/resultsView.js';
 import paginationView from './views/paginationView.js';
 import bookmarksView from './views/bookmarksView.js';
-import bookmarksView from './views/bookmarksView.js';
-
+// import bookmarksView from './views/bookmarksView.js';
+import addRecipeView from './views/addRecipeView.js';
+import {UPLOAD_RECIPE_WINDOW_CLOSE_SEC} from "./config";
 // import icons from '../img/icons.svg'; //Parcel 1
 // import icons from 'url:../img/icons.svg'; //Parcel 2
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
+import { async } from 'regenerator-runtime/runtime';
 
 // if(module.hot){
 //   module.hot.accept();
@@ -62,18 +64,7 @@ const controlBookmarks = function () {
   bookmarksView.render(model.state.bookmarks);
 }
 
-const inital = function(){
-  //hide searchResultBarBtns
-  // hideSearchResultsBarBtns();
-  bookmarksView.addHandlerRender(controlBookmarks);
-  recipeView.addHandlerRender(controlRecipes);
-  recipeView.addHandlerUpdateServings(controlServings);
-  recipeView.addHandlerRenderAddBookmark(controlUpdateBookmark);
-  searchView.addHandlerSearch(controlSearchResults);
-  paginationView.addHandlerClick(controlPagination);
 
-  // searchResultsView.init();
-};
 
 // searchBtn.addEventListener('click',function (e) {  
 //   e.preventDefault();
@@ -179,12 +170,54 @@ const controlUpdateBookmark = function () {
   bookmarksView.render(model.state.bookmarks);
 }
 
-inital();
-
 const clearRecipeContainer = function(){
   recipeContainer.innerHTML = "";
 };
 
+
+const controlAddRecipe = async function (newRecipe) {  
+  try {
+    //show loading spinner
+    addRecipeView.renderSpinner();
+
+    console.log(newRecipe);
+
+    //Upload the new recipe data
+    await model.uploadRecipe(newRecipe);
+    console.log(model.state.recipe);
+
+    recipeView.render(model.state.recipe);
+    
+    //change id in the url
+    window.history.pushState(null,"",`#${model.state.recipe.id}`);
+    // window.history.back();
+    // window.history.forward();
+    
+    addRecipeView.renderMessage();
+    bookmarksView.render(model.state.bookmarks);
+
+    setTimeout(function () {  
+      addRecipeView.toogleRecipeWindow();
+    }, UPLOAD_RECIPE_WINDOW_CLOSE_SEC * 1000);
+  } catch (error) {
+    addRecipeView.renderError(error.message);
+  }
+
+}
+const inital = function(){
+  //hide searchResultBarBtns
+  // hideSearchResultsBarBtns();
+  bookmarksView.addHandlerRender(controlBookmarks);
+  recipeView.addHandlerRender(controlRecipes);
+  recipeView.addHandlerUpdateServings(controlServings);
+  recipeView.addHandlerRenderAddBookmark(controlUpdateBookmark);
+  searchView.addHandlerSearch(controlSearchResults);
+  paginationView.addHandlerClick(controlPagination);
+  addRecipeView.addHandlerUpload(controlAddRecipe);
+  // searchResultsView.init();
+};
+
+inital();
 
 
 // showRecipe("5ed6604591c37cdc054bcc13");
