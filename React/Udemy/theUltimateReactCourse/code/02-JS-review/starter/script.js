@@ -135,6 +135,7 @@ const data = [
   },
 ];
 
+
 function getBooks() {
   return data;
 }
@@ -142,3 +143,163 @@ function getBooks() {
 function getBook(id) {
   return data.find((d) => d.id === id);
 }
+/*
+// ********** 1. destructuring
+
+const book = getBook(3);
+
+console.log(book);
+//destruct object
+// const title = book.title;
+// const author = book.author;
+
+//destructuring
+const {title, author, pages, publicationDate, genres, hasMovieAdaptation} = book;
+
+console.log(title, author, genres);
+
+//destruct array
+// const primaryGenre = genres[0];
+// const secondaryGenre = genres[1];
+
+// *****************2. rest and spreed operators
+
+const [primaryGenre, secondaryGenre, ...otherGenres] = genres;
+
+console.log(primaryGenre, secondaryGenre, otherGenres);
+
+console.log(...genres);
+
+const newGenres = [...genres, 'epic fantasy'];
+
+console.log(newGenres);
+
+const updatedBook = {...book, moviePublicationDate:'2001-12-19', pages:1210};
+
+console.log(updatedBook);
+
+
+// ************* 3. template literals
+
+const summary = `${title}, a ${pages}-page long book, was written by ${author} and published in ${publicationDate.split('_')[0]}}`;
+summary;
+
+
+// ********4. Ternaries
+
+// A?B:C;
+
+// ***********5. Arror function
+//hint: use for one liner function
+// function getYear(str){
+//   return str.split("-")[0];
+// }
+
+const getYear = (str) => str.split('-')[0];
+
+console.log(getYear(publicationDate));
+
+
+// ****** shot-circuiting and logical operators
+
+console.log(true && 'string');
+console.log(false && 'string');
+console.log(hasMovieAdaptation && "this book has a movie");
+
+//falsy: 0, "", null, undefined
+
+console.log(true || 'some string');
+console.log(false || 'some string');
+
+book.translations.spanishTranslation;
+const spanishTranslation = book.translations.spanish || "NOT TRANSLATED";
+console.log(spanishTranslation);
+
+// console.log(book.reviews.librarything.reviewsCount);
+// const countWrong = book.reviews.librarything.reviewsCount || "no data";
+// countWrong;
+
+//falsy: null, ", undefined"
+// const count =book.reviews.librarything.reviewsCount ?? "no data";
+// count;
+
+// ********** Optional chaining
+
+const getTotalReviewCount = function (book) {  
+  const goodreads = book.reviews.goodreads.reviewsCount;
+  const librarything = book.reviews.librarything?.reviewsCount ?? 0;
+  return goodreads + librarything;
+}
+
+const total = getTotalReviewCount(book);
+total;
+
+*/
+/*
+// ******** ARRAY MAP method
+const books = getBooks();
+
+const getTotalReviewCount = function (book) {  
+  const goodreads = book.reviews.goodreads.reviewsCount;
+  const librarything = book.reviews.librarything?.reviewsCount ?? 0;
+  return goodreads + librarything;
+}
+const x = [1,2,3,4,5].map(el=>el*2);
+console.log(x);
+
+const titles = books.map((book)=>book.title);
+titles;
+
+const essentalData = books.map((book)=> {
+  return {
+    title:book.title,
+    author:book.author,
+    reviewCount:getTotalReviewCount(book)
+  }
+});
+essentalData;
+
+// ******** ARRAY Filter method
+const longBooksWithMoive = books.filter((book)=>book.pages<400).filter((book)=>book.hasMovieAdaptation);
+longBooksWithMoive;
+
+const adventureBooks = books.filter(books=>books.genres.includes("adventure")).map(book=>book.title);
+adventureBooks;
+
+// ******** ARRAY Reduce method
+const pagesAllBooks = books.reduce((sum,book)=>sum + book.pages,0);
+pagesAllBooks;
+
+// ************ARRAY Sort method
+const arr = [3,7,1,9,6];
+const sorted = arr.slice().sort((a,b)=> b -a );
+arr;
+sorted;
+
+const sortedByPages = books.slice().sort((a,b)=>  a.pages - b.pages);
+sortedByPages;
+
+// ******** immutable arrays
+
+//1) add book object to array
+const newBook = {
+  id:6,
+  title:'Harry Potter and the Chamber of Secrets',
+  author:'J. K. Rowling'
+};
+
+const booksAfterAdd = [...books, newBook];
+booksAfterAdd;
+
+//2) delete book object from array
+const booksAfterDelete = booksAfterAdd.filter(book=>book.id !== 3);
+booksAfterDelete;
+
+//3) update book object in the array
+const booksAfterUpdate = booksAfterDelete.map((book)=>book.id ===1 ? {...book, pages:1210}:book);
+booksAfterUpdate;
+*/
+// ******************* ASYNCHRONOUS JAVASCRIPT: PROMISES
+
+// console.log(fetch('https://jsonplaceholder.typicode.com/todos/1').then(res=> res.json()));
+fetch('https://jsonplaceholder.typicode.com/todos/1').then(res=> res.json()).then(json=>console.log(json));

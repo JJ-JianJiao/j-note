@@ -33,6 +33,7 @@
       - defualt formatter : prettier -code formatter
       - format On Save: true
       - eslint:Run - onSave
-   6. Snippets settings: ./code/00-setup/snippets.json
+   6. Snippets settings: ./code/00-setup/snippets.json \
+   7. quokka: realtime to monitor the results, etc, varialbles.
 
 7.
