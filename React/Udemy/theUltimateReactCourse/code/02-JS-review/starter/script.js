@@ -302,4 +302,15 @@ booksAfterUpdate;
 // ******************* ASYNCHRONOUS JAVASCRIPT: PROMISES
 
 // console.log(fetch('https://jsonplaceholder.typicode.com/todos/1').then(res=> res.json()));
-fetch('https://jsonplaceholder.typicode.com/todos/1').then(res=> res.json()).then(json=>console.log(json));
+// fetch('https://jsonplaceholder.typicode.com/todos/1').then(res=> res.json()).then(json=>console.log(json));
+
+async function getTodos() {  
+  const res = await fetch('https://jsonplaceholder.typicode.com/todos/1');
+  const data = await res.json();
+  console.log(data);
+  return data;
+};
+
+const todos = getTodos();
+console.log(todos);
+console.log("jianJ");
