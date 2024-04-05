@@ -4,12 +4,16 @@
     "description": "landing page for natours",
     "main": "index.js",
     "scripts": {
-        "compile:sass": "sass scss/main.scss css/style.css",
+        "live": "live-server",
+        "sass-watch": "sass --watch scss/main.scss:css/style.css",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
     "author": "JianJ",
     "license": "ISC",
     "devDependencies": {
         "sass": "^1.74.1"
+    },
+    "dependencies": {
+        "live-server": "^1.2.2"
     }
 }

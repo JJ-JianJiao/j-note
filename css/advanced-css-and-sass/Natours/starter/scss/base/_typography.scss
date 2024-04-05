@@ -1,0 +1,47 @@
+body {
+    /* font-size: 16px; */
+    font-family: "Lato", sans-serif;
+    font-weight: 400;
+    line-height: 1.7;
+    color: $color-grey-dark;
+    padding: 3rem;
+    box-sizing: border-box;
+}
+
+.heading-primary {
+    color: $color-white;
+    text-transform: uppercase;
+
+    margin-bottom: 6rem;
+    /* to fix the animation shake */
+    backface-visibility: hidden;
+    
+    &--main {
+        display: block;
+        /* font-size: 60px; */
+        font-size: 6rem;
+        font-weight: 400;
+        letter-spacing: 3.5rem;
+        
+        animation-name: moveinLeft;
+        animation-duration: 1s;
+        
+        animation-timing-function: ease-out;
+        /*
+        animation-iteration-count: 3;
+        animation-delay: 3s;
+        */
+    }
+    
+    &--sub {
+        display: block;
+        /* font-size: 20px; */
+        font-size: 2rem;
+        font-weight: 700;
+        letter-spacing: 1.75rem;
+        animation: moveinRight 1s ease-out;
+        /* animation-name: moveinRight;
+        animation-duration: 1s;
+        animation-timing-function: ease-out; */
+    }
+}
