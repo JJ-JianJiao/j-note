@@ -1,10 +1,10 @@
 .row {
     max-width: $grid-width;
-    background-color: #eee;
+    // background-color: #eee;
     margin: 0  auto;
-    font-size: 2rem;
-    color:green;
-    font-weight: 600;
+    // font-size: 2rem;
+    // color:green;
+    // font-weight: 600;
 
     &:not(:last-child){
         margin-bottom: $gutter-vertical;
@@ -19,7 +19,7 @@
 
     // ^="abc" - starts with "abc"...  *="abc" -- contains "abc"   $="abc" -- ends "abc"
     [class^="col-"] {
-        background-color: orangered;
+        // background-color: orangered;
         float: left;
         &:not(:last-child){
             margin-right: $gutter-horizontal;
