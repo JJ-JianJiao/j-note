@@ -24,7 +24,7 @@
         &:not(:last-child){
             margin-right: $gutter-horizontal;
         }
-        height: $grid-height;
+        // height: $grid-height;
     }
 
     .col-1-of-2{
