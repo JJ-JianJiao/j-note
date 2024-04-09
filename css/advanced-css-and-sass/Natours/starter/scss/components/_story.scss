@@ -1,0 +1,70 @@
+.story{
+    width: 75%;
+    margin: 0 auto;
+    box-shadow: 0 3rem 6rem rgba($color: $color-black, $alpha: 0.2);
+    background-color: rgba($color: $color-white, $alpha: 0.6);
+    border-radius: 3px;
+    padding: 6rem;
+    padding-left: 9rem;
+    font-size: $default-font-size;
+    transform: skewX(-12deg); //will skew everything, to fix this, do the reverse to all the direct children
+
+
+    & > *{
+        transform: skewX(12deg);
+    }
+
+    &__shape{
+        width: 15rem;
+        height: 15rem;
+        float: left;
+        position: relative;
+        // background-color: orangered;
+
+        // margin-right: 2rem;  //----------> move around elements that is floated the best way is using "transform" better than margin/padding
+        transform: skewX(12deg)  translateX(-3rem);
+
+        //For the shape
+        //https://juejin.cn/post/6969760005356519438
+        -webkit-clip-path: circle(50% at center);  //circle(radius, at position)
+        clip-path: circle(50% at center);  //circle(radius, at position)
+
+        //for the content surrounding. 
+        -webkit-shape-outside: circle(50% at 50% 50%);
+        shape-outside: circle(50% at 50% 50%);
+    }
+
+    
+    &__img{
+        height: 100%;
+        transform: translateX(-4rem) scale(1.4);
+        backface-visibility: hidden;
+        transition:all 0.5s ease-out;
+    }
+
+    &__caption{
+        font-size: 1.7rem;
+        position: absolute;
+        text-transform: uppercase;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, 50%);
+        color:$color-white;
+        font-weight: 400;
+        text-align: center;
+        opacity: 0;
+        transition:all 0.5s ease-out;
+        backface-visibility: hidden;
+    }
+
+    &:hover &__caption{
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    } 
+    &:hover &__img{
+        // opacity: 1;
+        // transform: translate(-50%, -50%);
+        transform: scale(1) translateX(-4rem);
+        filter: blur(3px) brightness(80%);
+    } 
+}
