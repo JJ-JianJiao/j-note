@@ -31,6 +31,10 @@
         display: inline-block;
         transition: all 0.2s;
     }
+    &:hover::after {
+        transform: scaleX(1.4) scaleY(1.6);
+        opacity: 0;
+    }
     
     &--animate {
         animation: moveinUp 0.5s ease-out 0.7s backwards;
@@ -42,9 +46,12 @@
         &::after {
             background-color: $color-white;
         }
-        &:hover::after {
-            transform: scaleX(1.4) scaleY(1.6);
-            opacity: 0;
+    }
+    &--green {
+        background-color: $color-primary;
+        color: $color-white;
+        &::after {
+            background-color: $color-primary;
         }
     }
 }
