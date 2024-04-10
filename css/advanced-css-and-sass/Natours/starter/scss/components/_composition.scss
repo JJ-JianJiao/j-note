@@ -29,7 +29,7 @@
             outline: 1rem solid rgba($color: $color-primary, $alpha: 1.0);
             box-shadow: 0 2.5rem 4rem rgba($color: $color-black, $alpha: 0.6);
             transform: scale(1.15) translateY(-.5rem);
-            border-radius: 2px;
+            border-radius: $default-border-radius;
         }
     }
 
