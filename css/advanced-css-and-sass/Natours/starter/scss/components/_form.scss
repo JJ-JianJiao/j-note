@@ -23,11 +23,28 @@
             box-shadow: 0 1rem 2rem rgba($color: $color-black, $alpha: 0.3);
             border-bottom: 3px solid $color-primary;
         }
+
+        &:focus:invalid{
+            border-bottom: 3px solid $color-secondary-dark;
+        }
+
     }
 
-
-
     &__label{
-        
+        font-size: 1.2rem;    
+        font-weight: 800;
+        margin-left: 2rem;
+        margin-top: 0.7rem;
+        display: block;
+        transition: all .3s ease;
+        // transform: translateY(0rem);
+        opacity: 1;
+    }
+    // after using +, if there are more eles between, using '~'
+    &__input:placeholder-shown + &__label {
+        visibility: hidden;
+        opacity: 0;
+        transform: translateY(-4rem);
+ 
     }
 }

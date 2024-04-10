@@ -487,6 +487,24 @@ body {
   box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.3);
   border-bottom: 3px solid #55c57a;
 }
+.form__input:focus:invalid {
+  border-bottom: 3px solid #ff7730;
+}
+.form__label {
+  font-size: 1.2rem;
+  font-weight: 800;
+  margin-left: 2rem;
+  margin-top: 0.7rem;
+  display: block;
+  transition: all 0.3s ease;
+  opacity: 1;
+}
+.form__input:placeholder-shown + .form__label {
+  visibility: hidden;
+  opacity: 0;
+  transform: translateY(-4rem);
+}
+
 .header {
   height: 95vh;
   background-image: linear-gradient(to right bottom, rgba(126, 213, 111, 0.75), rgba(40, 180, 133, 0.75)), url(../img/hero.jpg);
