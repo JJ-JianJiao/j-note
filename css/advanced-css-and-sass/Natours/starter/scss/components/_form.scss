@@ -56,10 +56,7 @@
 
     &__radio-input{
         opacity: 0;
-    }
-
-    &__radio-input:checked + &__radio-label > &__radio-button::after{
-        opacity: 1;
+        // display: none;
     }
 
     &__radio-label{
@@ -90,6 +87,16 @@
             transform: translate(-50%, -50%);
             background-color: $color-primary;
             opacity: 0;
+            transition: opacity .3s;
         }
+    }
+
+    &__radio-input:checked + &__radio-label > &__radio-button::after{
+        opacity: 1;
+    }
+
+    &__radio-input:focus-visible + &__radio-label > &__radio-button {
+        outline: 2px solid orangered;
+        outline-offset: 3px;
     }
 }
