@@ -1,6 +1,6 @@
-@mixin clearfix{
-    &::after{
-        content:"";
+@mixin clearfix {
+    &::after {
+        content: "";
         clear: both;
         display: table;
         overflow: auto;
@@ -14,14 +14,14 @@
 
 @mixin BtnActiveDown {
     transform: translateY(-1px);
-    box-shadow: 0px .5rem 1rem rgba($color-black, 0.2);
+    box-shadow: 0px 0.5rem 1rem rgba($color-black, 0.2);
 }
 
 @mixin absCenter {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%,-50%);
+    transform: translate(-50%, -50%);
 }
 
 //MEDIA QUERY MANAGER
@@ -32,29 +32,35 @@
 1200 - 1800px is where our normal styles apply
 1800+ big desktop
 */
+
+///Order: base +typography >general layout + grid >page layout >components
 /*
 $breakpoint argument choices:
-- phone
-- tab-port
-- tab-land
-- big-desktop
+- phone <600
+- tab-port 600> <900
+- tab-land 900> <1200
+- now >1200 <1800
+- big-desktop >1800
 */
-@mixin respond($breakpoint){
-    @if ($breakpoint == 'phone') {
-        @media only screen and ( max-width: 37.5em) { //600px
+@mixin respond($breakpoint) {
+    @if ($breakpoint == "phone") {
+        @media only screen and (max-width: 37.5em) {
+            //600px
             @content;
         }
-
-    }@else if $breakpoint=='tab-port' {
-        @media only screen and ( max-width: 56.2em ) { //900
+    } @else if $breakpoint== "tab-port" {
+        @media only screen and (max-width: 56.2em) {
+            //900
             @content;
         }
-    }@else if $breakpoint=='tab-land' {
-        @media only screen and ( max-width: 75em ) { //1200
+    } @else if $breakpoint== "tab-land" {
+        @media only screen and (max-width: 75em) {
+            //1200
             @content;
         }
-    }@else if $breakpoint=='big-desktop' {
-        @media only screen and ( min-width: 112.5em ) { //1800
+    } @else if $breakpoint== "big-desktop" {
+        @media only screen and (min-width: 112.5em) {
+            //1800
             @content;
         }
     }

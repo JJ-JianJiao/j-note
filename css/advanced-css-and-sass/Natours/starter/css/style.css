@@ -7,10 +7,11 @@
 */
 /*
 $breakpoint argument choices:
-- phone
-- tab-port
-- tab-land
-- big-desktop
+- phone <600
+- tab-port 600> <900
+- tab-land 900> <1200
+- now >1200 <1800
+- big-desktop >1800
 */
 @keyframes moveinLeft {
   0% {
@@ -79,12 +80,21 @@ html {
 }
 
 body {
+  padding: 3rem;
+  box-sizing: border-box;
+}
+@media only screen and (max-width: 56.2em) {
+  body {
+    padding: 0;
+  }
+}
+
+body {
   /* font-size: 16px; */
   font-family: "Lato", sans-serif;
   font-weight: 400;
   line-height: 1.7;
   color: #777;
-  padding: 3rem;
   box-sizing: border-box;
 }
 
@@ -109,6 +119,12 @@ body {
   animation-delay: 3s;
   */
 }
+@media only screen and (max-width: 37.5em) {
+  .heading-primary--main {
+    letter-spacing: 1.5rem;
+    font-size: 5rem;
+  }
+}
 .heading-primary--sub {
   display: block;
   /* font-size: 20px; */
@@ -119,6 +135,12 @@ body {
   /* animation-name: moveinRight;
   animation-duration: 1s;
   animation-timing-function: ease-out; */
+}
+@media only screen and (max-width: 37.5em) {
+  .heading-primary--sub {
+    letter-spacing: 1rem;
+    font-size: 1.5rem;
+  }
 }
 
 .heading-secondary {
@@ -131,6 +153,16 @@ body {
   color: transparent;
   letter-spacing: 0.2rem;
   transition: all 0.2s;
+}
+@media only screen and (max-width: 56.2em) {
+  .heading-secondary {
+    font-size: 3rem;
+  }
+}
+@media only screen and (max-width: 37.5em) {
+  .heading-secondary {
+    font-size: 2.5rem;
+  }
 }
 .heading-secondary:hover {
   transform: skewY(2deg) skewX(15deg) scale(1.1);
@@ -683,6 +715,12 @@ body {
   -webkit-clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
   clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
 }
+@media only screen and (max-width: 37.5em) {
+  .header {
+    -webkit-clip-path: polygon(0 0, 100% 0, 100% 80vh, 0 100%);
+    clip-path: polygon(0 0, 100% 0, 100% 80vh, 0 100%);
+  }
+}
 .header__logo-box {
   position: absolute;
   top: 4rem;
@@ -707,6 +745,17 @@ body {
 .row:not(:last-child) {
   margin-bottom: 8rem;
 }
+@media only screen and (max-width: 56.2em) {
+  .row:not(:last-child) {
+    margin-bottom: 6rem;
+  }
+}
+@media only screen and (max-width: 56.2em) {
+  .row {
+    max-width: 50rem;
+    padding: 0 3rem;
+  }
+}
 .row::after {
   content: "";
   clear: both;
@@ -718,6 +767,17 @@ body {
 }
 .row [class^=col-]:not(:last-child) {
   margin-right: 6rem;
+}
+@media only screen and (max-width: 56.2em) {
+  .row [class^=col-]:not(:last-child) {
+    margin-right: 0;
+  }
+}
+@media only screen and (max-width: 56.2em) {
+  .row [class^=col-] {
+    width: 100% !important;
+    margin-bottom: 6rem;
+  }
 }
 .row .col-1-of-2 {
   width: calc((100% - 6rem) / 2);
@@ -744,6 +804,11 @@ body {
   padding: 10rem 0;
   color: #eee;
 }
+@media only screen and (max-width: 56.2em) {
+  .footer {
+    padding: 6rem 0;
+  }
+}
 .footer__logo {
   width: 15rem;
 }
@@ -751,6 +816,12 @@ body {
   border-top: 1px solid #eeeeee;
   padding-top: 2rem;
   display: inline-block;
+}
+@media only screen and (max-width: 56.2em) {
+  .footer__navigation {
+    width: 100%;
+    text-align: center;
+  }
 }
 .footer__list {
   list-style: none;
@@ -781,6 +852,13 @@ body {
   width: 95%;
   float: right;
 }
+@media only screen and (max-width: 56.2em) {
+  .footer__copyright {
+    width: 100%;
+    text-align: center;
+    float: none;
+  }
+}
 
 .navigation__checkbox {
   display: none;
@@ -798,6 +876,18 @@ body {
   box-shadow: 1rem 1rem 2rem rgba(0, 0, 0, 0.5);
   cursor: pointer;
 }
+@media only screen and (max-width: 56.2em) {
+  .navigation__button {
+    top: 4rem;
+    right: 4rem;
+  }
+}
+@media only screen and (max-width: 37.5em) {
+  .navigation__button {
+    top: 3rem;
+    right: 3rem;
+  }
+}
 .navigation__background {
   background-image: radial-gradient(#7ed56f, #28b485);
   height: 6rem;
@@ -808,6 +898,18 @@ body {
   right: 6.5rem;
   z-index: 99;
   transition: all 0.6s ease-out;
+}
+@media only screen and (max-width: 56.2em) {
+  .navigation__background {
+    top: 4.35rem;
+    right: 4.35rem;
+  }
+}
+@media only screen and (max-width: 37.5em) {
+  .navigation__background {
+    top: 3.25rem;
+    right: 3.25rem;
+  }
 }
 .navigation__nav {
   height: 100vh;
