@@ -1,4 +1,4 @@
-.story{
+.story {
     width: 75%;
     margin: 0 auto;
     box-shadow: 0 3rem 6rem rgba($color: $color-black, $alpha: 0.2);
@@ -7,64 +7,79 @@
     padding: 6rem;
     padding-left: 9rem;
     font-size: $default-font-size;
-    transform: skewX(-12deg); //will skew everything, to fix this, do the reverse to all the direct children
+    transform: skewX(
+        -12deg
+    ); //will skew everything, to fix this, do the reverse to all the direct children
 
+    @include respond(tab-port) {
+        width: 100%;
+        padding: 6rem;
+        padding-left: 9rem;
+    }
+    @include respond(phone) {
+        transform: skewX(0deg);
+        padding: 5rem 3.5rem;
+        & > * {
+            transform: skewX(0deg) !important;
+        }
+    }
 
-    & > *{
+    & > * {
         transform: skewX(12deg);
     }
 
-    &__shape{
+    &__shape {
         width: 15rem;
         height: 15rem;
         float: left;
-        position: relative;
+        // position: relative;
         // background-color: orangered;
 
         // margin-right: 2rem;  //----------> move around elements that is floated the best way is using "transform" better than margin/padding
-        transform: skewX(12deg)  translateX(-3rem);
-
+        transform: skewX(12deg) translateX(-3rem);
+        @include respond(phone) {
+            transform: translateX(-2rem) !important;
+        }
         //For the shape
         //https://juejin.cn/post/6969760005356519438
-        -webkit-clip-path: circle(50% at center);  //circle(radius, at position)
-        clip-path: circle(50% at center);  //circle(radius, at position)
+        -webkit-clip-path: circle(50% at center); //circle(radius, at position)
+        clip-path: circle(50% at center); //circle(radius, at position)
 
-        //for the content surrounding. 
+        //for the content surrounding.
         -webkit-shape-outside: circle(50% at 50% 50%);
         shape-outside: circle(50% at 50% 50%);
     }
 
-    
-    &__img{
+    &__img {
         height: 100%;
         transform: translateX(-4rem) scale(1.4);
         backface-visibility: hidden;
-        transition:all 0.5s ease-out;
+        transition: all 0.5s ease-out;
     }
 
-    &__caption{
+    &__caption {
         font-size: 1.7rem;
         position: absolute;
         text-transform: uppercase;
         top: 50%;
         left: 50%;
         transform: translate(-50%, 50%);
-        color:$color-white;
+        color: $color-white;
         font-weight: 400;
         text-align: center;
         opacity: 0;
-        transition:all 0.5s ease-out;
+        transition: all 0.5s ease-out;
         backface-visibility: hidden;
     }
 
-    &:hover &__caption{
+    &:hover &__caption {
         opacity: 1;
         transform: translate(-50%, -50%);
-    } 
-    &:hover &__img{
+    }
+    &:hover &__img {
         // opacity: 1;
         // transform: translate(-50%, -50%);
         transform: scale(1) translateX(-4rem);
         filter: blur(3px) brightness(80%);
-    } 
+    }
 }

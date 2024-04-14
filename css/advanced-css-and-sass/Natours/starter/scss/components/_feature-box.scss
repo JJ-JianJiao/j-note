@@ -8,9 +8,12 @@
     transition: transform 0.3s;
 
     @include respond(tab-port) {
-        padding: 2rem;
+        padding: 3rem 2rem;
     }
 
+    &__text {
+        margin-bottom: 1.5rem;
+    }
     &__icon {
         font-size: 6rem;
         margin-bottom: 0.6rem;
@@ -25,10 +28,10 @@
     &:hover {
         transform: translateY(-2rem) scale(1.15);
         box-shadow: 0 2rem 6rem rgba($color: $color-black, $alpha: 0.8);
-        // @include respond(tab-port) {
-        //     // transform: translateY(-1rem) scale(1);
-        //     transform: none;
-        //     box-shadow: 0 1.5rem 4rem rgba($color: $color-black, $alpha: 0.6);
-        // }
+        @include respond(tab-port) {
+            // transform: translateY(-1rem) scale(1);
+            transform: none;
+            box-shadow: 0 1.5rem 4rem rgba($color: $color-black, $alpha: 0.6);
+        }
     }
 }

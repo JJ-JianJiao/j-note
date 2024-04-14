@@ -15,7 +15,7 @@
     </head>
     <body>
         <div class="navigation">
-            <input type="checkbox" name="" id="navi-toggle" class="navigation__checkbox">
+            <input type="checkbox" name="" id="navi-toggle" class="navigation__checkbox" />
             <label for="navi-toggle" class="navigation__button">
                 <span class="navigation__icon">&nbsp;</span>
             </label>
@@ -85,6 +85,27 @@
                     <div class="col-1-of-2">
                         <div class="composition">
                             <img
+                                srcset="img/nat-1.jpg 300w, img/nat-1-large.jpg 1000w"
+                                sizes="(max-width:56.25em) 20vw, (max-width:37.5em) 30vw, 300px"
+                                alt="photo 1"
+                                class="composition__photo composition__photo--p1"
+                                src="img/nat-1-large.jpg"
+                            />
+                            <img
+                                srcset="img/nat-2.jpg 300w, img/nat-2-large.jpg 1000w"
+                                sizes="(max-width:56.25em) 20vw, (max-width:37.5em) 30vw, 300px"
+                                alt="photo 2"
+                                class="composition__photo composition__photo--p2"
+                                src="img/nat-2-large.jpg"
+                            />
+                            <img
+                                srcset="img/nat-3.jpg 300w, img/nat-3-large.jpg 1000w"
+                                sizes="(max-width:56.25em) 20vw, (max-width:37.5em) 30vw, 300px"
+                                alt="photo 3"
+                                class="composition__photo composition__photo--p3"
+                                src="img/nat-3-large.jpg"
+                            />
+                            <!-- <img
                                 src="img/nat-1-large.jpg"
                                 alt="photo 1"
                                 class="composition__photo composition__photo--p1"
@@ -98,7 +119,7 @@
                                 src="img/nat-3-large.jpg"
                                 alt="photo 3"
                                 class="composition__photo composition__photo--p3"
-                            />
+                            /> -->
                         </div>
                     </div>
                 </div>
@@ -156,10 +177,11 @@
                     <div class="col-1-of-3">
                         <div class="card">
                             <div class="card__side card__side--front">
-                                <div class="card__picture card__picture--1">
-                                </div>
+                                <div class="card__picture card__picture--1"></div>
                                 <h4 class="card__heading">
-                                    <span class="card__heading-span card__heading-span--1">The Sea Explorer</span>
+                                    <span class="card__heading-span card__heading-span--1"
+                                        >The Sea Explorer</span
+                                    >
                                 </h4>
                                 <div class="card__details">
                                     <ul>
@@ -185,10 +207,11 @@
                     <div class="col-1-of-3">
                         <div class="card">
                             <div class="card__side card__side--front">
-                                <div class="card__picture card__picture--2">
-                                </div>
+                                <div class="card__picture card__picture--2"></div>
                                 <h4 class="card__heading">
-                                    <span class="card__heading-span card__heading-span--2">The forest hiker</span>
+                                    <span class="card__heading-span card__heading-span--2"
+                                        >The forest hiker</span
+                                    >
                                 </h4>
                                 <div class="card__details">
                                     <ul class="card__details-list">
@@ -214,10 +237,11 @@
                     <div class="col-1-of-3">
                         <div class="card">
                             <div class="card__side card__side--front">
-                                <div class="card__picture card__picture--3">
-                                </div>
+                                <div class="card__picture card__picture--3"></div>
                                 <h4 class="card__heading">
-                                    <span class="card__heading-span card__heading-span--3">the snow adventure</span>
+                                    <span class="card__heading-span card__heading-span--3"
+                                        >the snow adventure</span
+                                    >
                                 </h4>
                                 <div class="card__details">
                                     <ul class="card__details-list">
@@ -249,9 +273,9 @@
                 <div class="bg-video">
                     <video class="bg-video__content" autoplay muted loop>
                         <!-- coverr.co  for downloading the video from website-->
-                        <source src="img/video.mp4" type="video/mp4">
-                        <source src="img/video.webm" type="video/webm">
-                            Your browser is not supported!
+                        <source src="img/video.mp4" type="video/mp4" />
+                        <source src="img/video.webm" type="video/webm" />
+                        Your browser is not supported!
                     </video>
                 </div>
                 <div class="u-center-text">
@@ -260,19 +284,19 @@
                 <div class="row">
                     <div class="story">
                         <figure class="story__shape">
-                            <img src="img/nat-8.jpg" alt="Person on a tour" class="story__img">
-                            <figcaption class="story__caption">
-                                Mary Smith
-                            </figcaption>
+                            <img src="img/nat-8.jpg" alt="Person on a tour" class="story__img" />
+                            <figcaption class="story__caption">Mary Smith</figcaption>
                         </figure>
                         <div class="story__text">
                             <h3 class="heading-tertiary u-margin-bottom-small">
                                 I had the best week every with my family
                             </h3>
                             <p>
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Error, obcaecati. Ad optio porro modi. Beatae vitae dolores odit possimus? Debitis maiores non fugiat, totam ullam labore officia ex tempora a! Architecto nisi
-                                dignissimos, quos, cupiditate voluptate tempora et non temporibus eius,
-                                doloremque cum.
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Error,
+                                obcaecati. Ad optio porro modi. Beatae vitae dolores odit possimus?
+                                Debitis maiores non fugiat, totam ullam labore officia ex tempora a!
+                                Architecto nisi dignissimos, quos, cupiditate voluptate tempora et non
+                                temporibus eius, doloremque cum.
                             </p>
                         </div>
                     </div>
@@ -280,17 +304,19 @@
                 <div class="row">
                     <div class="story">
                         <figure class="story__shape">
-                            <img src="img/nat-9.jpg" alt="Person on a tour" class="story__img">
-                            <figcaption class="story__caption">
-                                Jack Wilson
-                            </figcaption>
+                            <img src="img/nat-9.jpg" alt="Person on a tour" class="story__img" />
+                            <figcaption class="story__caption">Jack Wilson</figcaption>
                         </figure>
                         <div class="story__text">
                             <h3 class="heading-tertiary u-margin-bottom-small">
                                 WOW! MY LIFE IS COMPLETELY DIFFERENT NOW
                             </h3>
                             <p>
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam, ipsum sapiente aspernatur libero repellat quis consequatur ducimus quam nisi exercitationem omnis earum qui. Aperiam, ipsum sapiente aspernatur libero repellat quis consequatur ducimus quam nisi exercitationem omnis earum qui.
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam, ipsum
+                                sapiente aspernatur libero repellat quis consequatur ducimus quam nisi
+                                exercitationem omnis earum qui. Aperiam, ipsum sapiente aspernatur libero
+                                repellat quis consequatur ducimus quam nisi exercitationem omnis earum
+                                qui.
                             </p>
                         </div>
                     </div>
@@ -309,30 +335,54 @@
                                     <h2 class="heading-secondary">START BOOKING NOW</h2>
                                 </div>
                                 <div class="form__group">
-                                    <input type="text" class="form__input" placeholder="Full name" required id='name'>
+                                    <input
+                                        type="text"
+                                        class="form__input"
+                                        placeholder="Full name"
+                                        required
+                                        id="name"
+                                    />
                                     <label for="name" class="form__label">Full name</label>
                                 </div>
                                 <div class="form__group">
-                                    <input type="email" class="form__input" placeholder="Email address" required id='email'>
+                                    <input
+                                        type="email"
+                                        class="form__input"
+                                        placeholder="Email address"
+                                        required
+                                        id="email"
+                                    />
                                     <label for="email" class="form__label">Email address</label>
                                 </div>
                                 <div class="form__group">
                                     <div class="form__radio-group">
-                                        <input type="radio" class="form__radio-input" id="small" name="groupSize">
+                                        <input
+                                            type="radio"
+                                            class="form__radio-input"
+                                            id="small"
+                                            name="groupSize"
+                                        />
                                         <label for="small" class="form__radio-label" tabindex="-1">
                                             <span class="form__radio-button"></span>
                                             Small tour group
                                         </label>
                                     </div>
                                     <div class="form__radio-group">
-                                        <input type="radio" class="form__radio-input" id="large" name="groupSize">
+                                        <input
+                                            type="radio"
+                                            class="form__radio-input"
+                                            id="large"
+                                            name="groupSize"
+                                        />
                                         <label for="large" class="form__radio-label" tabindex="-1">
                                             <span class="form__radio-button"></span>
                                             Large tour group
                                         </label>
                                     </div>
                                 </div>
-                                <button class="btn btn--green u-margin-top-small">Next step &rarr;</button>
+                                <button class="btn btn--green u-margin-top-small">
+                                    Next step &rarr;
+                                </button>
                             </form>
                         </div>
                     </div>
@@ -342,7 +392,22 @@
 
         <footer class="footer">
             <div class="footer__logo-box u-center-text u-margin-bottom-medium">
-                <img src="img/logo-green-2x.png" alt="Full logo" class="footer__logo">
+                <picture class="footer__logo">
+                    <source
+                        media="(max-width: 600px)"
+                        srcset="img/logo-green-small-1x.png 1x, img/logo-green-small-2x.png 2x"
+                    />
+                    <source
+                        media="(min-width: 601px)"
+                        srcset="img/logo-green-1x.png 1x, img/logo-green-2x.png 2x"
+                    />
+                    <img src="mg/logo-green-2x.png" alt="Full logo" />
+                </picture>
+                <!-- <img
+                    srcset="img/logo-green-1x.png 1x, img/logo-green-2x.png 2x"
+                    alt="Full logo"
+                    class="footer__logo"
+                /> -->
             </div>
             <div class="row">
                 <div class="col-1-of-2">
@@ -351,14 +416,19 @@
                             <li class="footer__item"><a href="#" class="footer__link">Company</a></li>
                             <li class="footer__item"><a href="#" class="footer__link">Contact us</a></li>
                             <li class="footer__item"><a href="#" class="footer__link">Carrers</a></li>
-                            <li class="footer__item"><a href="#" class="footer__link">Privacy policy</a></li>
+                            <li class="footer__item">
+                                <a href="#" class="footer__link">Privacy policy</a>
+                            </li>
                             <li class="footer__item"><a href="#" class="footer__link">Terms</a></li>
                         </ui>
                     </div>
                 </div>
                 <div class="col-1-of-2">
                     <p class="footer__copyright">
-                        Built my <a href="" class="footer__link">Jian J</a> for the sass course. Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum, perspiciatis ullam minus molestias ratione, exercitationem iste voluptatibus eos, accusantium natus tempore? Repellendus laudantium, illum nostrum facilis earum omnis placeat saepe.
+                        Built my <a href="" class="footer__link">Jian J</a> for the sass course. Lorem
+                        ipsum dolor sit amet consectetur adipisicing elit. Eum, perspiciatis ullam minus
+                        molestias ratione, exercitationem iste voluptatibus eos, accusantium natus
+                        tempore? Repellendus laudantium, illum nostrum facilis earum omnis placeat saepe.
                     </p>
                 </div>
             </div>
@@ -366,15 +436,24 @@
         <div class="popup" id="popup">
             <div class="popup__content">
                 <div class="popup__left">
-                    <img src="img/nat-8.jpg" alt="Tour photo" class="popup__img" >
-                    <img src="img/nat-9.jpg" alt="Tour photo" class="popup__img">
+                    <img src="img/nat-8.jpg" alt="Tour photo" class="popup__img" />
+                    <img src="img/nat-9.jpg" alt="Tour photo" class="popup__img" />
                 </div>
                 <div class="popup__right">
                     <a href="#close-popup" class="popup__close">&times;</a>
                     <h2 class="heading-secondary u-margin-bottom-small">Start booking now</h2>
-                    <h3 class="heading-tertiary u-margin-bottom-small">Important &ndash; Please read terms before booking</h3>
+                    <h3 class="heading-tertiary u-margin-bottom-small">
+                        Important &ndash; Please read terms before booking
+                    </h3>
                     <p class="popup__text">
-                        It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
+                        It is a long established fact that a reader will be distracted by the readable
+                        content of a page when looking at its layout. The point of using Lorem Ipsum is
+                        that it has a more-or-less normal distribution of letters, as opposed to using
+                        'Content here, content here', making it look like readable English. Many desktop
+                        publishing packages and web page editors now use Lorem Ipsum as their default
+                        model text, and a search for 'lorem ipsum' will uncover many web sites still in
+                        their infancy. Various versions have evolved over the years, sometimes by
+                        accident, sometimes on purpose (injected humour and the like).
                     </p>
                     <a href="#" class="btn btn--green">Book now!</a>
                 </div>

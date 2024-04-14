@@ -393,8 +393,11 @@ body {
 }
 @media only screen and (max-width: 56.2em) {
   .feature-box {
-    padding: 2rem;
+    padding: 3rem 2rem;
   }
+}
+.feature-box__text {
+  margin-bottom: 1.5rem;
 }
 .feature-box__icon {
   font-size: 6rem;
@@ -411,6 +414,12 @@ body {
 .feature-box:hover {
   transform: translateY(-2rem) scale(1.15);
   box-shadow: 0 2rem 6rem rgba(0, 0, 0, 0.8);
+}
+@media only screen and (max-width: 56.2em) {
+  .feature-box:hover {
+    transform: none;
+    box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.6);
+  }
 }
 
 .card {
@@ -534,6 +543,41 @@ body {
   font-size: 8rem;
   font-weight: 100;
 }
+@media only screen and (max-width: 56.2em) {
+  .card {
+    height: auto;
+    border-radius: 3px;
+    background-color: #fff;
+    box-shadow: 0 0.5rem 1.2rem rgba(0, 0, 0, 0.4);
+  }
+  .card__side {
+    height: auto;
+    position: relative;
+    box-shadow: none;
+  }
+  .card__side--back {
+    transform: rotateY(0);
+    clip-path: polygon(0 15%, 100% 0, 100% 100%, 0 100%);
+  }
+  .card:hover .card__side--front {
+    transform: rotateY(0);
+  }
+  .card__cta {
+    position: relative;
+    width: 100%;
+    top: 0%;
+    left: 0%;
+    transform: translate(0);
+    text-align: center;
+    padding: 7rem 4rem 4rem 4rem;
+  }
+  .card__price-box {
+    margin-bottom: 5rem;
+  }
+  .card__price-value {
+    font-size: 7rem;
+  }
+}
 
 .story {
   width: 75%;
@@ -546,6 +590,22 @@ body {
   font-size: 1.6rem;
   transform: skewX(-12deg);
 }
+@media only screen and (max-width: 56.2em) {
+  .story {
+    width: 100%;
+    padding: 6rem;
+    padding-left: 9rem;
+  }
+}
+@media only screen and (max-width: 37.5em) {
+  .story {
+    transform: skewX(0deg);
+    padding: 5rem 3.5rem;
+  }
+  .story > * {
+    transform: skewX(0deg) !important;
+  }
+}
 .story > * {
   transform: skewX(12deg);
 }
@@ -553,12 +613,16 @@ body {
   width: 15rem;
   height: 15rem;
   float: left;
-  position: relative;
   transform: skewX(12deg) translateX(-3rem);
   -webkit-clip-path: circle(50% at center);
   clip-path: circle(50% at center);
   -webkit-shape-outside: circle(50% at 50% 50%);
   shape-outside: circle(50% at 50% 50%);
+}
+@media only screen and (max-width: 37.5em) {
+  .story__shape {
+    transform: translateX(-2rem) !important;
+  }
 }
 .story__img {
   height: 100%;
@@ -650,8 +714,16 @@ body {
   width: 49%;
   display: inline-block;
 }
+@media only screen and (max-width: 56.2em) {
+  .form__radio-group {
+    width: 100%;
+    margin-bottom: 2rem;
+  }
+}
 .form__radio-input {
   opacity: 0;
+  display: none;
+  visibility: hidden;
 }
 .form__radio-label {
   font-size: 1.6rem;
@@ -701,7 +773,13 @@ body {
   z-index: 200;
   visibility: hidden;
   opacity: 0;
-  transition: all 0.4;
+  transition: all 0.4s ease;
+}
+@supports (-webkit-backdrop-filter: blur(8px)) or (backdrop-filter: blur(8px)) {
+  .popup {
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+  }
 }
 .popup:target .popup__content {
   transform: scale(1) translate(-50%, -50%);
@@ -772,13 +850,18 @@ body {
 
 .header {
   height: 95vh;
-  background-image: linear-gradient(to right bottom, rgba(126, 213, 111, 0.75), rgba(40, 180, 133, 0.75)), url(../img/hero.jpg);
+  background-image: linear-gradient(to right bottom, rgba(126, 213, 111, 0.75), rgba(40, 180, 133, 0.75)), url(../img/hero-small.jpg);
   background-size: cover;
   background-position: top;
   position: relative;
   /* https://bennettfeely.com/clippy/ */
   -webkit-clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
   clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+}
+@media (min-resolution: 192dpi) and (min-width: 37.5em), (-webkit-min-device-pixel-ratio: 2) and (min-width: 37.5em), (min-width: 125em) {
+  .header {
+    background-image: linear-gradient(to right bottom, rgba(255, 185, 0, 0.75), rgba(255, 119, 48, 0.75)), url(../img/hero.jpg);
+  }
 }
 @media only screen and (max-width: 75em) {
   .header {
@@ -998,7 +1081,7 @@ body {
   width: 0%;
   position: fixed;
   top: 0;
-  left: -50%;
+  left: -100%;
   z-index: 100;
   transition: all 0.4s cubic-bezier(0.83, 0, 0.17, 1);
   opacity: 1;
@@ -1161,13 +1244,32 @@ body {
 .book {
   background-image: linear-gradient(105deg, rgba(255, 255, 255, 0.85) 0%, rgba(255, 255, 255, 0.85) 50%, transparent 50%), url(../img/nat-10.jpg);
   background-size: cover;
-  height: 50rem;
   border-radius: 3px;
   box-shadow: 0 1.5rem 2rem rgba(0, 0, 0, 0.8);
+}
+@media only screen and (max-width: 75em) {
+  .book {
+    background-image: linear-gradient(105deg, rgba(255, 255, 255, 0.85) 0%, rgba(255, 255, 255, 0.85) 80%, transparent 80%), url(../img/nat-10.jpg);
+  }
+}
+@media only screen and (max-width: 56.2em) {
+  .book {
+    background-image: linear-gradient(105deg, rgba(255, 255, 255, 0.85) 0%, rgba(255, 255, 255, 0.85) 100%), url(../img/nat-10.jpg);
+  }
 }
 .book__form {
   width: 50%;
   padding: 6rem;
+}
+@media only screen and (max-width: 75em) {
+  .book__form {
+    width: 90%;
+  }
+}
+@media only screen and (max-width: 56.2em) {
+  .book__form {
+    width: 100%;
+  }
 }
 
 /*# sourceMappingURL=style.css.map */
