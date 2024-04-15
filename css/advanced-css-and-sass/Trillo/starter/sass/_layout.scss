@@ -8,9 +8,13 @@
 }
 
 .header{
+    font-size: 1.4rem;
     height: 7rem;
     background-color: $color-white;
-    border-bottom: var(--color-Grey-light-2);;
+    border-bottom: var(--color-Grey-light-2);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .content{

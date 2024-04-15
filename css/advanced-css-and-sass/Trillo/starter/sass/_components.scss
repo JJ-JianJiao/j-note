@@ -1,0 +1,115 @@
+//////////////////////////////
+// LOGO
+.logo{
+    height: 3.25rem;
+    margin-left: 3rem;
+}
+
+
+//////////////////////////////
+// SEARCH BAR
+.search{
+    flex-grow: 0;
+    flex-shrink: 0;
+    flex-basis: 40%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    &__input{
+        font-family: inherit;
+        font-size: inherit;
+        background-color: $color-Grey-light-2;
+        border: none;
+        color: inherit;
+        padding: .7rem 2rem;
+        border-radius: 100px;
+        width: 90%;
+        transition: all .2s;
+        margin-right: -3.25rem;
+
+        &:focus{
+            outline: none;
+            width: 100%;
+            background-color: $color-Grey-light-3;
+        }
+
+        &::-webkit-input-placeholder{
+            color: $color-Grey-light-4;
+            font-weight: 100;
+        }
+    }
+
+    &__input:focus + &__button{
+        background-color: $color-Grey-light-3;
+    }
+
+    &__button{
+        border: none;
+        background-color: $color-Grey-light-2;
+        transition: all .2s;
+        &:focus{
+            outline: none;
+            background-color: $color-Grey-light-3;
+        }
+        &:active{
+            transform: translateY(2px);
+        }
+    }
+
+    &__icon{
+        height: 2rem;
+        width: 2rem;
+        fill:$color-Grey-dark-3;
+    }
+}
+
+
+//////////////////////////////
+// USER NAV
+.user-nav{
+    align-self: stretch;
+    // background-color: greenyellow;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    &>*{
+        padding: 0 2rem;
+        cursor: pointer;
+        height: 100%;
+        display: flex;
+        align-items: center;
+    }
+    &>*:hover{
+        background-color: var(--color-Grey-light-2);
+    }
+    &__icon-box{
+        position: relative;
+    }
+    &__icon{
+        height: 2.25rem;
+        width: 2.25rem;
+        fill: var(--color-Grey-dark-2);
+    }
+    &__notification{
+        font-size: 1rem;
+        height: 1.75rem;
+        width:1.75rem;
+        background-color: $color-primary;
+        border-radius: 50%;
+        color: $color-white;
+        position: absolute;
+        top: 20%;
+        left: 55%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    &__user-photo{
+        height: 3.75rem;
+        width: 3.75rem;
+        border-radius: 50%;
+        margin-right: 1rem;
+    }
+
+}
