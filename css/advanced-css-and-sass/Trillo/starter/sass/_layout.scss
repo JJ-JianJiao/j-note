@@ -22,14 +22,20 @@
 }
 
 .sidebar{
-    color: $color-white;
+    // color: $color-white;
+    color: var(--color-Grey-light-3);
     background-color: var(--color-Grey-dark-1);
     flex:0 0 18%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
 }
 
 .hotel-view{
     // background-color: $color-white;
     background-color: orangered;
-
+    height: 89rem;
     flex: 1;
 }
