@@ -7,7 +7,7 @@
     "live": "live-server",
     "sass-watch": "sass --watch sass/main.scss:css/style.css",
     "start": "npm-run-all --parallel live sass-watch",
-    "compile:sass": "sass scss/main.scss css/style.comp.css",
+    "compile:sass": "sass sass/main.scss css/style.comp.css",
     "prefix:css": "postcss --use autoprefixer -b 'last 10 versions' css/style.comp.css -o css/style.prefix.css",
     "compress:css": "sass css/style.prefix.css css/style.css --style=compressed",
     "build:css": "npm-run-all compile:sass prefix:css compress:css"

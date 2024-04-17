@@ -28,6 +28,11 @@ $color-Grey-dark-3:#999;
 $color-black: #000;
 $color-white: #fff;
 
+$bp-largest: 75em;
+$bp-large: 68.75em;
+$bp-medium: 56.25em;
+$bp-small: 37.5em;
+$bp-mobile: 31.25em;
 
 @mixin shadow {
     box-shadow: 0 2rem 5rem rgba($color: $color-black, $alpha: 0.4);
@@ -67,6 +72,10 @@ $color-white: #fff;
 html{
     box-sizing: border-box;
     font-size: 62.5%; //1rem = 10px;
+
+    @media only screen and (max-width: $bp-large){
+        font-size: 50%;
+    }
 }
 
 body {
