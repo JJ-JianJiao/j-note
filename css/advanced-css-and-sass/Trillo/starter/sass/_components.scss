@@ -452,3 +452,65 @@
     //     }
     // }
 }
+
+///////////////////////////////////////////
+// CTA
+
+
+.cta{
+    background-color: $color-white;
+    padding: 3.5rem 0;
+    text-align: center;
+    &__book-now{
+        text-transform: uppercase;
+        font-size: 2rem;
+        font-weight: 300;
+        margin-bottom: 2rem;
+    }
+}
+.btn{
+    color: $color-white;
+
+    font-weight: 300;
+    border: none;
+    text-transform: uppercase;
+    cursor: pointer;
+    background-image: linear-gradient(to right,$color-primary-light,$color-primary-dark);
+    border-radius: 100px;
+    position: relative;
+    overflow: hidden;
+
+    & > * {
+        display: inline-block;
+        height: 100%;
+        width: 100%;
+        transition: all 0.2s;
+    }
+
+    &__visible{
+        padding: 2rem 7.50rem;
+    }
+    &__invisible{
+        position: absolute;
+        padding: 2rem 0em;
+        left: 0;
+        top: -100%;
+
+    }
+
+    &:hover{
+        background-image: linear-gradient(to right,$color-primary-dark,$color-primary-light);
+        & .btn__visible{
+            transform: translateY(100%);
+        }
+
+        & .btn__invisible{
+            top: 0;
+        }
+    }
+
+    &:focus{
+        outline: none;
+        animation: pulsate 1s infinite;
+    }
+}
