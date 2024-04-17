@@ -52,11 +52,11 @@
     padding: 3rem;
     flex: 0 0 60%;
     margin-right: 4.5rem;
-    box-shadow: 0 2rem 5rem rgba($color: $color-black, $alpha: 0.4);
+    @include shadow;
 }
 
 .user-reviews{
     background-color: $color-white;
     flex-grow: 1;
-    box-shadow: 0 2rem 5rem rgba($color: $color-black, $alpha: 0.4);
+    @include shadow;
 }
