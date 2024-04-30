@@ -4,8 +4,8 @@
   "description": "Nexter webpage",
   "main": "index.js",
   "scripts": {
-    "live": "live-server",
-    "sass-watch": "sass --watch scss/main.scss:css/style.css",
+    "live": "live-server --browser=firefox",
+    "sass-watch": "sass --watch sass/main.scss:css/style.css",
     "start": "npm-run-all --parallel live sass-watch",
     "compile:sass": "sass scss/main.scss css/style.comp.css",
     "concat:css": "concat -o css/style.concat.css css/icon-font.css css/style.comp.css",
