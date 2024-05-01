@@ -305,6 +305,46 @@ body {
 .footer {
   background-color: #101d2c;
   grid-column: full-start/full-end;
+  padding: 8rem;
+}
+.footer .copyright {
+  font-size: 1.4rem;
+  color: #aaa;
+  text-align: center;
+  margin-top: 5.5rem;
+  width: 70%;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.nav {
+  width: 90%;
+  margin: 0 auto;
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+  column-gap: 2rem;
+  align-items: start;
+  justify-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 1.6rem;
+  text-align: center;
+}
+.nav__link:link, .nav__link:visited {
+  text-decoration: none;
+  color: #fff;
+  transition: all 0.3s;
+  font-family: "Josefin Sans", sans-serif;
+  text-transform: uppercase;
+}
+.nav__item {
+  padding: 1rem;
+  transition: all 0.3s;
+}
+.nav__item:hover {
+  background-color: rgba(85, 80, 80, 0.5);
+  transform: translateY(-1rem);
 }
 
 /*# sourceMappingURL=style.css.map */
