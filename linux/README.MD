@@ -54,6 +54,7 @@ s### make up later
 ## Filters / Text Processors Commands
 
 1. `cut`: cut the content base on what the parameters you pass
+
     - `cut filename`: does not work
     - `cut --version`: check the cut version
     - `cut -c1 filename`: list one chracter
@@ -64,3 +65,18 @@ s### make up later
     - `cut -d: -f 6 /etc/passwd`: list first 6<sup>th</sup> column separated by **:**
     - `cut -d: -f 6-7 /etc/passwd`: list first 6 and 7<sup>th</sup> column separated by **:**
     - `ls -l | cut -c2-4`: Only print user permissions of files/dir
+
+2. `awk`: data extraction, extract fileds from a file or forn an outpu
+
+    - `awk --version`
+    - `awk '{print $1}' file`: print the first filed of the file
+    - `ls -l | awk '{print $1,$3}'`:list 1 and 3rd filed of ls -l output
+    - `ls -l | awk '{print $NF}'`: last field of the output
+
+    - `awk '/Jerry/ {print}' file`: search for a specific word
+    - `awk -F" '{print $1}' /etc/passwd`:out put only 1st field of /etc/passwd
+    - `echo "Hello Tom" | awk '{$2="Adam"; print $0}`:replace words field workds
+    - `cat file | awk '{$2="jian"; print $0}'`:replace words field words
+    - `awk 'length($0) > 15' file`: get lines that have more than 15 byte size
+    - `ls -l | awk '{if($9 == "test") print $0;}`:get the field matching test in the list of the path
+    - `ls -l | awk '{print NF}'`: Number of fields
