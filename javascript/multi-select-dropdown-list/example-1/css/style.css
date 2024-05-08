@@ -1,0 +1,131 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
+.poppins-light {
+    font-family: "Poppins", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+}
+
+.poppins-regular {
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.poppins-medium {
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+}
+
+.poppins-semibold {
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+body{
+    background-color: #e3f2fd;
+}
+.container{
+    position: relative;
+    max-width: 320px;
+    width: 100%;
+    margin: 80px auto 30px;
+}
+.select-btn{
+    display: flex;
+    height: 50px;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 16px;
+    border-radius: 8px;
+    background-color: #fff;
+    cursor: pointer;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+.select-btn .btn-text{
+    font-size: 17px;
+    font-weight: 400;
+    color: #333;
+}
+.select-btn .arrow-down{
+    display: flex;
+    height: 21px;
+    width: 21px;
+    background: #6e93f7;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-size: 14px;
+    color: #fff;
+    transition: all .1s ease-in;
+}
+.select-btn.open ~ .list-items{
+    display: block;
+}
+.select-btn.open .arrow-down{
+    transform: rotateZ(180deg);
+}
+.list-items{
+    position:relative;
+    margin-top: 15px;
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 16px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    /* list-style: none; */
+    display: none;
+
+}
+.list-items .item{
+    list-style: none;
+    display: flex;
+    align-items: center;
+    height: 50px;
+    cursor: pointer;
+    transition: 0.3s;
+    padding: 0 16px;
+    border-radius: 8px;
+}
+.list-items .item:hover{
+    background-color: #e7edfe;
+}
+/* .list-items .item:not(:first-child){
+    margin-top: 16px;
+} */
+
+.item .checkbox{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 16px;
+    width: 16px;
+    border-radius: 4px;
+    margin-right: 12px;
+    border: 1.5px solid #c0c0c0;
+}
+.item .item-text{
+    font-size: 16px;
+    font-weight: 400;
+    color: #333;
+    transition: all 0.3s ease-in;
+}
+.checkbox .check-icon{
+    font-size: 11px;
+    transform: scale(0);
+    transition: all .3s;
+    color: #fff;
+}
+.item.checked .check-icon{
+    transform: scale(1);
+}
+.item.checked .checkbox{
+    background-color: #4070f4;
+    border-color: #4070f4;
+}
