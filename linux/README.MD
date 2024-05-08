@@ -80,3 +80,16 @@ s### make up later
     - `awk 'length($0) > 15' file`: get lines that have more than 15 byte size
     - `ls -l | awk '{if($9 == "test") print $0;}`:get the field matching test in the list of the path
     - `ls -l | awk '{print NF}'`: Number of fields
+
+3. `grep/egrep`: search feature in Linux.
+
+-   `grep --version OR grep --help`: check version or help
+-   `grep keyword file`: search for a keyword from a file
+-   `grep -c keyword file`: search for a keyword and count
+-   `grep -i keyword file`: search for a keyword ignore case-sensitive
+-   `grep -n keyword file`: display the matched lines and their line numbers
+-   `grep -v keyword file`: display everything but keyword
+-   `grep keyword file | awk '{print $1}'`: search for a keyword and then only give the 1st field
+-   `ls -l | grep -i desktop`: search for a keyword and then ony give the 1st field
+
+-   `egrep -i "keyword|keyword2" file`: search for 2 keywords
