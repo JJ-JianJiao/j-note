@@ -14,3 +14,7 @@ package-lock.json
 # CSS Trillo
 /css/advanced-css-and-sass/Trillo/starter/css/style.*
 /css/advanced-css-and-sass/Trillo/starter/css/style-*
+
+# build web large size file   
+/css/build-responsive-web/theory-lectures-v2-best.pdf
+/css/build-responsive-web/theory-lectures-v2-smaller.pdf
