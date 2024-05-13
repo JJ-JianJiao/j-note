@@ -11,3 +11,11 @@ html, body{
 canvas{
     display: block;
 }
+
+video{
+    display: none;
+}
+
+video ~ div{
+    margin: 0 auto;
+}

@@ -1,4 +1,4 @@
-const density = "Ñ@#W$9876543210?!abc;:+=-,._                                  ";
+const density = "Ñ@#W$9876543210?!abc;:+=-,._                                                        ";
 
 let dog;
 let video;
@@ -12,7 +12,7 @@ function setup() {
     // createCanvas(400, 400);
     noCanvas();
     video = createCapture(VIDEO);
-    video.size(64, 48);
+    video.size(128, 64);
     asciiDiv = createDiv();
 }
 
@@ -24,7 +24,7 @@ function draw() {
     // }
     // ellipse(mouseX, mouseY, 80, 80);
 
-    background(0);
+    background(255,0,0);
     // image(dog, 0, 0, width, height);
 
     // let w = width / dog.width;
