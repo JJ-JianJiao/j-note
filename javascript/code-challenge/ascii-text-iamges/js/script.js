@@ -14,6 +14,7 @@ function setup() {
     video = createCapture(VIDEO);
     video.size(128, 64);
     asciiDiv = createDiv();
+    // video.hide();
 }
 
 function draw() {
@@ -23,7 +24,7 @@ function draw() {
     //     fill(255);
     // }
     // ellipse(mouseX, mouseY, 80, 80);
-
+    scale(-1, 1);
     background(255,0,0);
     // image(dog, 0, 0, width, height);
 
