@@ -15,16 +15,16 @@ Grey dark 2: #777
 Grey dark 3: #999
 
 */
-$color-primary:#eb2f64;
-$color-primary-light:#FF3366;
-$color-primary-dark:#BA265D;
-$color-Grey-light-1:#faf9f9;
-$color-Grey-light-2:#f4f2f2;
-$color-Grey-light-3:#f0eeee;
-$color-Grey-light-4:#ccc;
-$color-Grey-dark-1:#333;
-$color-Grey-dark-2:#777;
-$color-Grey-dark-3:#999;
+$color-primary: #eb2f64;
+$color-primary-light: #ff3366;
+$color-primary-dark: #ba265d;
+$color-Grey-light-1: #faf9f9;
+$color-Grey-light-2: #f4f2f2;
+$color-Grey-light-3: #f0eeee;
+$color-Grey-light-4: #ccc;
+$color-Grey-dark-1: #333;
+$color-Grey-dark-2: #777;
+$color-Grey-dark-3: #999;
 $color-black: #000;
 $color-white: #fff;
 
@@ -38,25 +38,23 @@ $bp-mobile: 31.25em;
     box-shadow: 0 2rem 5rem rgba($color: $color-black, $alpha: 0.4);
 }
 
-:root{
-    --color-primary:#eb2f64;
-    --color-primary-light:#FF3366;
-    --color-primary-dark:#BA265D;
-    --color-Grey-light-1:#faf9f9;
-    --color-Grey-light-2:#f4f2f2;
-    --color-Grey-light-3:#f0eeee;
-    --color-Grey-light-4:#ccc;
-    --color-Grey-dark-1:#333;
-    --color-Grey-dark-2:#777;
-    --color-Grey-dark-3:#999;
+:root {
+    --color-primary: #eb2f64;
+    --color-primary-light: #ff3366;
+    --color-primary-dark: #ba265d;
+    --color-Grey-light-1: #faf9f9;
+    --color-Grey-light-2: #f4f2f2;
+    --color-Grey-light-3: #f0eeee;
+    --color-Grey-light-4: #ccc;
+    --color-Grey-dark-1: #333;
+    --color-Grey-dark-2: #777;
+    --color-Grey-dark-3: #999;
 
-    --line:1px solid var(--color-Grey-light-3);
+    --line: 1px solid var(--color-Grey-light-3);
 
-    --shadow-dark: 0 2rem 6rem rgba(0,0,0,0.4);
+    --shadow-dark: 0 2rem 6rem rgba(0, 0, 0, 0.4);
     // --shadow-dark: 0 2rem 6rem rgba($color-black, 0.3);
 }
-
-
 
 * {
     margin: 0;
@@ -65,26 +63,30 @@ $bp-mobile: 31.25em;
 
 *,
 *::after,
-*::before{
+*::before {
     box-sizing: inherit;
 }
 
-html{
+html {
     box-sizing: border-box;
     font-size: 62.5%; //1rem = 10px;
 
-    @media only screen and (max-width: $bp-large){
+    @media only screen and (max-width: $bp-large) {
         font-size: 50%;
     }
 }
 
 body {
-    font-family: 'Open Sans', sans-serif;
+    font-family: "Open Sans", sans-serif;
     font-weight: 400;
     line-height: 1.6;
     color: var(--color-Grey-dark-1);
     // background-image: linear-gradient(to right bottom, var(--color-primary-light), var(--color-primary));
-    background-image: linear-gradient(to right bottom,rgba($color-primary-light, 0.2), rgba($color-primary, 0.2));
+    background-image: linear-gradient(
+        to right bottom,
+        rgba($color-primary-light, 0.2),
+        rgba($color-primary, 0.2)
+    );
     background-size: cover;
     background-repeat: no-repeat;
     min-height: 100vh;
