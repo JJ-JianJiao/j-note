@@ -2,6 +2,7 @@
     /* border-top: 10px solid #1098ad; */
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
 /* PAGE SECTIONS */
@@ -48,10 +49,8 @@ aside {
     background-color: #f7f7f7;
     border-top: 5px solid #1098ad;
     border-bottom: 5px solid #1098ad;
-    /* padding-top: 50px;
-  padding-bottom: 50px; */
     padding: 50px 0;
-    width: 500px;
+    /* width: 500px; */
 }
 
 /* SMALLER ELEMENTS */
@@ -284,6 +283,7 @@ nav {
     float: right;
 }
 
+aside li::after,
 .clear-fix::after {
     clear: both;
     content: ".";
@@ -301,7 +301,23 @@ aside {
     float: right;
     width: 30%;
     margin-left: 4%;
+    padding: 20px 50px;
 }
+aside h4 {
+    margin-bottom: 20px;
+}
+aside .related {
+    margin-left: 0;
+}
+aside img {
+    float: left;
+}
+
+aside p,
+aside a {
+    float: left;
+}
+
 footer {
     /* float: left;
     width: 100%; */
