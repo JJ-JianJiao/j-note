@@ -16,8 +16,12 @@ html {
 
 
 header{
-    background-color: orangered;
     height: 100vh;
+    position: relative;
+    background-image: linear-gradient( rgba(36, 34, 34, 0.5) , rgba(36, 34, 34, 0.5) ), url("../hero.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: #f7f7f7;
 }
 
 nav {
@@ -25,7 +29,7 @@ nav {
     font-weight: 700;
     display: flex;
     justify-content: space-between;
-    background-color: green;
+    padding-top: 32px;
 }
 
 h1 {
@@ -61,17 +65,14 @@ section {
     background-color: #f7f7f7;
 }
 
-.bkg{
-    background-image: url("../hero.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
+.banner-content{
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
-.banner-content{
-    height: 100%;
-    color: #f7f7f7;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items:flex-start;
+.heaer-container-inner{
+    width: 50%;
 }
