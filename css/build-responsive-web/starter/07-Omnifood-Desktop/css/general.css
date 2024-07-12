@@ -67,9 +67,13 @@ https://heroicons.com/
 
 html {
     font-size: 62.5%;
+    overflow-x: hidden;
 }
 
 body {
+    /* Only works if there is nothing 
+    absolutely positoned in relation to body */
+    overflow-x: hidden;
     font-family: 'Rubik', 'Inter', sans-serif;
     line-height: 1;
     font-weight: 400;
@@ -215,6 +219,7 @@ sup{
     display: flex;
     align-items: center;
     gap: 1.6rem;
+    line-height: 1.2;
 }
 
 .list-icon {
