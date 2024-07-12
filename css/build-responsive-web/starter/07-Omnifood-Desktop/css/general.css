@@ -27,6 +27,7 @@ paragraph default: 1.6
 #fdf2e9
 #fae5d3
 - Shades:#cf711f;
+#45260a
 - Accents
 - Greys:
 #555
@@ -34,7 +35,7 @@ paragraph default: 1.6
 #6F6F6F （lightest grey allowed  #fdf2e9)
 
 ----- 05 SHADOWS
-
+    box-shadow: 0 2.4rem 4.8rem rgba(0, 0, 0, 0.075);
 ----- 06 BORDER RADIUS
 default 9px
 medium: 12px
@@ -94,6 +95,10 @@ sup{
     column-gap: 6.4rem;
 }
 
+.grid:not(:last-child){
+    margin-bottom: 9.6rem;
+}
+
 .grid-center-v{
     align-items: center;
 }
@@ -146,6 +151,7 @@ sup{
     letter-spacing: 0.75px;
 }
 
+.btn,
 .btn:link,
 .btn:visited {
     display: inline-block;
@@ -156,6 +162,23 @@ sup{
     cursor: pointer;
     font-weight: 600;
     transition: all 0.2s;
+
+    /* for cta  */
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+}
+
+.btn--form{
+    background-color: #45260a;
+    padding: 1.2rem;
+    color: #fdf2e9;
+    align-self: end;
+}
+
+.btn--form:hover{
+    background-color: #fff;
+    color: #555;
 }
 
 .link:link,
@@ -192,6 +215,15 @@ sup{
     height: 3rem;
     color: #e67e22;
 }
+
+
+*:focus{
+    outline: none;
+    /* outline: 4px dotted #e67e22; */
+    /* outline-offset: 8px; */
+    box-shadow: 0 0 0 8px rgba(230, 125, 34, 0.61);
+}
+
 /***HELPER?SETTING CLAESSES****/
 
 .margin-right-sm {
@@ -202,29 +234,10 @@ sup{
     margin-bottom: 4.8rem !important;
 }
 
+.opacity-0{
+    opacity: 0;
+}
 
 .center-text{
     text-align: center;
-}
-
-.plan-header{
-    text-align: center;
-    margin-bottom: 4.8rem;
-}
-
-.plan-name {
-    color: #cf711f;
-    font-weight: 600;
-    font-size: 1.8rem;
-    text-transform: uppercase;
-    letter-spacing: 0.75;
-}
-.plan-price {
-    font-size: 7.4rem;
-    font-weight: 600;
-    color:#333;
-}
-.plan-text {
-    font-size: 1.8rem;
-    line-height: 1.8;
 }
