@@ -30,6 +30,9 @@ paragraph default: 1.6
 #45260a
 - Accents
 - Greys:
+#888
+#777
+#767676
 #555
 #333
 #6F6F6F （lightest grey allowed  #fdf2e9)
@@ -113,6 +116,10 @@ sup{
 
 .grid--4-cols {
     grid-template-columns: repeat(4, 1fr);
+}
+
+.grid--5-cols {
+    grid-template-columns: repeat(5, 1fr);
 }
 
 .heading-primary,
