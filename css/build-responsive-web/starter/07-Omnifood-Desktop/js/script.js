@@ -8,6 +8,12 @@ const menu = document.querySelector('.btn-mobile-nav');
 menu.addEventListener('click', (e)=>{
     const header = document.querySelector('.header');
     header.classList.toggle("nav-open");
+    if(header.classList.contains("nav-open")){
+        document.documentElement.style.overflowY  = 'hidden';
+    }
+    else{
+        document.documentElement.style.overflowY  = 'scroll';
+    }
 })
 
 const allLinks = document.querySelectorAll('a:link');
@@ -28,6 +34,7 @@ allLinks.forEach(function (link) {
 
         if(link.classList.contains("main-nav-link")){
             document.querySelector('.header').classList.remove("nav-open");
+            document.documentElement.style.overflowY  = 'scroll';
         }
     })
 })
