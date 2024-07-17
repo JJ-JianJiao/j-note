@@ -37,19 +37,30 @@
    7. quokka: realtime to monitor the results, etc, varialbles.
 
 7. What is JSX?
-   - **Declarative** syntax to **describe** what components **look like** and **how they work**
-   - Components must **return** a block of JSX
-   - Extension of JavaScript that allows us to **embed JavaScript, CSS and React components into HTML**
-   - **Bebel** will help to convert JSX to JavaScript.
-   - Each JSX element is **converted** to a React.createElement function call
-   - we could use React **without JSX**
+- **Declarative** syntax to **describe** what components **look like** and **how they work**
+- Components must **return** a block of JSX
+- Extension of JavaScript that allows us to **embed JavaScript, CSS and React components into HTML**
+- **Bebel** will help to convert JSX to JavaScript.
+- Each JSX element is **converted** to a React.createElement function call
+- we could use React **without JSX**
 
 8. **IMPERATIVE (命令式)** : How to do things
-   - Manual Dom element selections and DOM traversing
-   - Step-by-step DOM mutations until we reach the desired UI
+- Manual Dom element selections and DOM traversing
+- Step-by-step DOM mutations until we reach the desired UI
 
 9. **DECLARATIVE （声明式）** : what we want
-   - Describe what UI should look like using JSX, **base on current data**
-   - React is an **abstraction** away from DOM: **we never touch the DOM"
-   - Instead, we think of the UI as a **reflection of the current data**
+- Describe what UI should look like using JSX, **base on current data**
+- React is an **abstraction** away from DOM: **we never touch the DOM"
+- Instead, we think of the UI as a **reflection of the current data**
 
+10. **RULES** OF JSX: general jsx rules
+   - JSX works essentially like HTML, but we can enter "**JavaScript mode**' by using `{}` (for text or attributes)
+   - We can place **JavaScript expressions** inside {}.
+    
+      > Example: reference variables, create arrays or objects, [].map(), ternary operator
+
+   - Statements are **not allowed** (if/else, for, switch)
+   - JSX produces a **JavaScript expression**    
+      - We can place **other pieces of JSX inside `{}`
+      - We can write JSX **anywhere** inside a component (in if/else, assign to variables, pass it into functions)
+   - A piece of JSX can only have **one root element.** If you need more, use `<React.Fragment>` or the short `<>`

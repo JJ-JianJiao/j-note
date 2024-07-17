@@ -69,27 +69,38 @@ function Header() {
     );
 }
 
-function Menu(props) {
-    console.log(props.pizzaData);
+function Menu() {
+    // console.log(props.pizzaData);
+    // let pizzas = [];
+    // props.pizzaData.forEach((e) => {
+    //     pizzas.push(<Pizza name={e.name} ingredients={e.ingredients} photoName={e.photoName}
+    //         price={e.price} />);
+    // })
+    // console.log(pizzas)
     return (
         <main className="menu">
             <h2>Our menu</h2>
-            <Pizza name="Focaccia" ingredients="Bread with italian olive oil and rosemary" photoName="./pizzas/focaccia.jpg"
-                price={10} />
+
+            <ul className="pizzas">
+                {pizzaData.map(pizza => <Pizza pizzaObj={pizza} key={pizza.name}/>)}
+            </ul>
+
+            {/* <div className="pizzas">
+                {pizzas}
+            </div> */}
         </main>
     );
 }
 function Pizza(props) {
-    console.log(props);
     return (
-        <div className="pizza">
-            <img src={props.photoName} alt={props.name} />
+        <li className="pizza">
+            <img src={props.pizzaObj.photoName} alt={props.pizzaObj.name} />
             <div>
-                <h3>{props.name}</h3>
-                <p>{props.ingredients}</p>
-                <span>{props.price + 3}</span>
+                <h3>{props.pizzaObj.name}</h3>
+                <p>{props.pizzaObj.ingredients}</p>
+                <span>{props.pizzaObj.price + 3}</span>
             </div>
-        </div>
+        </li>
     );
 }
 
