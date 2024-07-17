@@ -36,4 +36,20 @@
    6. Snippets settings: ./code/00-setup/snippets.json \
    7. quokka: realtime to monitor the results, etc, varialbles.
 
-7.
+7. What is JSX?
+   - **Declarative** syntax to **describe** what components **look like** and **how they work**
+   - Components must **return** a block of JSX
+   - Extension of JavaScript that allows us to **embed JavaScript, CSS and React components into HTML**
+   - **Bebel** will help to convert JSX to JavaScript.
+   - Each JSX element is **converted** to a React.createElement function call
+   - we could use React **without JSX**
+
+8. **IMPERATIVE (命令式)** : How to do things
+   - Manual Dom element selections and DOM traversing
+   - Step-by-step DOM mutations until we reach the desired UI
+
+9. **DECLARATIVE （声明式）** : what we want
+   - Describe what UI should look like using JSX, **base on current data**
+   - React is an **abstraction** away from DOM: **we never touch the DOM"
+   - Instead, we think of the UI as a **reflection of the current data**
+
