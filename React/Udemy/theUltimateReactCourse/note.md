@@ -64,3 +64,14 @@
       - We can place **other pieces of JSX inside `{}`
       - We can write JSX **anywhere** inside a component (in if/else, assign to variables, pass it into functions)
    - A piece of JSX can only have **one root element.** If you need more, use `<React.Fragment>` or the short `<>`
+
+11. `STATE`
+
+> Data that a component **can hold over time**, necessary for information that it needs to **remmeber** throughout the app's lifecycle.  --- **Component's memory**
+
+> Updating **component state** triggers React to **re-render the component**
+
+- Update the componnet's view (by re-rednering it)
+- Persist local variables between renders
+
+12. 
