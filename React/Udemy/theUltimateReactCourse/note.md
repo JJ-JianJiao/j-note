@@ -74,4 +74,12 @@
 - Update the componnet's view (by re-rednering it)
 - Persist local variables between renders
 
-12. 
+12.  STATE VS. PROPS
+
+| State  |    PROPS  |
+|   ---    |    ---       |
+|**Internal** data, owned by component     |       **External** data, owned by parent component    |
+|    Component "memory"    |     Similar to function paremeters      |
+|    Can be updated by the component itself    |    Read-only       |
+| Updating state cause component to re-render | **Receiving new props causes component to re-render** Usually when the parent's state has been updated
+| Used to make components interactive | Used by parent to cinfigure child component ("settings")
