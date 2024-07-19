@@ -7,9 +7,10 @@ const messages = [
   "Invest your new income 🤑",
 ];
 
-function App() {
+function App(){
   return (
     <>
+      <Card />
       <Card />
     </>
   );
@@ -30,7 +31,7 @@ function Card() {
   }
 
   function handleCloseBtn() {
-    setIsOpen(is => !is);
+    setIsOpen(is=>!is);
   }
 
   return (
@@ -44,33 +45,20 @@ function Card() {
             <div className={step >= 3 ? 'active' : ""}>3</div>
           </div>
 
-          {/* <p className="message">Step {step}: {messages[step - 1]}</p> */}
-          <StepMessage step={step}>{messages[step - 1]}</StepMessage>
+          <p className="message">Step {step}: {messages[step - 1]}</p>
+
           <div className="buttons">
-            {/* <button style={{ backgroundColor: "#7950f2", color: "#ffffff" }}
+            <button style={{ backgroundColor: "#7950f2", color: "#ffffff" }}
               onClick={handlePrevious}
             >Previous</button>
             <button style={{ backgroundColor: "#7950f2", color: "#ffffff" }}
               onClick={handleNext}
-            >Next</button> */}
-            <Button bgColor="#7950f2" textColor="#ffffff" onClick={handlePrevious}>Previous <span>⏮️</span></Button>
-            <Button bgColor="#7950f2" textColor="#ffffff" onClick={handleNext}><span>⏭️</span> Next</Button>
+            >Next</button>
           </div>
         </div>
       }
     </div>
   );
-}
-
-function StepMessage({step, children}){
-  return <div className="message"><h3>Step {step}:</h3> {children}</div>;
-}
-
-function Button({textColor, bgColor, onClick,  children}) {
-  return <button style={{ backgroundColor: bgColor, color: textColor }}
-    onClick={onClick}>
-    {children}
-  </button>
 }
 
 export default App;

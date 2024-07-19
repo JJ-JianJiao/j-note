@@ -83,3 +83,8 @@
 |    Can be updated by the component itself    |    Read-only       |
 | Updating state cause component to re-render | **Receiving new props causes component to re-render** Usually when the parent's state has been updated
 | Used to make components interactive | Used by parent to cinfigure child component ("settings")
+
+13. The **Children** prop
+   - The children prop allow us **to pass JSX into an element** (besides regular props)
+   - Essential tool to make **reusable** and **configurable** components (especially component **content**)
+   - Really useful for **generic** components that **do not know their content** before used (e.g. modal)
