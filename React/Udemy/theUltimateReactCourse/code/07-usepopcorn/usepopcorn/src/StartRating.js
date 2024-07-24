@@ -1,4 +1,5 @@
-import { useState } from "react"
+import { useState } from "react";
+import PropTypes from "prop-types";
 
 const containerStyle = {
     display: 'flex',
@@ -11,7 +12,17 @@ const startContainerStyle = {
     // gap: "4px"
 }
 
-export default function StartRating({ maxRating = 5, color="#fcc419", size="48", className="", messages=[], defaultRating = -1 , onSetRating=()=>{}}) {
+StartRating.propTypes = {
+    maxRating: PropTypes.number,
+    defaultRating: PropTypes.number,
+    color: PropTypes.string,
+    className: PropTypes.string,
+    size: PropTypes.number,
+    messages: PropTypes.array,
+    onSetRating: PropTypes.func,
+}
+
+export default function StartRating({ maxRating = 5, color="#fcc419", size=48, className="", messages=[], defaultRating = -1 , onSetRating=()=>{}}) {
     const [rating, setRating] = useState(defaultRating);
     const [tempRating, settempRating] = useState(rating);
 
