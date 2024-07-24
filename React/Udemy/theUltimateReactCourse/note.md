@@ -88,3 +88,11 @@
    - The children prop allow us **to pass JSX into an element** (besides regular props)
    - Essential tool to make **reusable** and **configurable** components (especially component **content**)
    - Really useful for **generic** components that **do not know their content** before used (e.g. modal)
+
+14. Key Prop
+   - Special prop that we use to tell the diffing algorithm that an element is **unique**
+   - Allows React to **distinguish** between multiple instances of the same compoinent type
+   - when a key **stays the same across renders**, the element will be kept in the DOM (even if the position in the tree changes)
+      > Use Keys in Lists
+   - When a key **changes between renders**, the element will be destroyed and a new one will be created (even if the position in the tree is the same as before)
+      > **Using keys to reset state**
