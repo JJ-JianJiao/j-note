@@ -1,17 +1,17 @@
 import React, { useState, useTransition } from 'react';
 import ReactDOM from 'react-dom/client';
-// import './index.css';
-// import App from './App';
+import './index.css';
+import App from './App';
 import StartRating from "./StartRating";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    {/* <App /> */}
-    <StartRating maxRating={5} />
+    <App />
+    {/* <StartRating maxRating={5} />
     <StartRating maxRating={5} messages={ ["Terrible", "Bad", "Okay", "Good", "Amazing"]} defaultRating={2}/>
     <StartRating maxRating={4} messages={ ["Bad", "Okay", "Good", "Amazing"]} size={24} color="red"  defaultRating={3}/>
-    <Test />
+    <Test /> */}
   </React.StrictMode>
 );
 
