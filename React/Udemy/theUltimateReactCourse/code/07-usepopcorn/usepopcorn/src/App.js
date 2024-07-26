@@ -66,8 +66,23 @@ export default function App() {
   const [watched, setWatched] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
-  // const query = "Interstellarsssss";
-  const query = "Interstellar";
+  const [query, setQuery] = useState("monkey king");
+  // const tempQuery = "Interstellarsssss"; //testing
+  const tempQuery = "Interstellar";
+
+
+  ////The code below, will be "C A B" for mount, C B, C B, C B there are 3 times state changes inthe useEffect.
+  /*
+  useEffect(function () {  
+    console.log('A') //after inital render
+  },[])
+
+  useEffect(function () {  
+    console.log('B') // after every render
+  })
+
+  console.log('C'); //During render
+  // */
 
   useEffect(function () {
     async function fetchMovies() {
@@ -76,13 +91,15 @@ export default function App() {
       //   .then(data => setMovies(data.Search));
       try {
         setIsLoading(true);
+        setError("");
+        // const res = await fetch(`http://www.omdbapi.com/?apikey=${KEY}&s=${tempQuery}`);
         const res = await fetch(`http://www.omdbapi.com/?apikey=${KEY}&s=${query}`);
         if (!res.ok) throw new Error("Something went wrong with fetching movies");
 
         const data = await res.json();
         if (data.Response === 'False') throw new Error("Movie not found!");
         setMovies(data.Search);
-        console.log(data);
+        // console.log(data);
         // console.log(movies); //[]
       }
       catch (err) {
@@ -93,14 +110,20 @@ export default function App() {
         setIsLoading(false);
       }
     }
+    
+    if(query.trim().length < 8){
+      setMovies([]);
+      setError("");
+      return;
+    }
     fetchMovies();
-  }, []);
+  }, [query]);
 
 
   return (
     <>
       <NavBar>
-        <Search />
+        <Search query={query} setQuery={setQuery}/>
         <NumResults movies={movies} />
       </NavBar>
       <Main>
@@ -146,8 +169,7 @@ function Logo() {
   </div>;
 }
 
-function Search() {
-  const [query, setQuery] = useState("");
+function Search({query, setQuery}) {
   return (
     <input
       className="search"
