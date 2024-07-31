@@ -67,9 +67,7 @@ export default function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
   const [query, setQuery] = useState("monkey king");
-  // const tempQuery = "Interstellarsssss"; //testing
-  const tempQuery = "Interstellar";
-
+  const [selectedID, setSelectedID] = useState("tt8637498");
 
   ////The code below, will be "C A B" for mount, C B, C B, C B there are 3 times state changes inthe useEffect.
   /*
@@ -83,6 +81,14 @@ export default function App() {
 
   console.log('C'); //During render
   // */
+
+  function handleSelectMovie(id) {
+    setSelectedID(selectedID => id === selectedID ? null : id);
+  }
+
+  function handleCloseMovie() {
+    setSelectedID(null);
+  }
 
   useEffect(function () {
     async function fetchMovies() {
@@ -99,6 +105,7 @@ export default function App() {
         const data = await res.json();
         if (data.Response === 'False') throw new Error("Movie not found!");
         setMovies(data.Search);
+        // console.log(data.Search);
         // console.log(data);
         // console.log(movies); //[]
       }
@@ -110,8 +117,8 @@ export default function App() {
         setIsLoading(false);
       }
     }
-    
-    if(query.trim().length < 8){
+
+    if (query.trim().length < 8) {
       setMovies([]);
       setError("");
       return;
@@ -123,19 +130,23 @@ export default function App() {
   return (
     <>
       <NavBar>
-        <Search query={query} setQuery={setQuery}/>
+        <Search query={query} setQuery={setQuery} />
         <NumResults movies={movies} />
       </NavBar>
       <Main>
         <Box>
           {(isLoading && !error) && <Loading />}
-          {(!isLoading && !error) && <MoviesList movies={movies} />}
+          {(!isLoading && !error) && <MoviesList movies={movies} onSelectMovie={handleSelectMovie} />}
           {error && <ErrorMsg message={error} />}
         </Box>
         <Box >
-          <WatchedSummary watched={watched} />
-          {/* <StartRating /> */}
-          <WatchedMoviesList watched={watched} />
+          {
+            selectedID ? <MovieDetails selectedID={selectedID} onCloseMovie={handleCloseMovie} /> :
+              <>
+                <WatchedSummary watched={watched} />
+                <WatchedMoviesList watched={watched} />
+              </>
+          }
         </Box>
       </Main>
     </>
@@ -169,7 +180,7 @@ function Logo() {
   </div>;
 }
 
-function Search({query, setQuery}) {
+function Search({ query, setQuery }) {
   return (
     <input
       className="search"
@@ -204,19 +215,19 @@ function Box({ children }) {
   );
 }
 
-function MoviesList({ movies }) {
+function MoviesList({ movies, onSelectMovie }) {
   return (
-    <ul className="list">
+    <ul className="list list-movies">
       {movies?.map((movie) => (
-        <Movie movie={movie} key={movie.imdbID} />
+        <Movie movie={movie} key={movie.imdbID} onSelectMovie={onSelectMovie} />
       ))}
     </ul>
   );
 }
 
-function Movie({ movie }) {
+function Movie({ movie, onSelectMovie }) {
   return (
-    <li key={movie.imdbID}>
+    <li key={movie.imdbID} onClick={() => onSelectMovie(movie.imdbID)}>
       <img src={movie.Poster} alt={`${movie.Title} poster`} />
       <h3>{movie.Title}</h3>
       <div>
@@ -238,6 +249,13 @@ function Button({ isOpen, setIsOpen }) {
       {isOpen ? "–" : "+"}
     </button>
   );
+}
+
+function MovieDetails({ selectedID, onCloseMovie }) {
+  return <div className="details">
+    <button className="btn-back" onClick={onCloseMovie}>&larr;</button>
+    {selectedID}
+  </div>
 }
 
 function WatchedSummary({ watched }) {
