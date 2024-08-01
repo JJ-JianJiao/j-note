@@ -8,11 +8,15 @@ const KEY = '65dd60b1';
 
 export default function App() {
   const [movies, setMovies] = useState([]);
-  const [watched, setWatched] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
   const [query, setQuery] = useState("monkey king");
   const [selectedID, setSelectedID] = useState("");
+  // const [watched, setWatched] = useState([]);
+  // const [watched, setWatched] = useState(JSON.parse(localStorage.getItem('watched'))); // <-- never do this, it will cal this function on every render
+  const [watched, setWatched] = useState(function () {  
+    return JSON.parse(localStorage.getItem('watched'));
+  });
   const customRating = watched.find(w => w.imdbID === selectedID)?.userRating;
 
   function handleSelectMovie(id) {
@@ -26,11 +30,17 @@ export default function App() {
   function handleWatched(movie) {
     if (watched.some(e => e.imdbID === movie.imdbID)) return;
     setWatched((watched) => [...watched, movie]);
+
+    // localStorage.setItem('watched', JSON.stringify([...watched,  movie]) ); //it is not good when remove movie, so the useEffect will better
   }
 
   function handleDeletewatched(id) {
     setWatched(watched => watched.filter(movie => movie.imdbID !== id));
   }
+
+  useEffect(function () {
+    localStorage.setItem('watched', JSON.stringify(watched));
+  }, [watched]);
 
   useEffect(function () {
     const controller = new AbortController();
@@ -145,7 +155,7 @@ function Search({ query, setQuery }) {
 function NumResults({ movies }) {
   return <p className="num-results">
     Found <strong>{movies.length}</strong> results
-    {console.log(movies.length)}
+    {/* {console.log(movies.length)} */}
   </p>;
 }
 
@@ -211,7 +221,7 @@ function MovieDetails({ selectedID, customRating, onCloseMovie, onAddWatched }) 
 
 
   const { Title: title, Year: year, Poster: poster, Runtime: runtime, imdbRating, Plot: plot, Released: released, Actors: actors, Director: director, genre } = movie;
-  
+
   // if (imdbRating > 2)  //This way will break the linked array of hook in fiber tree.
   //   [isTop, setIsTop] = useState(true);
 
@@ -230,6 +240,9 @@ function MovieDetails({ selectedID, customRating, onCloseMovie, onAddWatched }) 
       document.removeEventListener('keydown', Callback)
     }
   }, [onCloseMovie]);
+
+  const [avgRating, setAvgRating] = useState(0);
+
   function handleAdd() {
     const newWatchedMovie = {
       imdbID: selectedID,
@@ -242,6 +255,11 @@ function MovieDetails({ selectedID, customRating, onCloseMovie, onAddWatched }) 
     }
     onAddWatched(newWatchedMovie);
     onCloseMovie();
+
+    // setAvgRating(Number(imdbRating));
+    // console.log(imdbRating);
+    // console.log(userRating);
+    // setAvgRating((a) => (a + userRating) / 2);
   }
 
   // console.log(title, year);
@@ -287,6 +305,7 @@ function MovieDetails({ selectedID, customRating, onCloseMovie, onAddWatched }) 
           </div>
         </header>
 
+        {/* <p>{avgRating}</p> */}
         <section>
           <div className="rating">
             {isNaN(customRating) ?
