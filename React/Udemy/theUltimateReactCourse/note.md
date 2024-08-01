@@ -97,7 +97,8 @@
     > Use Keys in Lists
 -   When a key **changes between renders**, the element will be destroyed and a new one will be created (even if the position in the tree is the same as before)
     > **Using keys to reset state**
--   JSX works essentially like HTML, but we can enter "**JavaScript mode**' by using `{}` (for text or attributes)
+
+14.   JSX works essentially like HTML, but we can enter "**JavaScript mode**' by using `{}` (for text or attributes)
 -   We can place **JavaScript expressions** inside {}.
 
     > Example: reference variables, create arrays or objects, [].map(), ternary operator
