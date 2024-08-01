@@ -1,7 +1,7 @@
 import React, { useState, useTransition } from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
+import App from './App-v2';
 import StartRating from "./StartRating";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
