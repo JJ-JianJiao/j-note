@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import StartRating from "./StartRating";
 
 const average = (arr) =>
@@ -10,11 +10,11 @@ export default function App() {
   const [movies, setMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
-  const [query, setQuery] = useState("monkey king");
+  const [query, setQuery] = useState("");
   const [selectedID, setSelectedID] = useState("");
   // const [watched, setWatched] = useState([]);
   // const [watched, setWatched] = useState(JSON.parse(localStorage.getItem('watched'))); // <-- never do this, it will cal this function on every render
-  const [watched, setWatched] = useState(function () {  
+  const [watched, setWatched] = useState(function () {
     return JSON.parse(localStorage.getItem('watched'));
   });
   const customRating = watched.find(w => w.imdbID === selectedID)?.userRating;
@@ -142,6 +142,42 @@ function Logo() {
 }
 
 function Search({ query, setQuery }) {
+
+  //it is not a React way to do this, so use useRef
+  // useEffect(function () {
+  //   const el = document.querySelector('.search');
+  //   console.log(el);
+  //   el.focus();
+  // }, []);
+
+  //3 steps of using useRef
+  //1. create /init useRef to a variable
+  //2. use ref in element to connect them
+  //3. use ref in useEffect
+  const inputEl = useRef(null);
+
+
+  useEffect(function () {
+    // console.log(inputEl);
+    // console.log(inputEl.current);
+
+    function callback(e) {
+      // console.log(e);
+
+      if (document.activeElement === inputEl.current)
+        return;
+
+      if (e.code === "Enter") {
+        inputEl.current.focus();
+        setQuery("");
+      }
+    }
+
+    document.addEventListener('keydown', callback);
+
+    return () => document.removeEventListener('keydown', callback);
+  }, [setQuery]);
+
   return (
     <input
       className="search"
@@ -149,6 +185,7 @@ function Search({ query, setQuery }) {
       placeholder="Search movies..."
       value={query}
       onChange={(e) => setQuery(e.target.value)}
+      ref={inputEl}
     />
   );
 }
@@ -218,7 +255,12 @@ function MovieDetails({ selectedID, customRating, onCloseMovie, onAddWatched }) 
   const [isLoading, setIsLoading] = useState(false);
   const [userRating, setUserRating] = useState("");
 
+  const countRef = useRef(0);
 
+  useEffect(function () {
+    if (userRating)
+      countRef.current += 1;
+  }, [userRating])
 
   const { Title: title, Year: year, Poster: poster, Runtime: runtime, imdbRating, Plot: plot, Released: released, Actors: actors, Director: director, genre } = movie;
 
@@ -241,7 +283,7 @@ function MovieDetails({ selectedID, customRating, onCloseMovie, onAddWatched }) 
     }
   }, [onCloseMovie]);
 
-  const [avgRating, setAvgRating] = useState(0);
+  // const [avgRating, setAvgRating] = useState(0);
 
   function handleAdd() {
     const newWatchedMovie = {
@@ -251,7 +293,8 @@ function MovieDetails({ selectedID, customRating, onCloseMovie, onAddWatched }) 
       poster,
       imdbRating: Number(imdbRating),
       runtime: runtime.split(" ").at(0),
-      userRating: userRating
+      userRating: userRating,
+      countRatingDecisions: countRef.current
     }
     onAddWatched(newWatchedMovie);
     onCloseMovie();
