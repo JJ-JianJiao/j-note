@@ -1,8 +1,9 @@
-import React, { useState, useTransition } from 'react';
+// import React, { useState, useTransition } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App-v2';
-import StartRating from "./StartRating";
+import App from './App-v3';
+// import StartRating from "./StartRating";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -15,10 +16,10 @@ root.render(
   </React.StrictMode>
 );
 
-function Test(){
-  const [ratingMovie,setRatingMovie] = useState(0);
-  return <div>
-    <StartRating maxRating={15} color="blue" onSetRating={setRatingMovie}/>
-    <p>This movie was rated {ratingMovie} stars</p>
-  </div>
-}
+// function Test(){
+//   const [ratingMovie,setRatingMovie] = useState(0);
+//   return <div>
+//     <StartRating maxRating={15} color="blue" onSetRating={setRatingMovie}/>
+//     <p>This movie was rated {ratingMovie} stars</p>
+//   </div>
+// }
